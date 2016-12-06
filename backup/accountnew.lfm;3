@@ -1,0 +1,140 @@
+object frm_AccountNew: Tfrm_AccountNew
+  Left = 225
+  Height = 539
+  Top = 151
+  Width = 783
+  Caption = 'New Account'
+  ClientHeight = 539
+  ClientWidth = 783
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  LCLVersion = '1.2.6.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 516
+    Width = 783
+    Panels = <>
+  end
+  object DBEdit2: TDBEdit
+    Left = 56
+    Height = 23
+    Top = 56
+    Width = 280
+    DataField = 'ACCOUNTNAME'
+    DataSource = DM_Main.dsAccount
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 56
+    Height = 15
+    Top = 32
+    Width = 80
+    Caption = 'Account Name'
+    ParentColor = False
+  end
+  object DBMemo1: TDBMemo
+    Left = 360
+    Height = 208
+    Top = 56
+    Width = 374
+    DataField = 'NOTES'
+    DataSource = DM_Main.dsAccount
+    TabOrder = 2
+  end
+  object Label4: TLabel
+    Left = 368
+    Height = 15
+    Top = 32
+    Width = 31
+    Caption = 'Notes'
+    ParentColor = False
+  end
+  object DBCheckBox1: TDBCheckBox
+    Left = 64
+    Height = 23
+    Top = 152
+    Width = 90
+    Caption = 'Test Account'
+    DataField = 'ISTEST'
+    DataSource = DM_Main.dsAccount
+    TabOrder = 3
+    ValueChecked = '1'
+    ValueUnchecked = 'False'
+  end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 64
+    Height = 23
+    Top = 104
+    Width = 235
+    DataField = 'ACCOUNT_TYPE_ID'
+    DataSource = DM_Main.dsAccount
+    KeyField = 'ACCOUNT_TYPE_ID'
+    ListField = 'ACCOUNT_TYPE_CD'
+    ListFieldIndex = 0
+    ListSource = DM_Main.dsLU_Account_Type
+    LookupCache = False
+    TabOrder = 4
+  end
+  object DBNavigator_Acct: TDBNavigator
+    Left = 56
+    Height = 25
+    Top = 352
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = DM_Main.dsAccount
+    Options = []
+    TabOrder = 5
+    VisibleButtons = [nbPost, nbCancel]
+  end
+  object Label3: TLabel
+    Left = 62
+    Height = 15
+    Top = 88
+    Width = 74
+    Caption = 'Account Type'
+    ParentColor = False
+  end
+  object DBCheckBox2: TDBCheckBox
+    Left = 64
+    Height = 23
+    Top = 192
+    Width = 122
+    Caption = 'Make INACTIVE'
+    DataField = 'ISINACTIVE'
+    DataSource = DM_Main.dsAccount
+    TabOrder = 6
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object btnSave: TButton
+    Left = 56
+    Height = 25
+    Top = 304
+    Width = 120
+    Caption = 'Save'
+    ModalResult = 11
+    OnClick = btnSaveClick
+    TabOrder = 7
+  end
+  object btnCancel: TButton
+    Left = 185
+    Height = 25
+    Top = 304
+    Width = 120
+    Caption = 'Cancel'
+    ModalResult = 11
+    OnClick = btnCancelClick
+    TabOrder = 8
+  end
+end

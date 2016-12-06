@@ -1,0 +1,551 @@
+object DM_Messaging: TDM_Messaging
+  OldCreateOrder = False
+  Height = 356
+  HorizontalOffset = 623
+  VerticalOffset = 448
+  Width = 413
+  object data_MessagingCriteria: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM VW_MESSAGINGCRITERIA'
+      'WHERE   FRAMEWORKVERSION_ID = :FID'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 64
+    top = 32
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'FID'
+        ParamType = ptInput
+      end>
+    object data_MessagingCriteriaSECTIONORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SECTIONORDER'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaSECTIONDESCRIPTION: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'SECTIONDESCRIPTION'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object data_MessagingCriteriaSECTIONALPHA: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'SECTIONALPHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object data_MessagingCriteriaBLOCKORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BLOCKORDER'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaBLOCKDESCRIPTION: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'BLOCKDESCRIPTION'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object data_MessagingCriteriaBLOCKALPHA: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'BLOCKALPHA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object data_MessagingCriteriaBLOCKIMAGE: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'BLOCKIMAGE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object data_MessagingCriteriaMSGGROUP_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MSGGROUP_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaGROUPORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GROUPORDER'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaGROUPDESC: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'GROUPDESC'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object data_MessagingCriteriaTOPN: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOPN'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaGROUPALPHA: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'GROUPALPHA'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object data_MessagingCriteriaEVALORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'EVALORDER'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaGENDERCODE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GENDERCODE'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaAGECODEMIN: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'AGECODEMIN'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaAGECODEMAX: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'AGECODEMAX'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaRISKCRITERIA: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'RISKCRITERIA'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object data_MessagingCriteriaCRITERIA: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CRITERIA'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object data_MessagingCriteriaISDEFAULT: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISDEFAULT'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaISGROUPING: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISGROUPING'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaCRITGMSGID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CRITGMSGID'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingCriteriaCRITERIAALPHA: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'CRITERIAALPHA'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+  end
+  object ds_MessagingCriteria: TOraDataSource
+    DataSet = data_MessagingCriteria
+    left = 90
+    top = 106
+  end
+  object data_MessagingGroup: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM VW_MESSAGINGGROUP'
+      'WHERE   FRAMEWORKVERSION_ID = :FID'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 214
+    top = 47
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'FID'
+      end>
+    object data_MessagingGroupSECTIONORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SECTIONORDER'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingGroupSECTIONDESCRIPTION: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'SECTIONDESCRIPTION'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object data_MessagingGroupSECTIONALPHA: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'SECTIONALPHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object data_MessagingGroupFRAMEWORKVERSION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FRAMEWORKVERSION_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingGroupBLOCKORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BLOCKORDER'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingGroupBLOCKDESCRIPTION: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'BLOCKDESCRIPTION'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object data_MessagingGroupBLOCKALPHA: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'BLOCKALPHA'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object data_MessagingGroupBLOCKIMAGE: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'BLOCKIMAGE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object data_MessagingGroupMSGGROUP_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MSGGROUP_ID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingGroupGROUPORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GROUPORDER'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingGroupGROUPDESC: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'GROUPDESC'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object data_MessagingGroupTOPN: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOPN'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object data_MessagingGroupGROUPALPHA: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'GROUPALPHA'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+  end
+  object ds_MessagingGroup: TOraDataSource
+    DataSet = data_MessagingGroup
+    left = 232
+    top = 120
+  end
+  object data_MsgCriteriaForGroup: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT * '
+      '  FROM MSG_Criteria'
+      '  ORDER BY EvalOrder'
+    )
+    MasterSource = ds_MessagingGroup
+    MasterFields = 'MSGGROUP_ID'
+    DetailFields = 'MSGGROUP_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Active = True
+    FilterOptions = []
+    left = 101
+    top = 207
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'MSGGROUP_ID'
+        ParamType = ptInput
+      end>
+  end
+  object ds_MsgCriteriaForGroup: TOraDataSource
+    DataSet = data_MsgCriteriaForGroup
+    left = 136
+    top = 276
+  end
+end

@@ -1,0 +1,238 @@
+object frm_Project: Tfrm_Project
+  Left = 322
+  Height = 655
+  Top = 413
+  Width = 1190
+  Caption = 'Project'
+  ClientHeight = 655
+  ClientWidth = 1190
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 655
+    Top = 0
+    Width = 1190
+    ActivePage = tbs_ProjectSelect
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    OnChange = PageControl1Change
+    object tbs_ProjectSelect: TTabSheet
+      Caption = 'Project'
+      ClientHeight = 627
+      ClientWidth = 1182
+      object pnl_projectselect: TPanel
+        Left = 0
+        Height = 482
+        Top = 145
+        Width = 1182
+        Align = alBottom
+        BevelInner = bvRaised
+        BorderWidth = 2
+        BorderStyle = bsSingle
+        ClientHeight = 478
+        ClientWidth = 1178
+        TabOrder = 0
+        object DBNavigator_Project: TDBNavigator
+          Left = 32
+          Height = 25
+          Top = 352
+          Width = 241
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 25
+          ClientWidth = 241
+          DataSource = DM_Main.dsProject
+          Options = []
+          TabOrder = 0
+          VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+        end
+        object btn_OK: TButton
+          Left = 504
+          Height = 41
+          Top = 416
+          Width = 80
+          Caption = 'OK'
+          OnClick = btn_OKClick
+          TabOrder = 1
+        end
+        object btn_AddProduct1: TButton
+          Left = 328
+          Height = 39
+          Top = 408
+          Width = 112
+          Align = alCustom
+          Caption = 'ADD Project'
+          TabOrder = 2
+        end
+        object DBEdit_ProjectName: TDBEdit
+          Left = 25
+          Height = 23
+          Top = 72
+          Width = 504
+          DataField = 'PROJECTNAME'
+          DataSource = DM_Main.dsProject
+          CharCase = ecNormal
+          MaxLength = 0
+          TabOrder = 3
+        end
+        object DBEdit2: TDBEdit
+          Left = 704
+          Height = 23
+          Top = 16
+          Width = 72
+          DataField = 'PROJECT_ID'
+          DataSource = DM_Main.dsProject
+          CharCase = ecNormal
+          MaxLength = 0
+          TabOrder = 4
+        end
+        object DBMemo_ProjectNotes: TDBMemo
+          Left = 25
+          Height = 160
+          Top = 160
+          Width = 494
+          DataField = 'NOTES'
+          DataSource = DM_Main.dsProject
+          ScrollBars = ssAutoBoth
+          TabOrder = 5
+        end
+        object DBlu_ProjectStatus: TDBLookupComboBox
+          Left = 25
+          Height = 23
+          Top = 24
+          Width = 176
+          DataField = 'STATUS_ID'
+          DataSource = DM_Main.dsProject
+          KeyField = 'STATUS_ID'
+          ListField = 'DESCRIPTION'
+          ListFieldIndex = 0
+          ListSource = luStatus
+          LookupCache = False
+          TabOrder = 6
+        end
+        object DBCheckBox_IsTest: TDBCheckBox
+          Left = 296
+          Height = 23
+          Top = 27
+          Width = 90
+          Caption = 'Test Project'
+          DataField = 'ISTEST'
+          DataSource = DM_Main.dsProject
+          TabOrder = 7
+          ValueChecked = '1'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox_IsActive: TDBCheckBox
+          Left = 424
+          Height = 23
+          Top = 27
+          Width = 90
+          Caption = 'Is Active'
+          DataField = 'ISACTIVE'
+          DataSource = DM_Main.dsProject
+          TabOrder = 8
+          ValueChecked = '1'
+          ValueUnchecked = '0'
+        end
+        object DBListBox1: TDBListBox
+          Left = 656
+          Height = 80
+          Top = 96
+          Width = 100
+          ItemHeight = 0
+          TabOrder = 9
+        end
+        object DBCheckBox_IsActive1: TDBCheckBox
+          Left = 40
+          Height = 23
+          Top = 104
+          Width = 170
+          Caption = 'Evaluate/Analysis'
+          DataField = 'EVALANALYSIS_FLG'
+          DataSource = DM_Main.dsProject
+          TabOrder = 10
+          ValueChecked = '1'
+          ValueUnchecked = '0'
+        end
+        object lblStatus: TLabel
+          Left = 25
+          Height = 15
+          Top = 8
+          Width = 42
+          Caption = 'STATUS'
+          ParentColor = False
+        end
+        object lblStatus1: TLabel
+          Left = 25
+          Height = 15
+          Top = 56
+          Width = 72
+          Caption = 'Project Name'
+          ParentColor = False
+        end
+      end
+      object Button6: TButton
+        Left = 16
+        Height = 31
+        Top = 16
+        Width = 104
+        Align = alCustom
+        Caption = 'View Detail'
+        OnClick = Button6Click
+        TabOrder = 1
+      end
+      object labelProject1: TLabel
+        Left = 352
+        Height = 21
+        Top = 8
+        Width = 101
+        Caption = 'labelProject1'
+        Font.Color = 16384
+        Font.Height = -16
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object labelProduct2: TLabel
+        Left = 352
+        Height = 21
+        Top = 32
+        Width = 107
+        Caption = 'labelProduct2'
+        Font.Color = clMaroon
+        Font.Height = -16
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object btn_AllowProjEdit: TButton
+        Left = 128
+        Height = 25
+        Top = 16
+        Width = 120
+        Caption = 'Allow editing'
+        OnClick = btn_AllowProjEditClick
+        TabOrder = 2
+      end
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = DM_Main.dataProject
+    OnDataChange = DataSource1DataChange
+    left = 695
+    top = 78
+  end
+  object luStatus: TOraDataSource
+    DataSet = DM_Main.luStatus
+    left = 792
+    top = 104
+  end
+end

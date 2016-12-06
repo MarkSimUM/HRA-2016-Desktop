@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="HMRC HRA"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <CommandLineParams Value="-test"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="19">
+      <Item1>
+        <PackageName Value="TAChartLazarusPkg"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="zedlib"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="FrameViewer09"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="weblaz"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="lazwebextra"/>
+      </Item5>
+      <Item6>
+        <PackageName Value="TurboPowerIPro"/>
+      </Item6>
+      <Item7>
+        <PackageName Value="IDEIntf"/>
+      </Item7>
+      <Item8>
+        <PackageName Value="SynEdit"/>
+      </Item8>
+      <Item9>
+        <PackageName Value="rx"/>
+      </Item9>
+      <Item10>
+        <PackageName Value="LazControls"/>
+      </Item10>
+      <Item11>
+        <PackageName Value="dac10"/>
+      </Item11>
+      <Item12>
+        <PackageName Value="MemDSLaz"/>
+      </Item12>
+      <Item13>
+        <PackageName Value="laz_fpspreadsheetexport_visual"/>
+      </Item13>
+      <Item14>
+        <PackageName Value="laz_fpspreadsheet_visual"/>
+      </Item14>
+      <Item15>
+        <PackageName Value="FCL"/>
+      </Item15>
+      <Item16>
+        <PackageName Value="odacvcl10"/>
+      </Item16>
+      <Item17>
+        <PackageName Value="odac10"/>
+      </Item17>
+      <Item18>
+        <PackageName Value="lazdbexport"/>
+      </Item18>
+      <Item19>
+        <PackageName Value="LCL"/>
+      </Item19>
+    </RequiredPackages>
+    <Units Count="19">
+      <Unit0>
+        <Filename Value="project1.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="project1"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_Main"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="datamodulemain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Main"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="DataModuleMain"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="surveylibrary.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_SurveyLibrary"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyLibrary"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="datamodulesurveylibrary.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_SurveyLibrary"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="datamoduleSurveyLibrary"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="sledit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_SLibEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SLEdit"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="customquestionedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_CustomQuestionEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="CustomQuestionEdit"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="surveydata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSurveyData"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyData"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="datamodulemessaging.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Messaging"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="datamoduleMessaging"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="project.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_Project"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Project"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="accountnew.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_AccountNew"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="AccountNew"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="newvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_ItemNew"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="newvalues"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="addvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_AddValues"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="addValues"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="globals.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="globals"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="messaging.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMessaging"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Messaging"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="surveyitems.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_SurveyItems"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyItems"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="dbselect.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_DBSelect"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DBSelect"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="globaltables.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_GlobalTables"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="GlobalTables"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="surveyitemnew.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSurveyItemNew"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyItemNew"/>
+      </Unit18>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="project1"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <MsgFileName Value=""/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="5">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+      <Item4>
+        <Name Value="EInternalError"/>
+      </Item4>
+      <Item5>
+        <Name Value="EOraError"/>
+      </Item5>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

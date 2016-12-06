@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="40">
+      <Unit0>
+        <Filename Value="HMRCHRA.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HMRCHRA"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="88" Y="18"/>
+        <UsageCount Value="209"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_Main"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="main"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1937"/>
+        <CursorPos X="70" Y="1955"/>
+        <UsageCount Value="209"/>
+        <Bookmarks Count="1">
+          <Item0 X="43" Y="1342" ID="0"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="datamodulemain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Main"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="DataModuleMain"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="38"/>
+        <CursorPos X="85" Y="40"/>
+        <UsageCount Value="233"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="surveylibrary.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_SurveyLibrary"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyLibrary"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="42" Y="10"/>
+        <UsageCount Value="232"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="datamodulesurveylibrary.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_SurveyLibrary"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="datamoduleSurveyLibrary"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="83" Y="4"/>
+        <UsageCount Value="232"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="sledit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_SLibEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SLEdit"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="34"/>
+        <CursorPos X="5" Y="34"/>
+        <UsageCount Value="224"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="customquestionedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_CustomQuestionEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="CustomQuestionEdit"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="7"/>
+        <CursorPos X="76" Y="18"/>
+        <UsageCount Value="217"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="surveydata.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSurveyData"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyData"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="47" Y="8"/>
+        <UsageCount Value="210"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="datamodulemessaging.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Messaging"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="datamoduleMessaging"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="43"/>
+        <CursorPos X="65" Y="65"/>
+        <UsageCount Value="201"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="project.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_Project"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Project"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="320"/>
+        <CursorPos X="72" Y="325"/>
+        <UsageCount Value="202"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="accountnew.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_AccountNew"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="AccountNew"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="52"/>
+        <CursorPos X="4" Y="60"/>
+        <UsageCount Value="220"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="newvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_ItemNew"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="newvalues"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="5"/>
+        <UsageCount Value="212"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="addvalues.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_AddValues"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="addValues"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="39" Y="18"/>
+        <UsageCount Value="203"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="globals.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="globals"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="20"/>
+        <CursorPos X="30" Y="27"/>
+        <UsageCount Value="241"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="messaging.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMessaging"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Messaging"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="6" Y="3"/>
+        <UsageCount Value="240"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="surveyitems.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_SurveyItems"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyItems"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="557"/>
+        <CursorPos X="88" Y="566"/>
+        <UsageCount Value="238"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="dbselect.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_DBSelect"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DBSelect"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="52"/>
+        <CursorPos X="75" Y="63"/>
+        <UsageCount Value="234"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="globaltables.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_GlobalTables"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="GlobalTables"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="11"/>
+        <UsageCount Value="200"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="surveyitemnew.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSurveyItemNew"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SurveyItemNew"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="185"/>
+        <CursorPos X="48" Y="185"/>
+        <UsageCount Value="245"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="projectedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_ProjectEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="projectEdit"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="854"/>
+        <CursorPos X="31" Y="860"/>
+        <UsageCount Value="268"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="account.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_Account"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Account"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="30" Y="9"/>
+        <UsageCount Value="238"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="surveyitemlist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_SurveyItemList"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="surveyitemlist"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="45"/>
+        <CursorPos X="19" Y="61"/>
+        <UsageCount Value="202"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="diff.txt"/>
+        <IsPartOfProject Value="True"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="927"/>
+        <CursorPos X="44" Y="960"/>
+        <UsageCount Value="200"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="datamoduleproject.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Project"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="datamoduleproject"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="215"/>
+        <CursorPos X="62" Y="250"/>
+        <UsageCount Value="168"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="orgedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_OrgEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="orgedit"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="42" Y="18"/>
+        <UsageCount Value="51"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="projectconfigedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_ProjectConfigEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ProjectConfigEdit"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="192"/>
+        <CursorPos X="3" Y="194"/>
+        <UsageCount Value="46"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32wsbuttons.pp"/>
+        <UnitName Value="Win32WSButtons"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="478"/>
+        <CursorPos X="1" Y="494"/>
+        <UsageCount Value="10"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="643"/>
+        <CursorPos X="1" Y="661"/>
+        <UsageCount Value="8"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2703"/>
+        <CursorPos X="1" Y="2722"/>
+        <UsageCount Value="3"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="6334"/>
+        <CursorPos X="1" Y="6354"/>
+        <UsageCount Value="7"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="C:\lazarus\lcl\themes.pas"/>
+        <UnitName Value="Themes"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="547"/>
+        <CursorPos X="1" Y="564"/>
+        <UsageCount Value="2"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="C:\lazarus\lcl\include\pagecontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="26"/>
+        <CursorPos X="1" Y="43"/>
+        <UsageCount Value="7"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="C:\lazarus\lcl\include\customnotebook.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="44"/>
+        <CursorPos X="1" Y="64"/>
+        <UsageCount Value="7"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="C:\lazarus\lcl\include\treeview.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2357"/>
+        <CursorPos X="1" Y="2375"/>
+        <UsageCount Value="9"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="C:\lazarus\lcl\include\customcombobox.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="887"/>
+        <CursorPos X="1" Y="906"/>
+        <UsageCount Value="7"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="msgjsonviewer.pp"/>
+        <UnitName Value="msgjsonviewer"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="56" Y="7"/>
+        <UsageCount Value="8"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="C:\lazarus\lcl\include\dblookupcombobox.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="77"/>
+        <CursorPos X="1" Y="97"/>
+        <UsageCount Value="7"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32wsstdctrls.pp"/>
+        <UnitName Value="Win32WSStdCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="932"/>
+        <CursorPos X="1" Y="952"/>
+        <UsageCount Value="7"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="C:\lazarus\components\lazutils\lazmethodlist.pas"/>
+        <UnitName Value="LazMethodList"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="38"/>
+        <CursorPos X="59" Y="45"/>
+        <UsageCount Value="7"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="C:\lazarus\lcl\include\dbcustomnavigator.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="46"/>
+        <CursorPos X="1" Y="67"/>
+        <UsageCount Value="3"/>
+      </Unit39>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="7" HistoryIndex="6">
+      <Position1>
+        <Filename Value="surveyitems.pas"/>
+        <Caret Line="565" Column="76" TopLine="556"/>
+      </Position1>
+      <Position2>
+        <Filename Value="surveyitems.pas"/>
+        <Caret Line="544" Column="93" TopLine="539"/>
+      </Position2>
+      <Position3>
+        <Filename Value="surveyitems.pas"/>
+        <Caret Line="545" Column="93" TopLine="540"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="1962" Column="17" TopLine="1943"/>
+      </Position4>
+      <Position5>
+        <Filename Value="main.pas"/>
+        <Caret Line="1959" Column="77" TopLine="1943"/>
+      </Position5>
+      <Position6>
+        <Filename Value="main.pas"/>
+        <Caret Line="1495" Column="54" TopLine="1"/>
+      </Position6>
+      <Position7>
+        <Filename Value="surveyitems.pas"/>
+        <Caret Line="631" Column="3" TopLine="628"/>
+      </Position7>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="4">
+      <Item1>
+        <Expression Value="luItemType.ListSource.DataSet.FieldByName(LuItemType.KeyField).value"/>
+      </Item1>
+      <Item2>
+        <Expression Value="rgMeasurementType.ItemIndex "/>
+      </Item2>
+      <Item3>
+        <Expression Value="end"/>
+      </Item3>
+      <Item4>
+        <Expression Value="node"/>
+      </Item4>
+    </Watches>
+  </Debugging>
+  <EditorMacros Count="0"/>
+</CONFIG>

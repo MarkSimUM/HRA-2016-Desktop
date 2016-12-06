@@ -1,0 +1,35 @@
+object frm_OrgEdit: Tfrm_OrgEdit
+  Left = 406
+  Height = 547
+  Top = 192
+  Width = 839
+  Caption = 'frm_OrgEdit'
+  ClientHeight = 547
+  ClientWidth = 839
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 524
+    Width = 839
+    Panels = <>
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 267
+    Height = 25
+    Top = 460
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    Options = []
+    TabOrder = 1
+  end
+end

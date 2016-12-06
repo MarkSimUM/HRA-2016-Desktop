@@ -1,0 +1,1013 @@
+unit projectEdit;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  ComCtrls, DbCtrls, StdCtrls, DBGrids, EditBtn, ButtonPanel, Buttons, Ora,
+  VirtualTable, DataModuleMain, VirtualTrees, db, LResources, LCLIntf, LCLType,
+  VTHeaderPopup, ZedDBTreeView, contnrs , datamoduleproject ;
+type
+  TDBTreeNode = class(TTreeNode)
+
+  public
+   dbkey: integer;
+   dbkey2: integer;
+   dbtablename : string ;
+   dbdataset : TDataSet ;
+   dbKeyField : string ;
+//  PopUpMenu: tvNodeType;
+end;
+type
+
+  { Tfrm_ProjectEdit }
+
+  Tfrm_ProjectEdit = class(TForm)
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    BitBtn1: TBitBtn;
+    btnRemoveOrgFromProject: TBitBtn;
+    btnOpenOrgNotInProject: TBitBtn;
+    btnAddOrgToProject: TBitBtn;
+    btnUnselectAll: TBitBtn;
+    btn_DisplayOptions: TButton;
+    btn_SelectALL: TBitBtn;
+    DateEdit_ProjectEndDT: TDateEdit;
+    DateEdit_ProjectStartDT: TDateEdit;
+    DateEdit_ReportEnd: TDateEdit;
+    DateEdit_ReportBeg: TDateEdit;
+    DateEdit_SurveyCloseDT: TDateEdit;
+    DateEdit_SurveyOpenDT: TDateEdit;
+    DBCheckBox_CustomItems12: TDBCheckBox;
+    DBCheckBox_CustomItems13: TDBCheckBox;
+    DBCheckBox_ExtBio: TDBCheckBox;
+    DBCheckBox_CustomItems10: TDBCheckBox;
+    DBCheckBox_CustomItems2: TDBCheckBox;
+    DBCheckBox_CustomItems3: TDBCheckBox;
+    DBCheckBox_CustomItems4: TDBCheckBox;
+    DBCheckBox_CustomItems5: TDBCheckBox;
+    DBCheckBox_CustomItems6: TDBCheckBox;
+    DBCheckBox_CustomItems7: TDBCheckBox;
+    DBCheckBox_CustomItems8: TDBCheckBox;
+    DBCheckBox_CustomItems9: TDBCheckBox;
+    DBCheckBox_IsActive: TDBCheckBox;
+    DBCheckBox_IsActive1: TDBCheckBox;
+    DBCheckBox_IsAnonymous: TDBCheckBox;
+    DBCheckBox_CustomItems: TDBCheckBox;
+    DBCheckBox_IsAnonymous1: TDBCheckBox;
+    DBCheckBox_IsAnonymous2: TDBCheckBox;
+    DBCheckBox_IsAnonymous3: TDBCheckBox;
+    DBCheckBox_IsAnonymous4: TDBCheckBox;
+    DBCheckBox_IsAnonymous5: TDBCheckBox;
+    DBCheckBox_IsAnonymous6: TDBCheckBox;
+    DBCheckBox_IsTest: TDBCheckBox;
+    DBCheckBox_IsTest1: TDBCheckBox;
+    DBEdit10: TDBEdit;
+    DBEdit12: TDBEdit;
+    DBEdit13: TDBEdit;
+    DBEdit14: TDBEdit;
+    DBEdit15: TDBEdit;
+    DBEdit16: TDBEdit;
+    DBEdit17: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBEdit_ProjectName: TDBEdit;
+    DBGrid_OrgInProject: TDBGrid;
+    DBGrid_ProjectConfig: TDBGrid;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBlu_ProjectConfigStatus1: TDBLookupComboBox;
+    DBlu_ProjectStatus: TDBLookupComboBox;
+    DBlu_SurveyID: TDBLookupComboBox;
+    DBRadioGroup1: TDBRadioGroup;
+    DBText1: TDBText;
+    dsProject: TDataSource;
+    dsOrgWProject: TDataSource;
+    dsProjectConfig_Default: TDataSource;
+    DBGrid_OrgSelect: TDBGrid;
+    DBlu_ProjectConfigStatus: TDBLookupComboBox;
+    DBMemo_ProjectNotes: TDBMemo;
+    DBNavGlobal: TDBNavigator;
+    DBNavigator_Project: TDBNavigator;
+    ImageList1: TImageList;
+    Label1: TLabel;
+    lblSelected: TLabel;
+    LABELACCOUNT: TLabel;
+    labelProduct: TLabel;
+    LABELPROJECT: TLabel;
+    lblSelected1: TLabel;
+    lblStatus: TLabel;
+    lblStatus1: TLabel;
+    lblStatus12: TLabel;
+    lblStatus13: TLabel;
+    lblStatus15: TLabel;
+    lblStatus16: TLabel;
+    lblStatus17: TLabel;
+    lblStatus18: TLabel;
+    lblStatus19: TLabel;
+    lblStatus21: TLabel;
+    lblStatus22: TLabel;
+    lblStatus23: TLabel;
+    lblStatus24: TLabel;
+    lblStatus25: TLabel;
+    lblStatus26: TLabel;
+    lblStatus27: TLabel;
+    lblStatus28: TLabel;
+    lblStatus29: TLabel;
+    lblStatus3: TLabel;
+    lblStatus30: TLabel;
+    lblStatus31: TLabel;
+    lblStatus4: TLabel;
+    lblStatus5: TLabel;
+    luStatus: TOraDataSource;
+    dsOrgNotInProject: TOraDataSource;
+    PageControl1: TPageControl;
+    pnlTopProject: TPanel;
+    pnlAddOrgToProject: TPanel;
+    pnlTopAssocOrgs: TPanel;
+    pnlHeader: TPanel;
+    pnl_projectselect: TPanel;
+    Splitter1: TSplitter;
+    StatusBar1: TStatusBar;
+    tbReport: TTabSheet;
+    tbSurvey: TTabSheet;
+    tbOrgs: TTabSheet;
+    tbConfig: TTabSheet;
+    tbProject: TTabSheet;
+    VirtualTable1: TVirtualTable;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure btnOpenOrgNotInProjectClick(Sender: TObject);
+    procedure btnAddOrgToProjectClick(Sender: TObject);
+    procedure btnDefaultOrgClick(Sender: TObject);
+    procedure btnOrgSelectClick(Sender: TObject);
+    procedure btnRemoveOrgFromProjectClick(Sender: TObject);
+    procedure btnSelectProjectClick(Sender: TObject);
+    procedure BtnProjSelectClick(Sender: TObject);
+    procedure btnUnselectAllClick(Sender: TObject);
+    procedure btn_AddProduct1Click(Sender: TObject);
+    procedure btn_DisplayOptionsClick(Sender: TObject);
+    procedure btn_SelectALLClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure DateEdit_ProjectEndDTAcceptDate(Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean);
+    procedure DateEdit_ProjectStartDTAcceptDate(Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean);
+    procedure DateEdit_ReportBegAcceptDate(Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean);
+    procedure DateEdit_ReportEndAcceptDate(Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean);
+    procedure DateEdit_ReportEndChange(Sender: TObject);
+    procedure DBEdit14Change(Sender: TObject);
+    procedure DBEdit7Change(Sender: TObject);
+    procedure DBGrid_OrgInProjectCellClick(Column: TColumn);
+    procedure DBGrid_OrgInProjectUserCheckboxState(Sender: TObject;
+      Column: TColumn; var AState: TCheckboxState);
+    procedure DBText1DblClick(Sender: TObject);
+    procedure DBText1MouseEnter(Sender: TObject);
+    procedure DBText1MouseLeave(Sender: TObject);
+    procedure dsProjectDataChange(Sender: TObject; Field: TField);
+    procedure dsProjectStateChange(Sender: TObject);
+    procedure dsOrgWProjectDataChange(Sender: TObject; Field: TField);
+    procedure dsProjectConfig_DefaultDataChange(Sender: TObject; Field: TField);
+    procedure DateEdit_SurveyCloseDTAcceptDate(Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean);
+    procedure DateEdit_SurveyOpenDTAcceptDate(Sender: TObject; var ADate: TDateTime;
+      var AcceptDate: Boolean);
+    procedure DateEdit_SurveyOpenDTChange(Sender: TObject);
+    procedure DateEdit_SurveyOpenDTChangeBounds(Sender: TObject);
+    procedure DateEdit_SurveyOpenDTCustomDate(Sender: TObject; var ADate: string);
+    procedure DateEdit_SurveyOpenDTEditingDone(Sender: TObject);
+    procedure DBGrid_OrgSelectCellClick(Column: TColumn);
+    procedure DBGrid_OrgSelectUserCheckboxState(Sender: TObject; Column: TColumn;
+      var AState: TCheckboxState);
+    procedure DBGrid_OrgDblClick(Sender: TObject);
+    procedure DBGrid_ProjectDblClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
+    procedure PageControl1Changing(Sender: TObject; var AllowChange: Boolean);
+    procedure pnlLeftClick(Sender: TObject);
+    procedure rg_WLGHPQEnter(Sender: TObject);
+    procedure rg_WLGHPQSelectionChanged(Sender: TObject);
+    procedure TreeView_OrgCreateNodeClass(Sender: TCustomTreeView;
+      var NodeClass: TTreeNodeClass);
+    procedure TreeView_OrgDeletion(Sender: TObject; Node: TTreeNode);
+    procedure VirtualTable1AfterScroll(DataSet: TDataSet);
+    procedure VSTFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
+    procedure VSTGetNodeDataSize(Sender: TBaseVirtualTree;
+      var NodeDataSize: Integer);
+    procedure VSTGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
+      Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+    procedure VSTInitChildren(Sender: TBaseVirtualTree; Node: PVirtualNode;
+      var ChildCount: Cardinal);
+    procedure VSTInitNode(Sender: TBaseVirtualTree; ParentNode,
+      Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
+    procedure ZedDBTreeView_AllOrgsCustomDraw(Sender: TCustomTreeView;
+      const ARect: TRect; var DefaultDraw: Boolean);
+    procedure ZedDBTreeView_AllOrgsCustomDrawItem(Sender: TCustomTreeView;
+      Node: TTreeNode; State: TCustomDrawState; var DefaultDraw: Boolean);
+     function DBTreeNode(Node:TTreeNode):TDBTreeNode;
+     procedure  ReOpenOrgProject();
+  private
+    { private declarations }
+      RecList: TBookmarklist;
+      RecList_Remove :TBookMarkList;
+
+  public
+    { public declarations }
+  end;
+
+var
+  frm_ProjectEdit: Tfrm_ProjectEdit;
+
+implementation
+
+const
+  LevelCount = 5;
+type
+  // This is a very simple record we use to store data in the nodes.
+  // Since the application is responsible to manage all data including the node's caption
+  // this record can be considered as minimal requirement in all VT applications.
+  // Extend it to whatever your application needs.
+  PMyRec = ^TMyRec;
+  TMyRec = record
+    Caption: String;
+  end;
+//type
+//  PNodeData2 = ^TNodeData2;
+//  TNodeData2 = record
+//    Caption,
+//    StaticText,
+//    ForeignText: String;
+//    ImageIndex,
+//    Level: Integer;
+//  end;
+{$R *.lfm}
+
+{ Tfrm_ProjectEdit }
+
+procedure Tfrm_ProjectEdit.dsProjectDataChange(Sender: TObject; Field: TField);
+begin
+  labelAccount.caption := 'ACCOUNT: '+  DM_Main.dataAccount.fieldbyname('accountname').AsString ;
+  labelProject.caption := 'PROJECT: '+ DM_Project.dataProject.fieldbyname('projectname').AsString ;
+
+  labelProduct.caption := 'PRODUCT: '+ DM_Project.dataProjectPRODUCTCODE.asString;
+  //labelProduct2.caption := labelProduct.caption;
+  //
+ // labelOrg.caption := 'ORGANIZATION: '+DM_Project.dataOrg_wProject.FieldByName('DisplayName').AsString;
+ // labelOrg1.caption := labelOrg.caption;
+end;
+
+procedure Tfrm_ProjectEdit.dsProjectStateChange(Sender: TObject);
+begin
+end;
+
+procedure Tfrm_ProjectEdit.dsOrgWProjectDataChange(Sender: TObject; Field: TField
+  );
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.dsProjectConfig_DefaultDataChange(Sender: TObject; Field: TField
+  );
+  var Proj_pvID, default_pvID, org_pvID, pvID : integer ;
+begin
+  with DM_Main, DM_Project, DM_PROJECT.dataProjectConfig_Default do
+  begin
+  {   if dataProjectConfigORGANIZATION_ID.value = Null then
+       tbOrgs.TabVisible:= true else
+         tbOrgs.TabVisible:= false      ;
+   }
+      DateEdit_SurveyOpenDT.Date := FieldByName('SURVEY_OPENDT').AsDateTime;
+      DateEdit_SurveyCloseDT.date := FieldByName('SURVEY_CLOSEDT').AsDateTime;
+
+     proj_pvID := dataProjectPRODUCTVERSION_ID.asInteger ;
+     default_pvID := fieldbyName('ProductVersion_ID').asInteger ;
+   //   org_pvID := dataProjectConfigPRODUCTVERSION_ID.AsInteger;
+
+    //  if org_pvID > 0 then
+    //     pvID := org_pvID else
+      if default_pvID > 0 then
+         pvID := default_pvID else
+         pvID := proj_PVID;
+
+     luSurveyID.active := false ;
+     luSurveyID.ParamByName('productversion_id').value := dataProjectPRODUCTVERSION_ID.AsInteger;
+     luSurveyID.active := true ;
+
+     if pvID <>  lu_SurveyTemplate.ParamByName('productversion_id').asInteger then
+     begin
+       lu_surveyTemplate.Active := false ;
+       lu_SurveyTemplate.ParamByName('productversion_id').asInteger :=  pvID  ;
+       lu_surveyTemplate.Active := true ;
+
+     end;
+
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_SurveyCloseDTAcceptDate(Sender: TObject;
+  var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+    With DM_Project, DM_Project.dataProjectConfig_Default do
+  begin
+     if NOT( State IN [dsEdit]) then
+         Edit ;
+
+         FieldByName('SURVEY_CLOSEDT').AsDateTime := ADate ;
+
+
+  end;
+
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_SurveyOpenDTAcceptDate(Sender: TObject;
+  var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+  With DM_Project, DM_Project.dataProjectConfig_Default do
+  begin
+     if NOT( State IN [dsEdit]) then
+         Edit ;
+
+         FieldByName('SURVEY_OPENDT').AsDateTime := ADate ;
+
+
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_SurveyOpenDTChange(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_SurveyOpenDTChangeBounds(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_SurveyOpenDTCustomDate(Sender: TObject;
+  var ADate: string);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_SurveyOpenDTEditingDone(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DBGrid_OrgSelectCellClick(Column: TColumn);
+var ic : integer ;
+begin
+   iC := column.Index ;
+    if Column.Index=0 then
+    begin
+       RecList.CurrentRowSelected := not RecList.CurrentRowSelected;
+
+    end;
+end;
+
+procedure Tfrm_ProjectEdit.DBGrid_OrgSelectUserCheckboxState(Sender: TObject;
+  Column: TColumn; var AState: TCheckboxState);
+begin
+  if column.index = 0 then
+  begin
+  if RecList.CurrentRowSelected then
+
+    AState := cbChecked
+  else
+    AState := cbUnchecked;
+
+  end;
+end;
+
+
+procedure Tfrm_ProjectEdit.DBGrid_OrgDblClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DBGrid_ProjectDblClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.FormActivate(Sender: TObject);
+begin
+   PageControl1.ActivePage := tbProject;
+
+end;
+
+procedure Tfrm_ProjectEdit.FormCloseQuery(Sender: TObject; var CanClose: boolean
+  );
+begin
+  if NOT (DBNavGlobal.DataSource.DataSet.State in [dsBrowse]) then
+  begin
+    CanClose := false;
+    ShowMessage('Save or cancel changes');
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.FormCreate(Sender: TObject);
+begin
+  DBNavGlobal.DataSource := DM_Project.dsProject;
+
+
+   RecList := TBookmarkList.Create(DBGrid_OrgSelect);
+   RecList_Remove  := TBookmarkList.Create(DBGrid_OrgInProject);
+
+   With DM_Project do
+  begin
+      dataOrg_wProject.active := false ;
+      dataOrgNotInProject.active := false ;
+             dataOrgNotInProject.ParamByName('Account_ID').value := dataProjectACCOUNT_ID.value ;
+             dataOrgNotInProject.ParamByName('Project_ID').value := dataProjectPROJECT_ID.value ;
+
+      dataOrgNotInProject.active := true ;
+      dataOrg_wProject.active := true ;
+   end;
+   with DM_Main do
+   begin
+        lu_IDFieldList.active := true ;
+        lu_SurveyTemplate.active := false;
+        lu_SurveyTemplate.active := true;
+   end;
+   DateEdit_ProjectStartDT.Date := DM_Project.dataProjectPROJECT_START_DATE.AsDateTime;
+   DateEdit_ProjectEndDT.Date := DM_Project.dataProjectPROJECT_END_DATE.AsDateTime;
+    labelAccount.caption := 'ACCOUNT: '+  DM_Main.dataAccount.fieldbyname('accountname').AsString ;
+  labelProject.caption := 'PROJECT: '+ DM_Project.dataProject.fieldbyname('projectname').AsString ;
+
+ // labelProduct.caption := 'PRODUCT: '+ DM_Main.dataProjectPRODUCTCODE.AsString ;
+  //labelProduct2.caption := labelProduct.caption;
+  //
+  //labelOrg.caption := 'ORGANIZATION: '+DM_Project.dataOrg_wProject.FieldByName('DisplayName').AsString;
+  //labelOrg1.caption := labelOrg.caption;
+end;
+
+procedure Tfrm_ProjectEdit.FormDestroy(Sender: TObject);
+begin
+
+  RecList.Free;
+  RecList_Remove.Free ;
+
+end;
+
+
+procedure Tfrm_ProjectEdit.PageControl1Change(Sender: TObject);
+begin
+   if PageControl1.ActivePage = tbProject then
+         DBNavGlobal.DataSource := DM_Project.dsProject else
+           DBNavGlobal.DataSource := DM_Project.dsProjectConfig_Default;
+end;
+
+procedure Tfrm_ProjectEdit.PageControl1Changing(Sender: TObject;
+  var AllowChange: Boolean);
+begin
+
+  IF DBNavGlobal.DataSource <> nil then
+   if NOT (DBNavGlobal.DataSource.DataSet.State in [dsBrowse]) then
+   begin
+     AllowChange := false;
+     ShowMessage('Save or cancel changes');
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.btnSelectProjectClick(Sender: TObject);
+begin
+  PageControl1.ActivePage := tbProject;
+end;
+
+procedure Tfrm_ProjectEdit.btnOrgSelectClick(Sender: TObject);
+begin
+ end;
+
+procedure Tfrm_ProjectEdit.btnRemoveOrgFromProjectClick(Sender: TObject);
+begin
+   With  DBGrid_OrgInProject do
+   begin
+    DataSource.DataSet.first;
+       while not DataSource.DataSet.eof do
+       begin
+          if RecList_Remove.CurrentRowSelected then
+          begin
+             showMessage('selected') ;
+          end;
+          DataSource.DataSet.next;
+       end;
+   end;
+
+end;
+
+procedure Tfrm_ProjectEdit.btnDefaultOrgClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.btnOpenOrgNotInProjectClick(Sender: TObject);
+begin
+
+  ReOpenOrgProject();
+
+end;
+
+procedure Tfrm_ProjectEdit.BitBtn1Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.btnAddOrgToProjectClick(Sender: TObject);
+var
+   ir , ik : integer ;
+begin
+   //showMessage(  IntToStr(DBGrid_OrgSelect.SelectedRows.Count));
+
+
+   //for ir := 0 to  DBGrid_OrgSelect.SelectedRows.Count - 1 do
+   //begin
+   //    ik := ir ;
+   //   if
+   //     showMessage(DBGrid_OrgSelect.DataSource.DataSet.fieldbyName('organization_id').asString);
+   //
+   //
+   //end;
+
+//        PR_INSERT_PROJECTCONFIG_V1(:PPROJECTCONFIG_ID, :PPROJECT_ID, :PORGANIZATION_ID, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT);
+
+  DBGrid_OrgSelect.DataSource.DataSet.first;
+   while not DBGrid_OrgSelect.DataSource.DataSet.eof do
+   begin
+      if RecList.CurrentRowSelected then
+      begin
+         With DM_Project.sp_INSERT_PROJECTCONFIG_V1 do
+         begin
+            ParamByName('PPROJECT_ID').value := DM_Project.dataProjectPROJECT_ID.value ;
+            ParamByName('PORGANIZATION_ID').value := DBGrid_OrgSelect.DataSource.DataSet.fieldByName('organization_id').value;
+            Try
+              execute ;
+            finally
+              Showmessage(ParamByName('vsequencenum').asString );
+            end;
+         end;
+         //showMessage('selected') ;
+      end;
+      DBGrid_OrgSelect.DataSource.DataSet.next;
+   end;
+   ReOpenOrgProject();
+
+end;
+
+procedure Tfrm_ProjectEdit.BtnProjSelectClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.btnUnselectAllClick(Sender: TObject);
+begin
+   DBGrid_OrgSelect.BeginUpdate;
+   DBGrid_OrgSelect.DataSource.DataSet.first;
+   while not DBGrid_OrgSelect.DataSource.DataSet.eof do
+   begin
+         RecList.CurrentRowSelected := false;
+        DBGrid_OrgSelect.DataSource.DataSet.next;
+   end;
+   DBGrid_OrgSelect.EndUpdate;
+
+end;
+
+procedure Tfrm_ProjectEdit.btn_AddProduct1Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.btn_DisplayOptionsClick(Sender: TObject);
+begin
+ //  pnlButtons.Visible := NOT(pnlButtons.Visible);
+
+end;
+
+procedure Tfrm_ProjectEdit.btn_SelectALLClick(Sender: TObject);
+begin
+   DBGrid_OrgSelect.DataSource.DataSet.first;
+   while not DBGrid_OrgSelect.DataSource.DataSet.eof do
+   begin
+         RecList.CurrentRowSelected := true;
+        DBGrid_OrgSelect.DataSource.DataSet.next;
+   end;
+end;
+
+procedure Tfrm_ProjectEdit.Button1Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.Button2Click(Sender: TObject);
+begin
+end;
+
+procedure Tfrm_ProjectEdit.Button3Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.Button4Click(Sender: TObject);
+var
+   tRoot, tNode , tNodeSib, tNodeChild, tNodeSelected, tNodeCurrent, tNodeOrg : TTreeNode ;
+   bNoChild, bisChild : boolean;
+   iLoop, iLevel : integer ;
+   iPrevKey, iCurrentKey, iCurrentParentKey, iRootKey, itListkey : integer ;
+   tlist : TStringList ;
+   treeList : TFPObjectList  ;
+
+begin
+ {try
+  tList := TStringList.Create ;
+  treeList := TFPObjectList.Create(false);
+
+   with DM_Project do
+   begin
+     dataOrg_InAccount.active := false ;
+     dataOrg_InAccount.active := true ;
+
+   end;
+
+    TreeView_Org.Items.Clear;
+    TreeView_Org.Items.FreeAllNodeData;
+
+    TreeView_Org.BeginUpdate;
+
+    //tRoot := TreeView_Projects.Items.Add(nil,'Accounts (Active)');
+
+    //with DBTreeNode(tRoot) do
+    // begin
+    //     dbkey := -1;
+    //     dbkey2 := -1 ;
+    //     dbtablename := '';
+    //     dbdataset := DM_Main.dataAccount ;
+    //     dbKeyField:= '';
+    // end  ;
+
+
+    With DM_Project do
+    begin
+      dataOrg_InAccount.Filtered := false;
+
+          dataOrg_InAccount.first ;
+          While NOT dataOrg_InAccount.eof do
+          begin
+                   bNoChild := False ;
+                   iCurrentKey := dataOrg_InAccount.fieldbyName('organization_id').AsInteger;
+                  iCurrentParentKey := dataOrg_InAccount.fieldbyName('parent_id').AsInteger;
+
+                  if dataOrg_InAccount.fieldbyName('parent_id').AsInteger = -1 then
+                  begin
+                      tNode :=  TreeView_Org.Items.AddChild(nil, dataOrg_InAccount.FieldByName('DisplayName').asString);
+                      tRoot := tNode ;
+                      iRootKey := iCurrentKey;
+
+                         tList.Add(inttostr(iRootKey));
+                          treeList.Add(tRoot);
+                  end else
+                  begin
+                      if iCurrentParentKey = iRootKey then
+                      begin
+                           tList.Clear ;
+                           treeList.Clear ;
+
+                           tList.Add(inttostr(iRootKey));
+                           tList.Add(inttostr(iCurrentKey));
+
+
+                           tNode :=  TreeView_Org.Items.AddChild(tRoot, dataOrg_InAccount.FieldByName('DisplayName').asString);
+
+                           treeList.Add(tRoot);
+                           treeList.Add(tNode);
+
+                      end else
+                      begin
+                        For iLevel := tList.Count -1  DownTo 0 do
+                        begin
+                          itListkey := StrToInt(tlist.ValueFromIndex[iLevel]);
+                          if iCurrentParentKey = itListkey then
+                          begin
+                               bIsChild := true ;
+                               tList.Add(inttostr(iCurrentKey));
+                               tNodeCurrent := treeList.Items[iLevel] AS TTreeNode;
+
+                                tNode :=  TreeView_Org.Items.AddChild(tNodeCurrent, dataOrg_InAccount.FieldByName('DisplayName').asString);
+                               treeList.Add(tNode);
+                          end;
+
+                        end;
+
+                      end;
+                   end;
+
+
+                   with DBTreeNode(tNode) do
+                   begin
+                       dbkey := dataOrg_InAccount.fieldbyName('organization_id').AsInteger;
+                       dbkey2 := dataOrg_InAccount.fieldbyName('parent_id').AsInteger;
+                       dbtablename := 'CORE_ORGANIZATION';
+                       dbdataset := DM_Project.dataOrg_InAccount ;
+                       dbKeyField:= 'ORGANIZATION_ID';
+                   end  ;
+                   tNodeCurrent := tNode;
+                    if bNoChild then
+                     tNodeCurrent.ImageIndex:= 3
+                    else
+                     tNodeCurrent.ImageIndex:= 2;
+
+                    tNodeCurrent.SelectedIndex:= 0;
+
+                  iPrevKey:= iCurrentKey;
+              dataOrg_InAccount.Next;
+          end; // dataOrg_InAccount.EOF
+          dataOrg_InAccount.EnableControls;
+
+    end; //with DM_DataMain
+
+
+
+    //     tNode :=  TreeView_Projects.Items.AddFirst(tNodeSelected,'First');
+         //tNodeChild := TreeView_Projects.Items.AddChild(tnode, 'Child');
+         // with DBTreeNode(tNodeChild) do
+         // begin
+         //         dbkey := 2 ;
+         //         //dbTable := 'Child';
+         //end ;
+
+         TreeView_Org.Selected := nil ;
+        TreeView_Org.EndUpdate;
+
+
+       DM_Project.dataOrg_InAccount.first;
+       TreeView_Org.Selected  := nil ;     // to avoid an error
+
+  finally
+       tList.Free;
+       treeList.Free ;
+  end;
+  }
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_ProjectEndDTAcceptDate(Sender: TObject;
+  var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+    With DM_Project, DM_Project.dataProject do
+  begin
+     if NOT( dataProject.State IN [dsEdit]) then
+         dataProject.Edit ;
+         dataProjectPROJECT_END_DATE.AsDateTime := ADate ;
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_ProjectStartDTAcceptDate(Sender: TObject;
+  var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+  With DM_Project, DM_Project.dataProject do
+  begin
+     if NOT( dataProject.State IN [dsEdit]) then
+         dataProject.Edit ;
+         dataProjectPROJECT_START_DATE.AsDateTime := ADate ;
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_ReportBegAcceptDate(Sender: TObject;
+  var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+   With DM_Project, DM_Project.dataProjectConfig_Default do
+  begin
+     if NOT( State IN [dsEdit]) then
+         Edit ;
+
+         FieldByName('RPTAGG_DATE_BEG').AsDateTime := ADate ;
+
+
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_ReportEndAcceptDate(Sender: TObject;
+  var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+    With DM_Project, DM_Project.dataProjectConfig_Default do
+  begin
+     if NOT( State IN [dsEdit]) then
+         Edit ;
+
+         FieldByName('RPTAGG_DATE_END').AsDateTime := ADate ;
+    end;
+end;
+
+procedure Tfrm_ProjectEdit.DateEdit_ReportEndChange(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DBEdit14Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DBEdit7Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.DBGrid_OrgInProjectCellClick(Column: TColumn);
+var ic : integer ;
+begin
+   iC := column.Index ;
+    if Column.Index=0 then
+    begin
+       RecList_Remove.CurrentRowSelected := not RecList_Remove.CurrentRowSelected;
+
+    end;
+
+end;
+
+procedure Tfrm_ProjectEdit.DBGrid_OrgInProjectUserCheckboxState(
+  Sender: TObject; Column: TColumn; var AState: TCheckboxState);
+begin
+   if column.index = 0 then
+  begin
+  if RecList_Remove.CurrentRowSelected then
+
+    AState := cbChecked
+  else
+    AState := cbUnchecked;
+
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.DBText1DblClick(Sender: TObject);
+begin
+    OpenURL(DBText1.Caption);
+end;
+
+procedure Tfrm_ProjectEdit.DBText1MouseEnter(Sender: TObject);
+begin
+    DBText1.Cursor := crHandPoint;
+{cursor changes into handshape when it is on StaticText}
+  DBText1.Font.Color := clBlue;
+end;
+
+procedure Tfrm_ProjectEdit.DBText1MouseLeave(Sender: TObject);
+begin
+   DBText1.Font.Color := clDefault;
+end;
+
+
+
+procedure Tfrm_ProjectEdit.pnlLeftClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.rg_WLGHPQEnter(Sender: TObject);
+begin
+end;
+
+procedure Tfrm_ProjectEdit.rg_WLGHPQSelectionChanged(Sender: TObject);
+begin
+end;
+
+procedure Tfrm_ProjectEdit.TreeView_OrgCreateNodeClass(Sender: TCustomTreeView;
+  var NodeClass: TTreeNodeClass);
+begin
+   NodeClass := TDBTreeNode ;
+end;
+
+procedure Tfrm_ProjectEdit.TreeView_OrgDeletion(Sender: TObject; Node: TTreeNode
+  );
+begin
+     TDBTreeNode(Node.Data).Free;
+end;
+
+procedure Tfrm_ProjectEdit.VirtualTable1AfterScroll(DataSet: TDataSet);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.VSTFreeNode(Sender: TBaseVirtualTree;
+  Node: PVirtualNode);
+
+  var
+  Data: PMyRec;
+
+begin
+  Data := Sender.GetNodeData(Node);
+  // Explicitely free the string, the VCL cannot know that there is one but needs to free
+  // it nonetheless. For more fields in such a record which must be freed use Finalize(Data^) instead touching
+  // every member individually.
+  if Assigned(Data) then
+   // Data.Caption := '';
+end;
+
+procedure Tfrm_ProjectEdit.VSTGetNodeDataSize(
+  Sender: TBaseVirtualTree; var NodeDataSize: Integer);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.VSTGetText(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
+  var CellText: String);
+var
+  Data1: PMyRec;
+ //  PMyRec = ^TMyRec;
+ // TMyRec = record
+
+begin
+  Data1 := Sender.GetNodeData(Node);
+  // Explicitely free the string, the VCL cannot know that there is one but needs to free
+  // it nonetheless. For more fields in such a record which must be freed use Finalize(Data^) instead touching
+  // every member individually.
+  if Assigned(Data1) then
+     Sender.GetNodeData(node);
+   // Data.Caption := '';
+
+  // A handler for the OnGetText event is always needed as it provides the tree with the string data to display.
+  Data1 := Sender.GetNodeData(Node);
+  Data1^.Caption:= 'myCaption';
+  if Assigned(Data1) then
+     cellText := Data1^.caption ;
+
+end;
+
+procedure Tfrm_ProjectEdit.VSTInitChildren(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; var ChildCount: Cardinal);
+begin
+end;
+
+procedure Tfrm_ProjectEdit.VSTInitNode(Sender: TBaseVirtualTree;
+  ParentNode, Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
+  var
+  Data: PMyRec;
+
+begin
+  with Sender do
+  begin
+    Data := GetNodeData(Node);
+    sender.CheckType[Node] :=   ctCheckBox ;
+    sender.Caption := 'Caption';
+
+
+
+    // Construct a node caption. This event is triggered once for each node but
+    // appears asynchronously, which means when the node is displayed not when it is added.
+    //Data. := Format('Level %d, Index %d', [GetNodeLevel(Node), Node.Index]);
+  end;
+end;
+
+procedure Tfrm_ProjectEdit.ZedDBTreeView_AllOrgsCustomDraw(
+  Sender: TCustomTreeView; const ARect: TRect; var DefaultDraw: Boolean);
+begin
+
+end;
+
+procedure Tfrm_ProjectEdit.ZedDBTreeView_AllOrgsCustomDrawItem(
+  Sender: TCustomTreeView; Node: TTreeNode; State: TCustomDrawState;
+  var DefaultDraw: Boolean);
+begin
+
+  if node.Level = 0 then
+     Node.ImageIndex:= 1;
+    if   COPY(node.Text,1,7) = '[GROUP]' then
+      Node.ImageIndex:= 7;
+     if   COPY(node.Text,1,10) = '[SubGroup]' then
+      Node.ImageIndex:= 9;
+end;
+
+function Tfrm_ProjectEdit.DBTreeNode(Node:TTreeNode):TDBTreeNode;
+begin
+  result := TDBTreeNode(Node); //you could even use AS here for extra safety
+end;
+procedure Tfrm_ProjectEdit.ReOpenOrgProject();
+begin
+    With DM_Project do
+    begin
+        dataOrg_wProject.active := false ;
+        dataOrgNotInProject.active := false ;
+
+               dataOrgNotInProject.ParamByName('Account_ID').value := dataProjectACCOUNT_ID.value ;
+               dataOrgNotInProject.ParamByName('Project_ID').value := dataProjectPROJECT_ID.value ;
+
+        dataOrgNotInProject.active := true ;
+        dataOrg_wProject.active := true ;
+
+    end;
+end;
+end.
+

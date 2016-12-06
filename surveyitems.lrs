@@ -1,0 +1,475 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('T','FORMDATA',[
+  'TPF0'#16'Tfrm_SurveyItems'#15'frm_SurveyItems'#4'Left'#3#131#1#6'Height'#3
+  +#188#2#3'Top'#3#225#0#5'Width'#3#144#4#7'Caption'#6#19'Survey Item Library'
+  +#12'ClientHeight'#3#188#2#11'ClientWidth'#3#144#4#10'OnActivate'#7#12'FormAc'
+  +'tivate'#8'OnCreate'#7#10'FormCreate'#8'Position'#7#17'poOwnerFormCenter'#10
+  +'LCLVersion'#6#7'1.6.0.4'#0#6'TPanel'#11'PanelHeader'#4'Left'#2#0#6'Height'#2
+  +'P'#3'Top'#2#0#5'Width'#3#144#4#5'Align'#7#5'alTop'#12'ClientHeight'#2'P'#11
+  +'ClientWidth'#3#144#4#8'TabOrder'#2#0#0#11'TRadioGroup'#13'rg_ItemFilter'#4
+  +'Left'#2#1#6'Height'#2'N'#3'Top'#2#1#5'Width'#3''''#1#5'Align'#7#6'alLeft'#8
+  +'AutoFill'#9#7'Caption'#6#9'Item Type'#28'ChildSizing.LeftRightSpacing'#2#6
+  +#29'ChildSizing.EnlargeHorizontal'#7#24'crsHomogenousChildResize'#27'ChildSi'
+  +'zing.EnlargeVertical'#7#24'crsHomogenousChildResize'#28'ChildSizing.ShrinkH'
+  +'orizontal'#7#14'crsScaleChilds'#26'ChildSizing.ShrinkVertical'#7#14'crsScal'
+  +'eChilds'#18'ChildSizing.Layout'#7#29'cclTopToBottomThenLeftToRight'#27'Chil'
+  +'dSizing.ControlsPerLine'#2#3#12'ClientHeight'#2':'#11'ClientWidth'#3'#'#1#12
+  +'ColumnLayout'#7#24'clVerticalThenHorizontal'#7'Columns'#2#3#9'ItemIndex'#2#0
+  +#13'Items.Strings'#1#6#12'HRA (Survey)'#6#10'HRA (Calc)'#6#7'HRA BIO'#6#11'U'
+  +'SER_PERSON'#6#16'USER_DEMOGRAPHIC'#6#6'CUSTOM'#6#3'ALL'#0#14'OnChangeBounds'
+  +#7#25'rg_ItemFilterChangeBounds'#7'OnClick'#7#18'rg_ItemFilterClick'#18'OnSe'
+  +'lectionChanged'#7#29'rg_ItemFilterSelectionChanged'#8'TabOrder'#2#0#0#0#7'T'
+  +'Button'#10'btnRefresh'#4'Left'#3'h'#2#6'Height'#2'('#3'Top'#2#1#5'Width'#3
+  +#147#0#7'Caption'#6#12'Refresh Data'#7'OnClick'#7#15'btnRefreshClick'#8'TabO'
+  +'rder'#2#1#0#0#17'TDBLookupComboBox'#13'dblu_Language'#4'Left'#3#19#3#6'Heig'
+  +'ht'#2#23#3'Top'#2#16#5'Width'#3#152#0#9'DataField'#6#11'LANGUAGE_ID'#8'KeyF'
+  +'ield'#6#11'LANGUAGE_ID'#9'ListField'#6#23'LANGUAGE_LOCALE_ENGLISH'#14'ListF'
+  +'ieldIndex'#2#0#10'ListSource'#7#18'DM_Main.dsLanguage'#11'LookupCache'#8#8
+  +'OnChange'#7#19'dblu_LanguageChange'#8'ReadOnly'#9#8'TabOrder'#2#2#0#0#6'TLa'
+  +'bel'#6'Label2'#4'Left'#3'3'#3#6'Height'#2#15#3'Top'#2#1#5'Width'#2'4'#7'Cap'
+  +'tion'#6#8'Language'#11'ParentColor'#8#0#0#5'TEdit'#14'edt_LanguageID'#4'Lef'
+  +'t'#3#195#3#6'Height'#2#23#4'Hint'#6#10'LanguageID'#3'Top'#2#16#5'Width'#2'='
+  +#8'ReadOnly'#9#8'TabOrder'#2#3#0#0#5'TEdit'#10'edt_Filter'#4'Left'#3'('#1#6
+  +'Height'#2#23#3'Top'#2#1#5'Width'#3#163#0#8'TabOrder'#2#4#4'Text'#6#19'FIELD'
+  +'NAME LIKE "S%"'#0#0#6'TLabel'#10'lbl_LangID'#4'Left'#3#195#3#6'Height'#2#15
+  +#3'Top'#2#1#5'Width'#2'+'#7'Caption'#6#8'Lang ID:'#11'ParentColor'#8#0#0#7'T'
+  +'Button'#10'btn_Filter'#4'Left'#3'('#1#6'Height'#2#25#3'Top'#2#24#5'Width'#2
+  +'K'#7'Caption'#6#6'Filter'#7'OnClick'#7#15'btn_FilterClick'#8'TabOrder'#2#5#0
+  +#0#7'TButton'#15'btn_FilterClear'#4'Left'#3#128#1#6'Height'#2#25#3'Top'#2#24
+  +#5'Width'#2'K'#7'Caption'#6#12'Clear Filter'#7'OnClick'#7#20'btn_FilterClear'
+  +'Click'#8'TabOrder'#2#6#0#0#7'TButton'#15'btn_exportField'#4'Left'#3'h'#2#6
+  +'Height'#2#25#3'Top'#2'0'#5'Width'#2'p'#7'Caption'#6#17'Export Field Info'#7
+  +'OnClick'#7#20'btn_exportFieldClick'#8'TabOrder'#2#7#0#0#7'TButton'#7'Button'
+  +'3'#4'Left'#3#248#3#6'Height'#2#25#3'Top'#2'0'#5'Width'#2'K'#7'Caption'#6#9
+  +'Item List'#7'OnClick'#7#12'Button3Click'#8'TabOrder'#2#8#7'Visible'#8#0#0#7
+  +'TButton'#14'btn_CheckField'#4'Left'#3#216#1#6'Height'#2#25#4'Hint'#6'!Check'
+  +' if field exists in database'#3'Top'#2'0'#5'Width'#2's'#7'Caption'#6#11'Che'
+  +'ck Field'#7'OnClick'#7#19'btn_CheckFieldClick'#8'TabOrder'#2#9#0#0#5'TEdit'
+  +#11'edt_locate1'#4'Left'#3'('#1#6'Height'#2#23#4'Hint'#6#17'Enter Accountnam'
+  +'e'#3'Top'#2'8'#5'Width'#3#160#0#8'OnChange'#7#17'edt_locate1Change'#14'Pare'
+  +'ntShowHint'#8#8'ShowHint'#9#8'TabOrder'#2#10#0#0#9'TComboBox'#12'cboSortOrd'
+  +'er'#4'Left'#3#216#1#6'Height'#2#21#3'Top'#2#20#5'Width'#3#136#0#10'ItemHeig'
+  +'ht'#2#15#13'Items.Strings'#1#6#7'DEFAULT'#6#9'FieldName'#6#9'PageOrder'#6#6
+  +'Domain'#6#21'PageOrder, Item_Order'#0#9'OnCloseUp'#7#19'cboSortOrderCloseUp'
+  +#8'ReadOnly'#9#5'Style'#7#16'csOwnerDrawFixed'#8'TabOrder'#2#11#0#0#6'TLabel'
+  +#7'Label24'#4'Left'#3#240#1#6'Height'#2#15#3'Top'#2#1#5'Width'#2'<'#7'Captio'
+  +'n'#6#10'SORT order'#11'ParentColor'#8#0#0#7'TBitBtn'#7'BitBtn1'#4'Left'#3'D'
+  +#4#6'Height'#2'N'#3'Top'#2#1#5'Width'#2'K'#5'Align'#7#7'alRight'#14'DefaultC'
+  +'aption'#9#4'Kind'#7#7'bkClose'#11'ModalResult'#2#11#8'TabOrder'#2#12#0#0#7
+  +'TButton'#7'Button1'#4'Left'#3'p'#3#6'Height'#2#25#3'Top'#2'0'#5'Width'#2'c'
+  +#7'Caption'#6#15'DataDict Export'#7'OnClick'#7#12'Button1Click'#8'TabOrder'#2
+  +#13#0#0#0#12'TPageControl'#12'PageControl1'#4'Left'#3'@'#1#6'Height'#3'l'#2#3
+  +'Top'#2'P'#5'Width'#3'P'#3#10'ActivePage'#7#6'tbItem'#5'Align'#7#8'alClient'
+  +#8'TabIndex'#2#0#8'TabOrder'#2#1#0#9'TTabSheet'#6'tbItem'#7'Caption'#6#5'Ite'
+  +'m '#12'ClientHeight'#3'P'#2#11'ClientWidth'#3'H'#3#0#7'TDBEdit'#7'DBEdit2'#4
+  +'Left'#2'0'#6'Height'#2#23#3'Top'#2'4'#5'Width'#2'@'#9'DataField'#6#6'DOMAIN'
+  +#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8'CharCase'#7#8'ecNormal'#9'Ma'
+  ,'xLength'#2#0#8'TabOrder'#2#0#0#0#7'TDBEdit'#7'DBEdit1'#4'Left'#2#16#6'Heigh'
+  +'t'#2#23#3'Top'#2#24#5'Width'#3#192#0#9'DataField'#6#9'FIELDNAME'#10'DataSou'
+  +'rce'#7#23'DM_SurveyLibrary.dsItem'#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2
+  +#0#8'TabOrder'#2#1#0#0#7'TDBEdit'#7'DBEdit5'#4'Left'#2#9#6'Height'#2#23#3'To'
+  +'p'#2'`'#5'Width'#2'%'#9'DataField'#6#8'MINVALUE'#10'DataSource'#7#23'DM_Sur'
+  +'veyLibrary.dsItem'#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2#0#8'TabOrder'#2
+  +#2#0#0#7'TDBEdit'#7'DBEdit4'#4'Left'#2'@'#6'Height'#2#23#3'Top'#2'`'#5'Width'
+  +#2'('#9'DataField'#6#8'MAXVALUE'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'
+  +#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2#0#8'TabOrder'#2#3#0#0#13'TDBRadioG'
+  +'roup'#20'DBRG_MeasurementType'#4'Left'#3#160#1#6'Height'#2'?'#3'Top'#2';'#5
+  +'Width'#2'x'#7'Caption'#6#16'Measurement Type'#9'DataField'#6#15'MEASUREMENT'
+  +'UNIT'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#13'Items.Strings'#1#6#4
+  +'1 US'#6#8'2 Metric'#0#8'TabOrder'#2#4#14'Values.Strings'#1#6#1'1'#6#1'2'#0#0
+  +#0#6'TLabel'#6'Label1'#4'Left'#2'Q'#6'Height'#2#15#3'Top'#3#136#0#5'Width'#2
+  +'<'#7'Caption'#6#11'Item Order:'#11'ParentColor'#8#0#0#17'TDBLookupComboBox'
+  +#17'DBLookup_ItemType'#4'Left'#3#224#0#6'Height'#2#23#3'Top'#2#24#5'Width'#3
+  +#176#0#9'DataField'#6#11'ITEMTYPE_ID'#10'DataSource'#7#23'DM_SurveyLibrary.d'
+  +'sItem'#8'KeyField'#6#11'ITEMTYPE_ID'#9'ListField'#6#11'DESCRIPTION'#14'List'
+  +'FieldIndex'#2#0#10'ListSource'#7#29'DM_SurveyLibrary.dsluItemType'#11'Looku'
+  +'pCache'#8#8'OnChange'#7#23'DBLookup_ItemTypeChange'#14'OnChangeBounds'#7#29
+  +'DBLookup_ItemTypeChangeBounds'#9'OnCloseUp'#7#24'DBLookup_ItemTypeCloseUp'
+  +#10'OnDropDown'#7#25'DBLookup_ItemTypeDropDown'#13'OnEditingDone'#7#28'DBLoo'
+  +'kup_ItemTypeEditingDone'#7'OnEnter'#7#22'DBLookup_ItemTypeEnter'#8'ReadOnly'
+  +#9#8'TabOrder'#2#5#0#0#13'TDividerBevel'#13'DividerBevel1'#4'Left'#2#0#6'Hei'
+  +'ght'#2#15#3'Top'#3#192#0#5'Width'#3'8'#3#7'Caption'#6#11'Item Labels'#10'Fo'
+  +'nt.Style'#11#6'fsBold'#0#10'ParentFont'#8#0#0#7'TDBEdit'#7'DBEdit7'#4'Left'
+  +#2'8'#6'Height'#2#23#3'Top'#3#208#0#5'Width'#3'('#2#9'DataField'#6#5'LABEL'
+  +#10'DataSource'#7#28'DM_SurveyLibrary.dsItemLabel'#8'CharCase'#7#8'ecNormal'
+  +#9'MaxLength'#2#0#8'TabOrder'#2#6#0#0#7'TDBEdit'#7'DBEdit8'#4'Left'#2'8'#6'H'
+  +'eight'#2#23#3'Top'#3#236#0#5'Width'#3#240#0#9'DataField'#6#10'LABELINPUT'#10
+  +'DataSource'#7#28'DM_SurveyLibrary.dsItemLabel'#8'CharCase'#7#8'ecNormal'#9
+  +'MaxLength'#2#0#8'TabOrder'#2#7#0#0#7'TDBEdit'#7'DBEdit9'#4'Left'#3#128#1#6
+  +'Height'#2#23#3'Top'#3#236#0#5'Width'#3#152#0#9'DataField'#6#9'LABELLEFT'#10
+  +'DataSource'#7#28'DM_SurveyLibrary.dsItemLabel'#8'CharCase'#7#8'ecNormal'#9
+  +'MaxLength'#2#0#8'TabOrder'#2#8#0#0#7'TDBEdit'#8'DBEdit10'#4'Left'#3'p'#2#6
+  +'Height'#2#23#3'Top'#3#236#0#5'Width'#3#152#0#9'DataField'#6#10'LABELRIGHT'
+  +#10'DataSource'#7#28'DM_SurveyLibrary.dsItemLabel'#8'CharCase'#7#8'ecNormal'
+  +#9'MaxLength'#2#0#8'TabOrder'#2#9#0#0#7'TDBEdit'#8'DBEdit11'#4'Left'#2'P'#6
+  +'Height'#2#23#3'Top'#3#8#1#5'Width'#3'('#2#9'DataField'#6#16'LABELINSTRUCTIO'
+  +'N'#10'DataSource'#7#28'DM_SurveyLibrary.dsItemLabel'#8'CharCase'#7#8'ecNorm'
+  +'al'#9'MaxLength'#2#0#8'TabOrder'#2#10#0#0#6'TPanel'#14'PnlValueLabels'#4'Le'
+  +'ft'#2#0#6'Height'#3#230#0#3'Top'#3'j'#1#5'Width'#3'H'#3#5'Align'#7#8'alBott'
+  +'om'#11'BorderStyle'#7#8'bsSingle'#12'ClientHeight'#3#226#0#11'ClientWidth'#3
+  +'D'#3#5'Color'#7#8'clSilver'#11'ParentColor'#8#8'TabOrder'#2#11#0#6'TPanel'#6
+  +'Panel1'#4'Left'#2#1#6'Height'#3#190#0#3'Top'#2#1#5'Width'#3't'#1#5'Align'#7
+  +#8'alClient'#7'Caption'#6#6'Panel1'#12'ClientHeight'#3#190#0#11'ClientWidth'
+  +#3't'#1#5'Color'#7#6'clAqua'#11'ParentColor'#8#8'TabOrder'#2#0#0#7'TDBGrid'#7
+  +'DBGrid3'#4'Left'#2#1#6'Height'#3#163#0#3'Top'#2#1#5'Width'#3'r'#1#5'Align'#7
+  +#8'alClient'#5'Color'#7#8'clWindow'#7'Columns'#14#1#13'Title.Caption'#6#5'VA'
+  +'LUE'#5'Width'#2'P'#9'FieldName'#6#5'VALUE'#0#1#13'Title.Caption'#6#10'Disp '
+  +'Order'#5'Width'#2'P'#9'FieldName'#6#12'DISPLAYORDER'#0#1#11'ButtonStyle'#7
+  +#17'cbsCheckboxColumn'#13'Title.Caption'#6#7'Missing'#9'FieldName'#6#14'ISMI'
+  +'SSINGVALUE'#0#1#13'Title.Caption'#6#11'SG_OPTIONID'#9'FieldName'#6#11'SG_OP'
+  +'TIONID'#0#1#13'Title.Caption'#6#17'SG_REPORTINGVALUE'#9'FieldName'#6#17'SG_'
+  +'REPORTINGVALUE'#0#1#13'Title.Caption'#6#12'ITEMVALUE_ID'#9'FieldName'#6#12
+  +'ITEMVALUE_ID'#0#1#13'Title.Caption'#6#16'ITEMVALUELINK_ID'#9'FieldName'#6#16
+  +'ITEMVALUELINK_ID'#0#1#11'ButtonStyle'#7#17'cbsCheckboxColumn'#13'Title.Capt'
+  +'ion'#6#10'DELETE_FLG'#9'FieldName'#6#10'DELETE_FLG'#0#1#13'Title.Caption'#6
+  +#11'MAPTO_Value'#9'FieldName'#6#15'MAPTO_ITEMVALUE'#0#1#13'Title.Caption'#6
+  +#18'MAPTO_ItemValue_ID'#9'FieldName'#6#18'MAPTO_ITEMVALUE_ID'#0#0#10'DataSou'
+  +'rce'#7#28'DM_SurveyLibrary.dsItemValue'#7'Options'#11#9'dgEditing'#8'dgTitl'
+  +'es'#11'dgIndicator'#14'dgColumnResize'#12'dgColumnMove'#10'dgColLines'#10'd'
+  +'gRowLines'#6'dgTabs'#21'dgAlwaysShowSelection'#15'dgConfirmDelete'#14'dgCan'
+  +'celOnExit'#15'dgDisableDelete'#15'dgDisableInsert'#0#8'TabOrder'#2#0#0#0#12
+  ,'TDBNavigator'#12'DBNavigator2'#4'Left'#2#1#6'Height'#2#25#3'Top'#3#164#0#5
+  +'Width'#3'r'#1#5'Align'#7#8'alBottom'#10'BevelOuter'#7#6'bvNone'#29'ChildSiz'
+  +'ing.EnlargeHorizontal'#7#14'crsScaleChilds'#27'ChildSizing.EnlargeVertical'
+  +#7#14'crsScaleChilds'#28'ChildSizing.ShrinkHorizontal'#7#14'crsScaleChilds'
+  +#26'ChildSizing.ShrinkVertical'#7#14'crsScaleChilds'#18'ChildSizing.Layout'#7
+  +#29'cclLeftToRightThenTopToBottom'#27'ChildSizing.ControlsPerLine'#2'd'#12'C'
+  +'lientHeight'#2#25#11'ClientWidth'#3'r'#1#10'DataSource'#7#28'DM_SurveyLibra'
+  +'ry.dsItemValue'#7'Options'#11#0#8'TabOrder'#2#1#14'VisibleButtons'#11#8'nbD'
+  +'elete'#6'nbEdit'#6'nbPost'#8'nbCancel'#9'nbRefresh'#0#0#0#0#6'TPanel'#17'pn'
+  +'lValueLabelEdit'#4'Left'#3'u'#1#6'Height'#3#190#0#3'Top'#2#1#5'Width'#3#206
+  +#1#5'Align'#7#7'alRight'#9'Alignment'#7#13'taLeftJustify'#11'BorderStyle'#7#8
+  +'bsSingle'#12'ClientHeight'#3#186#0#11'ClientWidth'#3#202#1#5'Color'#4#255
+  +#255#128#0#11'ParentColor'#8#8'TabOrder'#2#1#0#6'TLabel'#6'Label8'#4'Left'#2
+  +#16#6'Height'#2#15#3'Top'#2#16#5'Width'#2'G'#7'Caption'#6#11'VALUE LABEL'#11
+  +'ParentColor'#8#0#0#7'TDBEdit'#17'DBEdit_ValueLabel'#4'Left'#2#16#6'Height'#2
+  +#23#3'Top'#2' '#5'Width'#3#168#1#9'DataField'#6#10'VALUELABEL'#10'DataSource'
+  +#7'!DM_SurveyLibrary.dsItemValueLabel'#8'CharCase'#7#8'ecNormal'#9'MaxLength'
+  +#2#0#8'TabOrder'#2#0#8'OnChange'#7#23'DBEdit_ValueLabelChange'#13'OnEditingD'
+  +'one'#7#28'DBEdit_ValueLabelEditingDone'#6'OnExit'#7#21'DBEdit_ValueLabelExi'
+  +'t'#0#0#7'TDBEdit'#22'dbedit_ValueLabelShort'#4'Left'#2#16#6'Height'#2#23#3
+  +'Top'#2'H'#5'Width'#3#8#1#9'DataField'#6#15'VALUELABELSHORT'#10'DataSource'#7
+  +'!DM_SurveyLibrary.dsItemValueLabel'#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2
+  +#0#8'TabOrder'#2#1#0#0#7'TDBEdit'#20'dbedit_ValueLabel_ID'#4'Left'#3'H'#1#6
+  +'Height'#2#23#3'Top'#3#136#0#5'Width'#2'h'#9'DataField'#6#17'ITEMVALUELABEL_'
+  +'ID'#10'DataSource'#7'!DM_SurveyLibrary.dsItemValueLabel'#8'ReadOnly'#9#8'Ch'
+  +'arCase'#7#8'ecNormal'#7'Enabled'#8#9'MaxLength'#2#0#8'TabOrder'#2#2#0#0#6'T'
+  +'Label'#7'Label10'#4'Left'#2#16#6'Height'#2#15#3'Top'#2'8'#5'Width'#2';'#7'C'
+  +'aption'#6#11'Label Short'#11'ParentColor'#8#0#0#9'TCheckBox'#21'chk_AutoAdv'
+  +'anceValues'#4'Left'#3#208#0#6'Height'#2#19#3'Top'#2#8#5'Width'#2'_'#7'Capti'
+  +'on'#6#12'Auto Advance'#8'TabOrder'#2#3#0#0#6'TLabel'#7'Label22'#4'Left'#3
+  +#235#0#6'Height'#2#15#3'Top'#3#144#0#5'Width'#2'D'#7'Caption'#6#12'ValueLabe'
+  +'lID'#11'ParentColor'#8#0#0#7'TDBEdit'#18'DBEdit_ValueLabel1'#4'Left'#2#16#6
+  +'Height'#2#23#3'Top'#2'p'#5'Width'#3#160#1#9'DataField'#6#17'VALUELABEL_METR'
+  +'IC'#10'DataSource'#7'!DM_SurveyLibrary.dsItemValueLabel'#8'CharCase'#7#8'ec'
+  +'Normal'#5'Color'#7#25'clGradientInactiveCaption'#9'MaxLength'#2#0#8'TabOrde'
+  +'r'#2#4#8'OnChange'#7#23'DBEdit_ValueLabelChange'#13'OnEditingDone'#7#28'DBE'
+  +'dit_ValueLabelEditingDone'#6'OnExit'#7#21'DBEdit_ValueLabelExit'#0#0#6'TLab'
+  +'el'#7'Label30'#4'Left'#2#16#6'Height'#2#15#3'Top'#2'`'#5'Width'#2'l'#7'Capt'
+  +'ion'#6#18'VALUE LABEL Metric'#11'ParentColor'#8#0#0#12'TDBNavigator'#22'DBN'
+  +'avigator_ValueLabel'#4'Left'#2#1#6'Height'#2#25#3'Top'#3#160#0#5'Width'#3
+  +#200#1#5'Align'#7#8'alBottom'#10'BevelOuter'#7#6'bvNone'#29'ChildSizing.Enla'
+  +'rgeHorizontal'#7#14'crsScaleChilds'#27'ChildSizing.EnlargeVertical'#7#14'cr'
+  +'sScaleChilds'#28'ChildSizing.ShrinkHorizontal'#7#14'crsScaleChilds'#26'Chil'
+  +'dSizing.ShrinkVertical'#7#14'crsScaleChilds'#18'ChildSizing.Layout'#7#29'cc'
+  +'lLeftToRightThenTopToBottom'#27'ChildSizing.ControlsPerLine'#2'd'#12'Client'
+  +'Height'#2#25#11'ClientWidth'#3#200#1#10'DataSource'#7'!DM_SurveyLibrary.dsI'
+  +'temValueLabel'#7'OnClick'#7#27'DBNavigator_ValueLabelClick'#7'Options'#11#0
+  +#8'TabOrder'#2#5#14'VisibleButtons'#11#6'nbEdit'#6'nbPost'#8'nbCancel'#9'nbR'
+  +'efresh'#0#0#0#0#6'TPanel'#15'pnl_ValueBottom'#4'Left'#2#1#6'Height'#2'"'#3
+  +'Top'#3#191#0#5'Width'#3'B'#3#5'Align'#7#8'alBottom'#12'ClientHeight'#2'"'#11
+  +'ClientWidth'#3'B'#3#5'Color'#4#255#128#128#0#11'ParentColor'#8#8'TabOrder'#2
+  +#2#0#7'TButton'#17'btn_AddValuesLang'#4'Left'#3#208#1#6'Height'#2' '#3'Top'#2
+  +#0#5'Width'#3#184#0#7'Caption'#6#22'Insert Language Values'#7'Enabled'#8#7'O'
+  +'nClick'#7#22'btn_AddValuesLangClick'#8'TabOrder'#2#0#0#0#7'TButton'#11'btnA'
+  +'ddValue'#4'Left'#3'X'#1#6'Height'#2'!'#3'Top'#2#0#5'Width'#2'p'#7'Caption'#6
+  +#9'NEW VALUE'#7'OnClick'#7#16'btnAddValueClick'#8'TabOrder'#2#1#0#0#0#0#12'T'
+  +'DBNavigator'#12'DBNavigator3'#4'Left'#3'h'#2#6'Height'#2'('#3'Top'#3'7'#1#5
+  +'Width'#3#170#0#10'BevelOuter'#7#6'bvNone'#29'ChildSizing.EnlargeHorizontal'
+  +#7#14'crsScaleChilds'#27'ChildSizing.EnlargeVertical'#7#14'crsScaleChilds'#28
+  +'ChildSizing.ShrinkHorizontal'#7#14'crsScaleChilds'#26'ChildSizing.ShrinkVer'
+  +'tical'#7#14'crsScaleChilds'#18'ChildSizing.Layout'#7#29'cclLeftToRightThenT'
+  +'opToBottom'#27'ChildSizing.ControlsPerLine'#2'd'#12'ClientHeight'#2'('#11'C'
+  +'lientWidth'#3#170#0#10'DataSource'#7#28'DM_SurveyLibrary.dsItemLabel'#7'Opt'
+  +'ions'#11#0#8'TabOrder'#2#12#14'VisibleButtons'#11#6'nbEdit'#6'nbPost'#8'nbC'
+  ,'ancel'#9'nbRefresh'#0#0#0#6'TLabel'#6'Label3'#4'Left'#2#16#6'Height'#2#15#3
+  +'Top'#2'P'#5'Width'#2#21#7'Caption'#6#3'Min'#11'ParentColor'#8#0#0#6'TLabel'
+  +#6'Label4'#4'Left'#2'H'#6'Height'#2#15#3'Top'#2'P'#5'Width'#2#22#7'Caption'#6
+  +#3'Max'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#16#6'Height'#2#15
+  +#3'Top'#2#8#5'Width'#2'9'#7'Caption'#6#9'FieldName'#11'ParentColor'#8#0#0#6
+  +'TLabel'#6'Label6'#4'Left'#2#3#6'Height'#2#15#3'Top'#2'8'#5'Width'#2'*'#7'Ca'
+  +'ption'#6#6'Domain'#11'ParentColor'#8#0#0#6'TLabel'#6'Label7'#4'Left'#3#147#0
+  +#6'Height'#2#15#3'Top'#2'8'#5'Width'#2'='#7'Caption'#6#9'TableName'#11'Paren'
+  +'tColor'#8#0#0#12'TDBNavigator'#12'DBNavigator4'#4'Left'#3#0#2#6'Height'#2')'
+  +#3'Top'#3#144#0#5'Width'#3#165#0#10'BevelOuter'#7#6'bvNone'#29'ChildSizing.E'
+  +'nlargeHorizontal'#7#14'crsScaleChilds'#27'ChildSizing.EnlargeVertical'#7#14
+  +'crsScaleChilds'#28'ChildSizing.ShrinkHorizontal'#7#14'crsScaleChilds'#26'Ch'
+  +'ildSizing.ShrinkVertical'#7#14'crsScaleChilds'#18'ChildSizing.Layout'#7#29
+  +'cclLeftToRightThenTopToBottom'#27'ChildSizing.ControlsPerLine'#2'd'#12'Clie'
+  +'ntHeight'#2')'#11'ClientWidth'#3#165#0#10'DataSource'#7#23'DM_SurveyLibrary'
+  +'.dsItem'#7'Options'#11#0#8'TabOrder'#2#13#14'VisibleButtons'#11#8'nbDelete'
+  +#6'nbEdit'#6'nbPost'#8'nbCancel'#9'nbRefresh'#0#0#0#11'TDBCheckBox'#18'DBChk'
+  +'_IsCalculated'#4'Left'#3#176#1#6'Height'#2#23#3'Top'#2#30#5'Width'#2'Z'#7'C'
+  +'aption'#6#10'Calculated'#9'DataField'#6#12'ISCALCULATED'#10'DataSource'#7#23
+  +'DM_SurveyLibrary.dsItem'#8'TabOrder'#2#14#12'ValueChecked'#6#1'1'#14'ValueU'
+  +'nchecked'#6#1'0'#0#0#6'TLabel'#7'Label11'#4'Left'#3#224#0#6'Height'#2#15#3
+  +'Top'#2#8#5'Width'#2'M'#7'Caption'#6#13'Question Type'#11'ParentColor'#8#0#0
+  +#7'TDBEdit'#8'DBEdit13'#4'Left'#3'x'#2#6'Height'#2#23#3'Top'#2'('#5'Width'#2
+  +#24#9'DataField'#6#7'CORESET'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8
+  +'ReadOnly'#9#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2#0#8'TabOrder'#2#15#0#0
+  +#17'TDBLookupComboBox'#18'DBLookup_TableName'#4'Left'#3#224#0#6'Height'#2#23
+  +#3'Top'#2'8'#5'Width'#3#176#0#9'DataField'#6#9'TABLENAME'#10'DataSource'#7#23
+  +'DM_SurveyLibrary.dsItem'#8'KeyField'#6#8'TABLE_NM'#9'ListField'#6#8'TABLE_N'
+  +'M'#14'ListFieldIndex'#2#0#10'ListSource'#7'#DM_SurveyLibrary.dsluTableName_'
+  +'Dict'#11'LookupCache'#8#9'OnCloseUp'#7#24'DBLookup_ItemTypeCloseUp'#10'OnDr'
+  +'opDown'#7#25'DBLookup_ItemTypeDropDown'#8'ReadOnly'#9#8'TabOrder'#2#16#0#0#6
+  +'TLabel'#7'Label12'#4'Left'#2#17#6'Height'#2#15#3'Top'#3#240#0#5'Width'#2#28
+  +#7'Caption'#6#5'Input'#11'ParentColor'#8#0#0#6'TLabel'#7'Label13'#4'Left'#3
+  +'0'#2#6'Height'#2#15#3'Top'#3#240#0#5'Width'#2';'#7'Caption'#6#11'Label Righ'
+  +'t'#11'ParentColor'#8#0#0#6'TLabel'#7'Label14'#4'Left'#3':'#1#6'Height'#2#15
+  +#3'Top'#3#240#0#5'Width'#2'3'#7'Caption'#6#10'Label Left'#11'ParentColor'#8#0
+  +#0#6'TLabel'#7'Label15'#4'Left'#2#15#6'Height'#2#15#3'Top'#3#16#1#5'Width'#2
+  +'9'#7'Caption'#6#11'Instruction'#11'ParentColor'#8#0#0#7'TButton'#9'btnAddNe'
+  +'w'#4'Left'#3#173#2#6'Height'#2'1'#3'Top'#3#136#0#5'Width'#2'p'#7'Caption'#6
+  +#8'NEW ITEM'#7'OnClick'#7#14'btnAddNewClick'#8'TabOrder'#2#17#0#0#13'TDBRadi'
+  +'oGroup'#6'rgCore'#4'Left'#3#31#2#6'Height'#2'Z'#3'Top'#2#8#5'Width'#2'q'#7
+  +'Caption'#6#9'Core Item'#9'DataField'#6#7'CORESET'#10'DataSource'#7#23'DM_Su'
+  +'rveyLibrary.dsItem'#13'Items.Strings'#1#6#2'No'#6#4'Calc'#6#7'Message'#6#12
+  +'Calc/Message'#0#8'TabOrder'#2#18#14'Values.Strings'#1#6#1'0'#6#1'1'#6#1'2'#6
+  +#1'3'#0#0#0#11'TDBCheckBox'#14'DBChk_IsLocked'#4'Left'#3#176#1#6'Height'#2#23
+  +#3'Top'#2#8#5'Width'#2'Z'#7'Caption'#6#6'LOCKED'#9'DataField'#6#8'ISLOCKED'
+  +#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8'TabOrder'#2#19#12'ValueCheck'
+  +'ed'#6#1'1'#14'ValueUnchecked'#6#1'0'#0#0#17'TDBLookupComboBox'#19'DBLookup_'
+  +'ParentItem'#4'Left'#3#200#0#6'Height'#2#23#3'Top'#2's'#5'Width'#3#200#0#9'D'
+  +'ataField'#6#11'ITEMLINK_ID'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8
+  +'KeyField'#6#7'ITEM_ID'#9'ListField'#6#7'VARNAME'#14'ListFieldIndex'#2#0#10
+  +'ListSource'#7#23'DM_SurveyLibrary.dsItem'#11'LookupCache'#8#8'OnChange'#7#23
+  +'DBLookup_ItemTypeChange'#14'OnChangeBounds'#7#29'DBLookup_ItemTypeChangeBou'
+  +'nds'#9'OnCloseUp'#7#24'DBLookup_ItemTypeCloseUp'#10'OnDropDown'#7#25'DBLook'
+  +'up_ItemTypeDropDown'#13'OnEditingDone'#7#28'DBLookup_ItemTypeEditingDone'#7
+  +'OnEnter'#7#22'DBLookup_ItemTypeEnter'#8'ReadOnly'#9#8'TabOrder'#2#20#0#0#6
+  +'TLabel'#7'Label16'#4'Left'#3#130#0#6'Height'#2#15#3'Top'#2'x'#5'Width'#2'='
+  +#7'Caption'#6#11'Parent Item'#11'ParentColor'#8#0#0#7'TDBEdit'#8'DBEdit12'#4
+  +'Left'#3#232#2#6'Height'#2#23#3'Top'#2'`'#5'Width'#2'7'#9'DataField'#6#10'GR'
+  +'OUPORDER'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8'CharCase'#7#8'ecNo'
+  +'rmal'#9'MaxLength'#2#0#8'TabOrder'#2#21#7'Visible'#8#0#0#6'TLabel'#7'Label1'
+  +'7'#4'Left'#3#232#2#6'Height'#2#15#3'Top'#2'P'#5'Width'#2'B'#7'Caption'#6#11
+  +'GroupOrder:'#11'ParentColor'#8#7'Visible'#8#0#0#7'TDBEdit'#8'DBEdit14'#4'Le'
+  +'ft'#3#240#2#6'Height'#2#23#3'Top'#2#24#5'Width'#2'7'#9'DataField'#6#12'SECT'
+  ,'IONORDER'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8'CharCase'#7#8'ecNo'
+  +'rmal'#9'MaxLength'#2#0#8'TabOrder'#2#22#7'Visible'#8#0#0#6'TLabel'#7'Label1'
+  +'8'#4'Left'#3#232#2#6'Height'#2#15#3'Top'#2#6#5'Width'#2'K'#7'Caption'#6#14
+  +'Section Order:'#11'ParentColor'#8#7'Visible'#8#0#0#7'TDBEdit'#8'DBEdit15'#4
+  +'Left'#2#9#6'Height'#2#23#3'Top'#3#154#0#5'Width'#2','#9'DataField'#6#9'PAGE'
+  +'ORDER'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8'CharCase'#7#8'ecNorma'
+  +'l'#9'MaxLength'#2#0#8'TabOrder'#2#23#0#0#6'TLabel'#7'Label19'#4'Left'#2#15#6
+  +'Height'#2#15#3'Top'#3#136#0#5'Width'#2#29#7'Caption'#6#5'Page:'#11'ParentCo'
+  +'lor'#8#0#0#7'TDBEdit'#7'DBEdit6'#4'Left'#3#152#2#6'Height'#2#23#3'Top'#2#24
+  +#5'Width'#2'@'#9'DataField'#6#6'SG_QID'#10'DataSource'#7#23'DM_SurveyLibrary'
+  +'.dsItem'#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2#0#8'TabOrder'#2#24#0#0#6
+  +'TLabel'#7'Label20'#4'Left'#3#160#2#6'Height'#2#15#3'Top'#2#8#5'Width'#2'%'#7
+  +'Caption'#6#6'SG QID'#11'ParentColor'#8#0#0#6'TLabel'#7'Label21'#4'Left'#2#17
+  +#6'Height'#2#15#3'Top'#3#208#0#5'Width'#2#28#7'Caption'#6#5'Label'#11'Parent'
+  +'Color'#8#0#0#7'TDBEdit'#8'DBEdit16'#4'Left'#3#152#2#6'Height'#2#23#3'Top'#2
+  +'H'#5'Width'#2'@'#9'DataField'#6#11'SG_OPTIONID'#10'DataSource'#7#23'DM_Surv'
+  +'eyLibrary.dsItem'#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2#0#8'TabOrder'#2
+  +#25#0#0#6'TLabel'#7'Label23'#4'Left'#3#152#2#6'Height'#2#15#3'Top'#2'8'#5'Wi'
+  +'dth'#3#133#0#7'Caption'#6#22'SG OPTIONID [checkbox]'#11'ParentColor'#8#0#0#7
+  +'TDBEdit'#17'DBEdit_Item_Order'#4'Left'#2'M'#6'Height'#2#23#3'Top'#3#154#0#5
+  +'Width'#2'@'#9'DataField'#6#10'ITEM_ORDER'#10'DataSource'#7#23'DM_SurveyLibr'
+  +'ary.dsItem'#8'CharCase'#7#8'ecNormal'#9'MaxLength'#2#0#8'TabOrder'#2#26#0#0
+  +#11'TDBCheckBox'#12'DBChk_Delete'#4'Left'#3#184#1#6'Height'#2#23#4'Hint'#6#18
+  +'Marks for deletion'#3'Top'#3#152#0#5'Width'#2'B'#7'Caption'#6#6'DELETE'#5'C'
+  +'olor'#7#5'clRed'#9'DataField'#6#10'DELETE_FLG'#10'DataSource'#7#23'DM_Surve'
+  +'yLibrary.dsItem'#10'Font.Color'#7#8'clYellow'#14'ParentBiDiMode'#8#11'Paren'
+  +'tColor'#8#10'ParentFont'#8#8'TabOrder'#2#27#12'ValueChecked'#6#1'1'#14'Valu'
+  +'eUnchecked'#6#1'0'#0#0#7'TButton'#23'btnClearMeasurementType'#4'Left'#3#184
+  +#1#6'Height'#2#18#3'Top'#2'x'#5'Width'#2'K'#7'Caption'#6#5'Clear'#7'OnClick'
+  +#7#28'btnClearMeasurementTypeClick'#8'TabOrder'#2#28#0#0#7'TDBEdit'#7'DBEdit'
+  +'3'#4'Left'#3#200#0#6'Height'#2#23#3'Top'#2'X'#5'Width'#3#200#0#9'DataField'
+  +#6#7'VARNAME'#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8'CharCase'#7#8'e'
+  +'cNormal'#9'MaxLength'#2#0#8'TabOrder'#2#29#0#0#6'TLabel'#7'Label25'#4'Left'
+  +#3#144#0#6'Height'#2#15#3'Top'#2'X'#5'Width'#2'/'#7'Caption'#6#7'Varname'#11
+  +'ParentColor'#8#0#0#7'TDBEdit'#8'DBEdit18'#4'Left'#3#216#0#6'Height'#2#23#3
+  +'Top'#3#154#0#5'Width'#3#200#0#9'DataField'#6#8'VIEWNAME'#10'DataSource'#7#23
+  +'DM_SurveyLibrary.dsItem'#8'ReadOnly'#9#8'CharCase'#7#8'ecNormal'#5'Color'#7
+  +#9'cl3DLight'#9'MaxLength'#2#0#8'TabOrder'#2#30#0#0#6'TLabel'#7'Label26'#4'L'
+  +'eft'#3#151#0#6'Height'#2#15#3'Top'#3#160#0#5'Width'#2'9'#7'Caption'#6#8'Vie'
+  +'wName'#11'ParentColor'#8#0#0#7'TDBEdit'#8'DBEdit19'#4'Left'#3'X'#2#6'Height'
+  +#2#23#3'Top'#2'p'#5'Width'#2' '#9'DataField'#6#12'ITEM_VERSION'#10'DataSourc'
+  +'e'#7#23'DM_SurveyLibrary.dsItem'#8'CharCase'#7#8'ecNormal'#5'Color'#7#8'clY'
+  +'ellow'#10'Font.Color'#7#5'clRed'#10'Font.Style'#11#6'fsBold'#0#9'MaxLength'
+  +#2#0#10'ParentFont'#8#8'TabOrder'#2#31#0#0#6'TLabel'#7'Label27'#4'Left'#3' '
+  +#2#6'Height'#2#15#3'Top'#2'p'#5'Width'#2'2'#7'Caption'#6#8'VERSION:'#11'Pare'
+  +'ntColor'#8#0#0#6'TLabel'#7'Label28'#4'Left'#2'('#6'Height'#2#15#3'Top'#3'0'
+  +#1#5'Width'#2'A'#7'Caption'#6#12'Label Metric'#11'ParentColor'#8#0#0#7'TDBEd'
+  +'it'#8'DBEdit20'#4'Left'#2'|'#6'Height'#2#23#3'Top'#3'('#1#5'Width'#3#206#1#9
+  +'DataField'#6#12'LABEL_METRIC'#10'DataSource'#7#28'DM_SurveyLibrary.dsItemLa'
+  +'bel'#8'CharCase'#7#8'ecNormal'#5'Color'#7#25'clGradientInactiveCaption'#9'M'
+  +'axLength'#2#0#8'TabOrder'#2' '#0#0#6'TLabel'#7'Label29'#4'Left'#2#15#6'Heig'
+  +'ht'#2#15#3'Top'#3'P'#1#5'Width'#2'^'#7'Caption'#6#18'Instruction Metric'#11
+  +'ParentColor'#8#0#0#7'TDBEdit'#8'DBEdit21'#4'Left'#2'|'#6'Height'#2#23#3'Top'
+  +#3'H'#1#5'Width'#3#214#1#9'DataField'#6#23'LABELINSTRUCTION_METRIC'#10'DataS'
+  +'ource'#7#28'DM_SurveyLibrary.dsItemLabel'#8'CharCase'#7#8'ecNormal'#5'Color'
+  +#7#25'clGradientInactiveCaption'#9'MaxLength'#2#0#8'TabOrder'#2'!'#0#0#0#9'T'
+  +'TabSheet'#11'tbAddValues'#7'Caption'#6#10'Add Values'#12'ClientHeight'#3'P'
+  +#2#11'ClientWidth'#3'H'#3#7'OnEnter'#7#16'tbAddValuesEnter'#0#7'TDBGrid'#7'D'
+  +'BGrid2'#4'Left'#2#0#6'Height'#3#216#1#3'Top'#2'x'#5'Width'#3'H'#3#5'Align'#7
+  +#8'alClient'#5'Color'#7#8'clWindow'#7'Columns'#14#0#10'DataSource'#7' DM_Sur'
+  +'veyLibrary.dsValueAndLabel'#9'FixedCols'#2#2#7'Options'#11#8'dgTitles'#11'd'
+  +'gIndicator'#14'dgColumnResize'#12'dgColumnMove'#10'dgColLines'#10'dgRowLine'
+  +'s'#6'dgTabs'#21'dgAlwaysShowSelection'#15'dgConfirmDelete'#14'dgCancelOnExi'
+  +'t'#15'dgDisableDelete'#15'dgDisableInsert'#0#8'ReadOnly'#9#8'TabOrder'#2#0#0
+  ,#0#6'TPanel'#19'pnl_AddValuesHeader'#4'Left'#2#0#6'Height'#2'x'#3'Top'#2#0#5
+  +'Width'#3'H'#3#5'Align'#7#5'alTop'#12'ClientHeight'#2'x'#11'ClientWidth'#3'H'
+  +#3#8'TabOrder'#2#1#0#6'TLabel'#6'Label9'#4'Left'#2#0#6'Height'#2#15#3'Top'#2
+  +#16#5'Width'#3#135#0#7'Caption'#6#24'Number of Values to add:'#11'ParentColo'
+  +'r'#8#0#0#9'TSpinEdit'#10'spn_Values'#4'Left'#3#152#0#6'Height'#2#23#3'Top'#2
+  +#10#5'Width'#2'2'#8'TabOrder'#2#0#5'Value'#2#1#0#0#7'TButton'#13'btn_AddValu'
+  +'es'#4'Left'#2#8#6'Height'#2'!'#3'Top'#2'H'#5'Width'#2'y'#7'Caption'#6#10'Ad'
+  +'d Values'#7'OnClick'#7#18'btn_AddValuesClick'#8'TabOrder'#2#1#0#0#12'TDBNav'
+  +'igator'#12'DBNavigator5'#4'Left'#3#168#0#6'Height'#2#25#3'Top'#2'P'#5'Width'
+  +#3#241#0#10'BevelOuter'#7#6'bvNone'#29'ChildSizing.EnlargeHorizontal'#7#14'c'
+  +'rsScaleChilds'#27'ChildSizing.EnlargeVertical'#7#14'crsScaleChilds'#28'Chil'
+  +'dSizing.ShrinkHorizontal'#7#14'crsScaleChilds'#26'ChildSizing.ShrinkVertica'
+  +'l'#7#14'crsScaleChilds'#18'ChildSizing.Layout'#7#29'cclLeftToRightThenTopTo'
+  +'Bottom'#27'ChildSizing.ControlsPerLine'#2'd'#12'ClientHeight'#2#25#11'Clien'
+  +'tWidth'#3#241#0#10'DataSource'#7' DM_SurveyLibrary.dsValueAndLabel'#7'Optio'
+  +'ns'#11#0#8'TabOrder'#2#2#14'VisibleButtons'#11#7'nbFirst'#7'nbPrior'#6'nbNe'
+  +'xt'#6'nbLast'#8'nbCancel'#9'nbRefresh'#0#0#0#6'TLabel'#13'lblValueStart'#4
+  +'Left'#3#248#0#6'Height'#2#15#3'Top'#2#10#5'Width'#2'K'#7'Caption'#6#13'Manu'
+  +'al Value:'#11'ParentColor'#8#0#0#5'TEdit'#15'edt_ManualValue'#4'Left'#3'X'#1
+  +#6'Height'#2#23#3'Top'#2#8#5'Width'#2'P'#8'TabOrder'#2#3#0#0#9'TComboBox'#16
+  +'ComboBox_Missing'#4'Left'#3#232#0#6'Height'#2#23#3'Top'#2'0'#5'Width'#3#180
+  +#0#10'ItemHeight'#2#15#13'Items.Strings'#1#6#13'-9 Don''t Know'#0#8'TabOrder'
+  +#2#4#4'Text'#6#16'ComboBox_Missing'#0#0#0#0#9'TTabSheet'#14'tbDisplayLogic'#7
+  +'Caption'#6#13'Display Logic'#12'ClientHeight'#3'P'#2#11'ClientWidth'#3'H'#3
+  +#0#7'TDBGrid'#7'DBGrid4'#4'Left'#2#8#6'Height'#3'@'#1#3'Top'#2#8#5'Width'#3
+  +#168#0#5'Color'#7#8'clWindow'#7'Columns'#14#0#10'DataSource'#7#28'DM_SurveyL'
+  +'ibrary.dsSkipLogic'#8'TabOrder'#2#0#0#0#7'TDBEdit'#8'DBEdit17'#4'Left'#3#192
+  +#0#6'Height'#2#23#3'Top'#2#8#5'Width'#3' '#1#9'DataField'#6#9'FIELDNAME'#10
+  +'DataSource'#7#23'DM_SurveyLibrary.dsItem'#8'ReadOnly'#9#8'CharCase'#7#8'ecN'
+  +'ormal'#5'Color'#7#15'clActiveCaption'#9'MaxLength'#2#0#8'TabOrder'#2#1#0#0
+  +#17'TDBLookupComboBox'#22'DBLookup_Operator_List'#4'Left'#3#192#0#6'Height'#2
+  +#23#3'Top'#2'X'#5'Width'#3#240#0#13'DropDownCount'#2#12#8'KeyField'#6#11'OPE'
+  +'RATOR_ID'#9'ListField'#6#11'OPERATOR_NM'#14'ListFieldIndex'#2#0#10'ListSour'
+  +'ce'#7' DM_SurveyLibrary.dsOperator_List'#11'LookupCache'#8#9'OnCloseUp'#7#29
+  +'DBLookup_Operator_ListCloseUp'#8'ReadOnly'#9#8'TabOrder'#2#2#0#0#7'TDBGrid'
+  +#12'DBGridValues'#4'Left'#3'0'#1#6'Height'#3#216#0#3'Top'#3#144#0#5'Width'#3
+  +'8'#1#5'Color'#7#8'clWindow'#7'Columns'#14#1#13'Title.Caption'#6#5'VALUE'#9
+  +'FieldName'#6#5'VALUE'#0#1#11'ButtonStyle'#7#11'cbsEllipsis'#7'MaxSize'#3#144
+  +#1#13'Title.Caption'#6#5'Label'#5'Width'#3#200#0#9'FieldName'#6#10'VALUELABE'
+  +'L'#0#0#10'DataSource'#7#31'DM_SurveyLibrary.dsMasterValues'#7'Options'#11#8
+  +'dgTitles'#11'dgIndicator'#14'dgColumnResize'#12'dgColumnMove'#10'dgColLines'
+  +#10'dgRowLines'#6'dgTabs'#11'dgRowSelect'#21'dgAlwaysShowSelection'#15'dgCon'
+  +'firmDelete'#14'dgCancelOnExit'#15'dgDisableDelete'#15'dgDisableInsert'#14'd'
+  +'gCellEllipsis'#0#8'ReadOnly'#9#10'Scrollbars'#7#10'ssAutoBoth'#8'TabOrder'#2
+  +#3#10'TitleStyle'#7#8'tsNative'#7'Visible'#8#0#0#17'TDBLookupComboBox'#24'DB'
+  +'Lookup_MasterFieldList'#4'Left'#3#208#0#6'Height'#2#23#3'Top'#2'0'#5'Width'
+  +#3#240#0#13'DropDownCount'#2#12#8'KeyField'#6#7'ITEM_ID'#9'ListField'#6#9'FI'
+  +'ELDNAME'#14'ListFieldIndex'#2#0#10'ListSource'#7#30'DM_SurveyLibrary.dsMast'
+  +'erField'#11'LookupCache'#8#8'OnChange'#7#30'DBLookup_MasterFieldListChange'
+  +#9'OnCloseUp'#7#31'DBLookup_MasterFieldListCloseUp'#8'ReadOnly'#9#17'ScrollL'
+  +'istDataset'#9#5'Style'#7#14'csDropDownList'#8'TabOrder'#2#4#0#0#9'TGroupBox'
+  +#13'grpSkipValues'#4'Left'#3'H'#1#6'Height'#2'i'#3'Top'#3#176#0#5'Width'#3
+  +#241#0#7'Caption'#6#5'Value'#12'ClientHeight'#2'U'#11'ClientWidth'#3#237#0#8
+  +'TabOrder'#2#5#7'Visible'#8#0#5'TEdit'#14'edt_SkipValue1'#4'Left'#2'H'#6'Hei'
+  +'ght'#2#23#3'Top'#2#8#5'Width'#2'P'#8'TabOrder'#2#0#0#0#5'TEdit'#14'edt_Skip'
+  +'Value2'#4'Left'#2'H'#6'Height'#2#23#4'Hint'#6#9'Max Value'#3'Top'#2'0'#5'Wi'
+  +'dth'#2'P'#5'Color'#7#23'clGradientActiveCaption'#8'TabOrder'#2#1#7'Visible'
+  +#8#0#0#0#9'TGroupBox'#16'grpSkipValueList'#4'Left'#3'H'#1#6'Height'#2'i'#3'T'
+  +'op'#3#192#0#5'Width'#3#241#0#7'Caption'#6#10'Value List'#12'ClientHeight'#2
+  +'U'#11'ClientWidth'#3#237#0#8'TabOrder'#2#6#7'Visible'#8#0#5'TEdit'#14'edt_S'
+  +'kipValue3'#4'Left'#2#16#6'Height'#2#23#3'Top'#2#24#5'Width'#3#208#0#8'TabOr'
+  +'der'#2#0#0#0#0#9'TSpinEdit'#9'SpinEdit1'#4'Left'#3#192#0#6'Height'#2#23#3'T'
+  +'op'#3#200#0#5'Width'#2'Z'#8'TabOrder'#2#7#0#0#9'TSpinEdit'#9'SpinEdit2'#4'L'
+  +'eft'#3#192#0#6'Height'#2#23#3'Top'#3#240#0#5'Width'#2'Z'#8'TabOrder'#2#8#0#0
+  ,#11'TEditButton'#11'EditButton1'#4'Left'#3#192#0#6'Height'#2#23#3'Top'#3#24#1
+  +#5'Width'#2'P'#11'ButtonWidth'#2#23#9'MaxLength'#2#0#9'NumGlyphs'#2#1#12'Pas'
+  +'swordChar'#6#1#0#8'TabOrder'#2#9#0#0#12'TButtonPanel'#12'ButtonPanel1'#4'Le'
+  +'ft'#2#6#6'Height'#2'"'#3'Top'#3'('#2#5'Width'#3'<'#3#13'OKButton.Name'#6#8
+  +'OKButton'#23'OKButton.DefaultCaption'#9#15'HelpButton.Name'#6#10'HelpButton'
+  +#25'HelpButton.DefaultCaption'#9#16'CloseButton.Name'#6#11'CloseButton'#26'C'
+  +'loseButton.DefaultCaption'#9#17'CancelButton.Name'#6#12'CancelButton'#27'Ca'
+  +'ncelButton.DefaultCaption'#9#8'TabOrder'#2#10#0#0#17'TDBLookupComboBox'#17
+  +'DBLookupComboBox1'#4'Left'#2' '#6'Height'#2#23#3'Top'#3#136#1#5'Width'#3'-'
+  +#1#8'KeyField'#6#11'COLUMN_NAME'#9'ListField'#6#11'COLUMN_NAME'#14'ListField'
+  +'Index'#2#0#10'ListSource'#7#30'DM_SurveyLibrary.dsOraMetaData'#11'LookupCac'
+  +'he'#8#8'OnSelect'#7#23'DBLookupComboBox1Select'#8'TabOrder'#2#11#0#0#7'TBut'
+  +'ton'#9'btnSchema'#4'Left'#3#128#0#6'Height'#2#25#3'Top'#3'h'#1#5'Width'#2'p'
+  +#7'Caption'#6#11'Open Schema'#7'OnClick'#7#14'btnSchemaClick'#8'TabOrder'#2
+  +#12#0#0#7'TDBGrid'#7'DBGrid5'#4'Left'#3#128#1#6'Height'#2'd'#3'Top'#3#144#1#5
+  +'Width'#3#160#1#5'Color'#7#8'clWindow'#7'Columns'#14#0#10'DataSource'#7#30'D'
+  +'M_SurveyLibrary.dsOraMetaData'#8'TabOrder'#2#13#0#0#0#0#7'TDBGrid'#7'DBGrid'
+  +'1'#4'Left'#2#0#6'Height'#3'l'#2#3'Top'#2'P'#5'Width'#3'@'#1#5'Align'#7#6'al'
+  +'Left'#5'Color'#7#8'clWindow'#7'Columns'#14#1#13'Title.Caption'#6#9'FIELDNAM'
+  +'E'#5'Width'#2'x'#9'FieldName'#6#9'FIELDNAME'#0#1#13'Title.Caption'#6#7'VarN'
+  +'ame'#5'Width'#2'P'#9'FieldName'#6#7'VARNAME'#0#1#13'Title.Caption'#6#8'VIEW'
+  +'NAME'#5'Width'#2'F'#9'FieldName'#6#8'VIEWNAME'#0#1#13'Title.Caption'#6#4'Pa'
+  +'ge'#5'Width'#2'2'#9'FieldName'#6#9'PAGEORDER'#0#1#11'ButtonStyle'#7#17'cbsC'
+  +'heckboxColumn'#8'ReadOnly'#9#13'Title.Caption'#6#10'Calculated'#5'Width'#2
+  +'<'#9'FieldName'#6#12'ISCALCULATED'#0#1#13'Title.Caption'#6#7'ITEM_ID'#9'Fie'
+  +'ldName'#6#7'ITEM_ID'#0#0#10'DataSource'#7#23'DM_SurveyLibrary.dsItem'#11'Fo'
+  +'nt.Height'#2#245#7'Options'#11#8'dgTitles'#11'dgIndicator'#14'dgColumnResiz'
+  +'e'#12'dgColumnMove'#10'dgColLines'#10'dgRowLines'#6'dgTabs'#21'dgAlwaysShow'
+  +'Selection'#15'dgConfirmDelete'#14'dgCancelOnExit'#0#10'ParentFont'#8#8'TabO'
+  +'rder'#2#2#16'TitleFont.Height'#2#245#15'TitleFont.Style'#11#6'fsBold'#0#0#0
+  +#7'TButton'#7'Button2'#4'Left'#3#248#3#6'Height'#2#25#3'Top'#2'0'#5'Width'#2
+  +'K'#7'Caption'#6#11'Test Update'#7'OnClick'#7#12'Button2Click'#8'TabOrder'#2
+  +#3#7'Visible'#8#0#0#7'TButton'#16'btn_exportValues'#4'Left'#3#216#2#6'Height'
+  +#2#25#3'Top'#2'0'#5'Width'#3#144#0#7'Caption'#6#23'Export Field and Values'#7
+  +'OnClick'#7#21'btn_exportValuesClick'#8'TabOrder'#2#4#0#0#14'TOraDataSource'
+  +#14'OraDataSource1'#7'DataSet'#7'''DM_SurveyLibrary.luItemType_forDataItem'
+  +#12'OnDataChange'#7#24'OraDataSource1DataChange'#4'left'#3#8#3#3'top'#2'0'#0
+  +#0#14'TOraDataSource'#14'OraDataSource2'#7'DataSet'#7'#DM_SurveyLibrary.data'
+  +'ItemValueLabel'#13'OnStateChange'#7#25'OraDataSource2StateChange'#12'OnData'
+  +'Change'#7#24'OraDataSource2DataChange'#4'left'#3'H'#2#3'top'#2#16#0#0#12'TC'
+  +'SVExporter'#12'CSVExporter1'#7'Dataset'#7#25'DM_SurveyLibrary.dataItem'#12
+  +'ExportFields'#14#1#9'FieldName'#6#9'FIELDNAME'#12'ExportedName'#6#9'FIELDNA'
+  +'ME'#0#1#9'FieldName'#6#7'ITEM_ID'#12'ExportedName'#6#7'ITEM_ID'#0#1#9'Field'
+  +'Name'#6#8'MINVALUE'#12'ExportedName'#6#8'MINVALUE'#0#1#9'FieldName'#6#8'MAX'
+  +'VALUE'#12'ExportedName'#6#8'MAXVALUE'#0#1#9'FieldName'#6#11'ITEMTYPE_ID'#12
+  +'ExportedName'#6#11'ITEMTYPE_ID'#0#1#9'FieldName'#6#15'MEASUREMENTUNIT'#12'E'
+  +'xportedName'#6#15'MEASUREMENTUNIT'#0#1#9'FieldName'#6#7'VARNAME'#12'Exporte'
+  +'dName'#6#7'VARNAME'#0#1#9'FieldName'#6#12'ISCALCULATED'#12'ExportedName'#6
+  +#12'ISCALCULATED'#0#1#9'FieldName'#6#7'CORESET'#12'ExportedName'#6#7'CORESET'
+  +#0#1#9'FieldName'#6#8'VIEWNAME'#12'ExportedName'#6#8'VIEWNAME'#0#1#9'FieldNa'
+  +'me'#6#9'PAGEORDER'#12'ExportedName'#6#9'PAGEORDER'#0#1#9'FieldName'#6#12'SE'
+  +'CTIONORDER'#12'ExportedName'#6#12'SECTIONORDER'#0#1#9'FieldName'#6#10'ITEM_'
+  +'ORDER'#12'ExportedName'#6#10'ITEM_ORDER'#0#1#9'FieldName'#6#9'TABLENAME'#12
+  +'ExportedName'#6#9'TABLENAME'#0#0#15'RestorePosition'#8#31'FormatSettings.De'
+  +'cimalSeparator'#6#1#0#29'FormatSettings.CurrencyDigits'#2#0#29'FormatSettin'
+  +'gs.FieldDelimiter'#6#1',$FormatSettings.IgnoreOuterWhitespace'#8#27'FormatS'
+  +'ettings.RowDelimiter'#6#2#13#10#24'FormatSettings.QuoteChar'#6#1'"'#11'OnEx'
+  +'portRow'#7#21'CSVExporter1ExportRow'#4'left'#3#176#0#3'top'#2#24#0#0#11'TSa'
+  +'veDialog'#11'SaveDialog1'#10'DefaultExt'#6#4'.csv'#6'Filter'#6#9'CSV|*.CSV'
+  +#4'left'#3#216#2#0#0#14'TOraDataSource'#10'dsDataItem'#7'DataSet'#7#25'DM_Su'
+  +'rveyLibrary.dataItem'#13'OnStateChange'#7#21'dsDataItemStateChange'#12'OnDa'
+  +'taChange'#7#20'dsDataItemDataChange'#12'OnUpdateData'#7#20'dsDataItemUpdate'
+  +'Data'#4'left'#3'@'#3#3'top'#2#16#0#0#9'TOraQuery'#12'sql_ItemList'#7'Sessio'
+  +'n'#7#22'DM_Main.OraSessionMain'#11'SQL.Strings'#1#6#9'select * '#6#31'  fro'
+  ,'m vw_slib_itemvalues slib '#6#30'  where tablename = :tablename'#0#8'ReadOn'
+  +'ly'#9#17'Options.AutoClose'#8#22'Options.FieldsAsString'#8#23'Options.Defer'
+  +'redLobRead'#8#17'Options.CacheLobs'#9#24'Options.ScrollableCursor'#8#20'Opt'
+  +'ions.FieldsOrigin'#8#21'Options.DefaultValues'#8#22'Options.RequiredFields'
+  +#9#20'Options.StrictUpdate'#9#19'Options.NumberRange'#8#21'Options.QueryRecC'
+  +'ount'#8#19'Options.AutoPrepare'#8#20'Options.ReturnParams'#8#21'Options.Tri'
+  +'mFixedChar'#9#19'Options.LongStrings'#9#23'Options.RemoveOnRefresh'#9#19'Op'
+  +'tions.FlatBuffers'#8#19'Options.DetailDelay'#2#0#13'FilterOptions'#11#0#4'l'
+  +'eft'#3#216#1#3'top'#2' '#9'ParamData'#14#1#8'DataType'#7#8'ftString'#4'Name'
+  +#6#9'tablename'#0#0#0#0#12'TCSVExporter'#12'CSVExporter2'#7'Dataset'#7#12'sq'
+  +'l_ItemList'#12'ExportFields'#14#0#15'RestorePosition'#8#31'FormatSettings.D'
+  +'ecimalSeparator'#6#1#0#29'FormatSettings.CurrencyDigits'#2#0#29'FormatSetti'
+  +'ngs.FieldDelimiter'#6#1',$FormatSettings.IgnoreOuterWhitespace'#8#27'Format'
+  +'Settings.RowDelimiter'#6#2#13#10#24'FormatSettings.QuoteChar'#6#1'"'#11'OnE'
+  +'xportRow'#7#21'CSVExporter2ExportRow'#4'left'#3#224#0#3'top'#2#24#0#0#14'TO'
+  +'raDataSource'#14'OraDataSource4'#7'DataSet'#7#25'DM_SurveyLibrary.dataItem'
+  +#4'left'#3' '#2#0#0#12'TCSVExporter'#12'CSVExporter3'#7'Dataset'#7'%DM_Surve'
+  +'yLibrary.vw_SLIB_DATADICT_HRA'#12'ExportFields'#14#0#15'RestorePosition'#8
+  +#31'FormatSettings.DecimalSeparator'#6#1#0#29'FormatSettings.CurrencyDigits'
+  +#2#0#29'FormatSettings.FieldDelimiter'#6#1',$FormatSettings.IgnoreOuterWhite'
+  +'space'#8#27'FormatSettings.RowDelimiter'#6#2#13#10#24'FormatSettings.QuoteC'
+  +'har'#6#1'"'#11'OnExportRow'#7#21'CSVExporter2ExportRow'#4'left'#3#252#0#3't'
+  +'op'#2'4'#0#0#0
+]);

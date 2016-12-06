@@ -1,0 +1,59 @@
+unit AccountNew;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  ComCtrls, DbCtrls,DataModuleMain;
+
+type
+
+  { Tfrm_AccountNew }
+
+  Tfrm_AccountNew = class(TForm)
+    btnClose: TButton;
+    btnSave: TButton;
+    DBCheckBox1: TDBCheckBox;
+    DBCheckBox2: TDBCheckBox;
+    DBEdit2: TDBEdit;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBMemo1: TDBMemo;
+    DBNavigator_Acct: TDBNavigator;
+    Label1: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    StatusBar1: TStatusBar;
+    procedure btnSaveClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  frm_AccountNew: Tfrm_AccountNew;
+
+implementation
+
+{$R *.lfm}
+
+{ Tfrm_AccountNew }
+
+procedure Tfrm_AccountNew.FormCreate(Sender: TObject);
+begin
+    With DM_Main do
+    begin
+      dataAccount.insert ;
+    end;
+end;
+
+procedure Tfrm_AccountNew.btnSaveClick(Sender: TObject);
+begin
+   DM_Main.dataAccount.post;
+end;
+
+end.
+

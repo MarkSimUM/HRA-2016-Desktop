@@ -1,0 +1,1660 @@
+object frm_SurveyItems: Tfrm_SurveyItems
+  Left = 387
+  Height = 700
+  Top = 225
+  Width = 1168
+  Caption = 'Survey Item Library'
+  ClientHeight = 700
+  ClientWidth = 1168
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object PanelHeader: TPanel
+    Left = 0
+    Height = 80
+    Top = 0
+    Width = 1168
+    Align = alTop
+    ClientHeight = 80
+    ClientWidth = 1168
+    TabOrder = 0
+    object rg_ItemFilter: TRadioGroup
+      Left = 1
+      Height = 78
+      Top = 1
+      Width = 295
+      Align = alLeft
+      AutoFill = True
+      Caption = 'Item Type'
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 3
+      ClientHeight = 60
+      ClientWidth = 291
+      ColumnLayout = clVerticalThenHorizontal
+      Columns = 3
+      ItemIndex = 0
+      Items.Strings = (
+        'HRA (Survey)'
+        'HRA (Calc)'
+        'HRA BIO'
+        'USER_PERSON'
+        'USER_DEMOGRAPHIC'
+        'CUSTOM'
+        'ALL'
+      )
+      OnChangeBounds = rg_ItemFilterChangeBounds
+      OnClick = rg_ItemFilterClick
+      OnSelectionChanged = rg_ItemFilterSelectionChanged
+      TabOrder = 0
+    end
+    object btnRefresh: TButton
+      Left = 616
+      Height = 40
+      Top = 1
+      Width = 147
+      Caption = 'Refresh Data'
+      OnClick = btnRefreshClick
+      TabOrder = 1
+    end
+    object dblu_Language: TDBLookupComboBox
+      Left = 787
+      Height = 23
+      Top = 16
+      Width = 152
+      DataField = 'LANGUAGE_ID'
+      KeyField = 'LANGUAGE_ID'
+      ListField = 'LANGUAGE_LOCALE_ENGLISH'
+      ListFieldIndex = 0
+      ListSource = DM_Main.dsLanguage
+      LookupCache = False
+      OnChange = dblu_LanguageChange
+      ReadOnly = True
+      TabOrder = 2
+    end
+    object Label2: TLabel
+      Left = 819
+      Height = 15
+      Top = 1
+      Width = 52
+      Caption = 'Language'
+      ParentColor = False
+    end
+    object edt_LanguageID: TEdit
+      Left = 963
+      Height = 23
+      Hint = 'LanguageID'
+      Top = 16
+      Width = 61
+      ReadOnly = True
+      TabOrder = 3
+    end
+    object edt_Filter: TEdit
+      Left = 296
+      Height = 23
+      Top = 1
+      Width = 163
+      TabOrder = 4
+      Text = 'FIELDNAME LIKE "S%"'
+    end
+    object lbl_LangID: TLabel
+      Left = 963
+      Height = 15
+      Top = 1
+      Width = 43
+      Caption = 'Lang ID:'
+      ParentColor = False
+    end
+    object btn_Filter: TButton
+      Left = 296
+      Height = 25
+      Top = 24
+      Width = 75
+      Caption = 'Filter'
+      OnClick = btn_FilterClick
+      TabOrder = 5
+    end
+    object btn_FilterClear: TButton
+      Left = 384
+      Height = 25
+      Top = 24
+      Width = 75
+      Caption = 'Clear Filter'
+      OnClick = btn_FilterClearClick
+      TabOrder = 6
+    end
+    object btn_exportField: TButton
+      Left = 616
+      Height = 25
+      Top = 48
+      Width = 112
+      Caption = 'Export Field Info'
+      OnClick = btn_exportFieldClick
+      TabOrder = 7
+    end
+    object Button3: TButton
+      Left = 1016
+      Height = 25
+      Top = 48
+      Width = 75
+      Caption = 'Item List'
+      OnClick = Button3Click
+      TabOrder = 8
+      Visible = False
+    end
+    object btn_CheckField: TButton
+      Left = 472
+      Height = 25
+      Hint = 'Check if field exists in database'
+      Top = 48
+      Width = 115
+      Caption = 'Check Field'
+      OnClick = btn_CheckFieldClick
+      TabOrder = 9
+    end
+    object edt_locate1: TEdit
+      Left = 296
+      Height = 23
+      Hint = 'Enter Accountname'
+      Top = 56
+      Width = 160
+      OnChange = edt_locate1Change
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 10
+    end
+    object cboSortOrder: TComboBox
+      Left = 472
+      Height = 21
+      Top = 20
+      Width = 136
+      ItemHeight = 15
+      Items.Strings = (
+        'DEFAULT'
+        'FieldName'
+        'PageOrder'
+        'Domain'
+        'PageOrder, Item_Order'
+      )
+      OnCloseUp = cboSortOrderCloseUp
+      ReadOnly = True
+      Style = csOwnerDrawFixed
+      TabOrder = 11
+    end
+    object Label24: TLabel
+      Left = 496
+      Height = 15
+      Top = 1
+      Width = 60
+      Caption = 'SORT order'
+      ParentColor = False
+    end
+    object BitBtn1: TBitBtn
+      Left = 1092
+      Height = 78
+      Top = 1
+      Width = 75
+      Align = alRight
+      DefaultCaption = True
+      Kind = bkClose
+      ModalResult = 11
+      TabOrder = 12
+    end
+    object Button1: TButton
+      Left = 880
+      Height = 25
+      Top = 48
+      Width = 99
+      Caption = 'DataDict Export'
+      OnClick = Button1Click
+      TabOrder = 13
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 320
+    Height = 620
+    Top = 80
+    Width = 848
+    ActivePage = tbItem
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object tbItem: TTabSheet
+      Caption = 'Item '
+      ClientHeight = 592
+      ClientWidth = 840
+      object DBEdit2: TDBEdit
+        Left = 48
+        Height = 23
+        Top = 52
+        Width = 64
+        DataField = 'DOMAIN'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object DBEdit1: TDBEdit
+        Left = 16
+        Height = 23
+        Top = 24
+        Width = 192
+        DataField = 'FIELDNAME'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object DBEdit5: TDBEdit
+        Left = 9
+        Height = 23
+        Top = 96
+        Width = 37
+        DataField = 'MINVALUE'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+      end
+      object DBEdit4: TDBEdit
+        Left = 64
+        Height = 23
+        Top = 96
+        Width = 40
+        DataField = 'MAXVALUE'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 3
+      end
+      object DBRG_MeasurementType: TDBRadioGroup
+        Left = 416
+        Height = 63
+        Top = 59
+        Width = 120
+        Caption = 'Measurement Type'
+        DataField = 'MEASUREMENTUNIT'
+        DataSource = DM_SurveyLibrary.dsItem
+        Items.Strings = (
+          '1 US'
+          '2 Metric'
+        )
+        TabOrder = 4
+        Values.Strings = (
+          '1'
+          '2'
+        )
+      end
+      object Label1: TLabel
+        Left = 81
+        Height = 15
+        Top = 136
+        Width = 60
+        Caption = 'Item Order:'
+        ParentColor = False
+      end
+      object DBLookup_ItemType: TDBLookupComboBox
+        Left = 224
+        Height = 23
+        Top = 24
+        Width = 176
+        DataField = 'ITEMTYPE_ID'
+        DataSource = DM_SurveyLibrary.dsItem
+        KeyField = 'ITEMTYPE_ID'
+        ListField = 'DESCRIPTION'
+        ListFieldIndex = 0
+        ListSource = DM_SurveyLibrary.dsluItemType
+        LookupCache = False
+        OnChange = DBLookup_ItemTypeChange
+        OnChangeBounds = DBLookup_ItemTypeChangeBounds
+        OnCloseUp = DBLookup_ItemTypeCloseUp
+        OnDropDown = DBLookup_ItemTypeDropDown
+        OnEditingDone = DBLookup_ItemTypeEditingDone
+        OnEnter = DBLookup_ItemTypeEnter
+        ReadOnly = True
+        TabOrder = 5
+      end
+      object DividerBevel1: TDividerBevel
+        Left = 0
+        Height = 15
+        Top = 192
+        Width = 824
+        Caption = 'Item Labels'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object DBEdit7: TDBEdit
+        Left = 56
+        Height = 23
+        Top = 208
+        Width = 552
+        DataField = 'LABEL'
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 6
+      end
+      object DBEdit8: TDBEdit
+        Left = 56
+        Height = 23
+        Top = 236
+        Width = 240
+        DataField = 'LABELINPUT'
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 7
+      end
+      object DBEdit9: TDBEdit
+        Left = 384
+        Height = 23
+        Top = 236
+        Width = 152
+        DataField = 'LABELLEFT'
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 8
+      end
+      object DBEdit10: TDBEdit
+        Left = 624
+        Height = 23
+        Top = 236
+        Width = 152
+        DataField = 'LABELRIGHT'
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 9
+      end
+      object DBEdit11: TDBEdit
+        Left = 80
+        Height = 23
+        Top = 264
+        Width = 552
+        DataField = 'LABELINSTRUCTION'
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 10
+      end
+      object PnlValueLabels: TPanel
+        Left = 0
+        Height = 230
+        Top = 362
+        Width = 840
+        Align = alBottom
+        BorderStyle = bsSingle
+        ClientHeight = 226
+        ClientWidth = 836
+        Color = clSilver
+        ParentColor = False
+        TabOrder = 11
+        object Panel1: TPanel
+          Left = 1
+          Height = 190
+          Top = 1
+          Width = 372
+          Align = alClient
+          Caption = 'Panel1'
+          ClientHeight = 190
+          ClientWidth = 372
+          Color = clAqua
+          ParentColor = False
+          TabOrder = 0
+          object DBGrid3: TDBGrid
+            Left = 1
+            Height = 163
+            Top = 1
+            Width = 370
+            Align = alClient
+            Color = clWindow
+            Columns = <            
+              item
+                Title.Caption = 'VALUE'
+                Width = 80
+                FieldName = 'VALUE'
+              end            
+              item
+                Title.Caption = 'Disp Order'
+                Width = 80
+                FieldName = 'DISPLAYORDER'
+              end            
+              item
+                ButtonStyle = cbsCheckboxColumn
+                Title.Caption = 'Missing'
+                FieldName = 'ISMISSINGVALUE'
+              end            
+              item
+                Title.Caption = 'SG_OPTIONID'
+                FieldName = 'SG_OPTIONID'
+              end            
+              item
+                Title.Caption = 'SG_REPORTINGVALUE'
+                FieldName = 'SG_REPORTINGVALUE'
+              end            
+              item
+                Title.Caption = 'ITEMVALUE_ID'
+                FieldName = 'ITEMVALUE_ID'
+              end            
+              item
+                Title.Caption = 'ITEMVALUELINK_ID'
+                FieldName = 'ITEMVALUELINK_ID'
+              end            
+              item
+                ButtonStyle = cbsCheckboxColumn
+                Title.Caption = 'DELETE_FLG'
+                FieldName = 'DELETE_FLG'
+              end            
+              item
+                Title.Caption = 'MAPTO_Value'
+                FieldName = 'MAPTO_ITEMVALUE'
+              end            
+              item
+                Title.Caption = 'MAPTO_ItemValue_ID'
+                FieldName = 'MAPTO_ITEMVALUE_ID'
+              end>
+            DataSource = DM_SurveyLibrary.dsItemValue
+            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+            TabOrder = 0
+          end
+          object DBNavigator2: TDBNavigator
+            Left = 1
+            Height = 25
+            Top = 164
+            Width = 370
+            Align = alBottom
+            BevelOuter = bvNone
+            ChildSizing.EnlargeHorizontal = crsScaleChilds
+            ChildSizing.EnlargeVertical = crsScaleChilds
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 100
+            ClientHeight = 25
+            ClientWidth = 370
+            DataSource = DM_SurveyLibrary.dsItemValue
+            Options = []
+            TabOrder = 1
+            VisibleButtons = [nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+          end
+        end
+        object pnlValueLabelEdit: TPanel
+          Left = 373
+          Height = 190
+          Top = 1
+          Width = 462
+          Align = alRight
+          Alignment = taLeftJustify
+          BorderStyle = bsSingle
+          ClientHeight = 186
+          ClientWidth = 458
+          Color = 8454143
+          ParentColor = False
+          TabOrder = 1
+          object Label8: TLabel
+            Left = 16
+            Height = 15
+            Top = 16
+            Width = 71
+            Caption = 'VALUE LABEL'
+            ParentColor = False
+          end
+          object DBEdit_ValueLabel: TDBEdit
+            Left = 16
+            Height = 23
+            Top = 32
+            Width = 424
+            DataField = 'VALUELABEL'
+            DataSource = DM_SurveyLibrary.dsItemValueLabel
+            CharCase = ecNormal
+            MaxLength = 0
+            TabOrder = 0
+            OnChange = DBEdit_ValueLabelChange
+            OnEditingDone = DBEdit_ValueLabelEditingDone
+            OnExit = DBEdit_ValueLabelExit
+          end
+          object dbedit_ValueLabelShort: TDBEdit
+            Left = 16
+            Height = 23
+            Top = 72
+            Width = 264
+            DataField = 'VALUELABELSHORT'
+            DataSource = DM_SurveyLibrary.dsItemValueLabel
+            CharCase = ecNormal
+            MaxLength = 0
+            TabOrder = 1
+          end
+          object dbedit_ValueLabel_ID: TDBEdit
+            Left = 328
+            Height = 23
+            Top = 136
+            Width = 104
+            DataField = 'ITEMVALUELABEL_ID'
+            DataSource = DM_SurveyLibrary.dsItemValueLabel
+            ReadOnly = True
+            CharCase = ecNormal
+            Enabled = False
+            MaxLength = 0
+            TabOrder = 2
+          end
+          object Label10: TLabel
+            Left = 16
+            Height = 15
+            Top = 56
+            Width = 59
+            Caption = 'Label Short'
+            ParentColor = False
+          end
+          object chk_AutoAdvanceValues: TCheckBox
+            Left = 208
+            Height = 19
+            Top = 8
+            Width = 95
+            Caption = 'Auto Advance'
+            TabOrder = 3
+          end
+          object Label22: TLabel
+            Left = 235
+            Height = 15
+            Top = 144
+            Width = 68
+            Caption = 'ValueLabelID'
+            ParentColor = False
+          end
+          object DBEdit_ValueLabel1: TDBEdit
+            Left = 16
+            Height = 23
+            Top = 112
+            Width = 416
+            DataField = 'VALUELABEL_METRIC'
+            DataSource = DM_SurveyLibrary.dsItemValueLabel
+            CharCase = ecNormal
+            Color = clGradientInactiveCaption
+            MaxLength = 0
+            TabOrder = 4
+            OnChange = DBEdit_ValueLabelChange
+            OnEditingDone = DBEdit_ValueLabelEditingDone
+            OnExit = DBEdit_ValueLabelExit
+          end
+          object Label30: TLabel
+            Left = 16
+            Height = 15
+            Top = 96
+            Width = 108
+            Caption = 'VALUE LABEL Metric'
+            ParentColor = False
+          end
+          object DBNavigator_ValueLabel: TDBNavigator
+            Left = 1
+            Height = 25
+            Top = 160
+            Width = 456
+            Align = alBottom
+            BevelOuter = bvNone
+            ChildSizing.EnlargeHorizontal = crsScaleChilds
+            ChildSizing.EnlargeVertical = crsScaleChilds
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 100
+            ClientHeight = 25
+            ClientWidth = 456
+            DataSource = DM_SurveyLibrary.dsItemValueLabel
+            OnClick = DBNavigator_ValueLabelClick
+            Options = []
+            TabOrder = 5
+            VisibleButtons = [nbEdit, nbPost, nbCancel, nbRefresh]
+          end
+        end
+        object pnl_ValueBottom: TPanel
+          Left = 1
+          Height = 34
+          Top = 191
+          Width = 834
+          Align = alBottom
+          ClientHeight = 34
+          ClientWidth = 834
+          Color = 8421631
+          ParentColor = False
+          TabOrder = 2
+          object btn_AddValuesLang: TButton
+            Left = 464
+            Height = 32
+            Top = 0
+            Width = 184
+            Caption = 'Insert Language Values'
+            Enabled = False
+            OnClick = btn_AddValuesLangClick
+            TabOrder = 0
+          end
+          object btnAddValue: TButton
+            Left = 344
+            Height = 33
+            Top = 0
+            Width = 112
+            Caption = 'NEW VALUE'
+            OnClick = btnAddValueClick
+            TabOrder = 1
+          end
+        end
+      end
+      object DBNavigator3: TDBNavigator
+        Left = 616
+        Height = 40
+        Top = 311
+        Width = 170
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 40
+        ClientWidth = 170
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        Options = []
+        TabOrder = 12
+        VisibleButtons = [nbEdit, nbPost, nbCancel, nbRefresh]
+      end
+      object Label3: TLabel
+        Left = 16
+        Height = 15
+        Top = 80
+        Width = 21
+        Caption = 'Min'
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 72
+        Height = 15
+        Top = 80
+        Width = 22
+        Caption = 'Max'
+        ParentColor = False
+      end
+      object Label5: TLabel
+        Left = 16
+        Height = 15
+        Top = 8
+        Width = 57
+        Caption = 'FieldName'
+        ParentColor = False
+      end
+      object Label6: TLabel
+        Left = 3
+        Height = 15
+        Top = 56
+        Width = 42
+        Caption = 'Domain'
+        ParentColor = False
+      end
+      object Label7: TLabel
+        Left = 147
+        Height = 15
+        Top = 56
+        Width = 61
+        Caption = 'TableName'
+        ParentColor = False
+      end
+      object DBNavigator4: TDBNavigator
+        Left = 512
+        Height = 41
+        Top = 144
+        Width = 165
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 41
+        ClientWidth = 165
+        DataSource = DM_SurveyLibrary.dsItem
+        Options = []
+        TabOrder = 13
+        VisibleButtons = [nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+      end
+      object DBChk_IsCalculated: TDBCheckBox
+        Left = 432
+        Height = 23
+        Top = 30
+        Width = 90
+        Caption = 'Calculated'
+        DataField = 'ISCALCULATED'
+        DataSource = DM_SurveyLibrary.dsItem
+        TabOrder = 14
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object Label11: TLabel
+        Left = 224
+        Height = 15
+        Top = 8
+        Width = 77
+        Caption = 'Question Type'
+        ParentColor = False
+      end
+      object DBEdit13: TDBEdit
+        Left = 632
+        Height = 23
+        Top = 40
+        Width = 24
+        DataField = 'CORESET'
+        DataSource = DM_SurveyLibrary.dsItem
+        ReadOnly = True
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 15
+      end
+      object DBLookup_TableName: TDBLookupComboBox
+        Left = 224
+        Height = 23
+        Top = 56
+        Width = 176
+        DataField = 'TABLENAME'
+        DataSource = DM_SurveyLibrary.dsItem
+        KeyField = 'TABLE_NM'
+        ListField = 'TABLE_NM'
+        ListFieldIndex = 0
+        ListSource = DM_SurveyLibrary.dsluTableName_Dict
+        LookupCache = False
+        OnCloseUp = DBLookup_ItemTypeCloseUp
+        OnDropDown = DBLookup_ItemTypeDropDown
+        ReadOnly = True
+        TabOrder = 16
+      end
+      object Label12: TLabel
+        Left = 17
+        Height = 15
+        Top = 240
+        Width = 28
+        Caption = 'Input'
+        ParentColor = False
+      end
+      object Label13: TLabel
+        Left = 560
+        Height = 15
+        Top = 240
+        Width = 59
+        Caption = 'Label Right'
+        ParentColor = False
+      end
+      object Label14: TLabel
+        Left = 314
+        Height = 15
+        Top = 240
+        Width = 51
+        Caption = 'Label Left'
+        ParentColor = False
+      end
+      object Label15: TLabel
+        Left = 15
+        Height = 15
+        Top = 272
+        Width = 57
+        Caption = 'Instruction'
+        ParentColor = False
+      end
+      object btnAddNew: TButton
+        Left = 685
+        Height = 49
+        Top = 136
+        Width = 112
+        Caption = 'NEW ITEM'
+        OnClick = btnAddNewClick
+        TabOrder = 17
+      end
+      object rgCore: TDBRadioGroup
+        Left = 543
+        Height = 90
+        Top = 8
+        Width = 113
+        Caption = 'Core Item'
+        DataField = 'CORESET'
+        DataSource = DM_SurveyLibrary.dsItem
+        Items.Strings = (
+          'No'
+          'Calc'
+          'Message'
+          'Calc/Message'
+        )
+        TabOrder = 18
+        Values.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+        )
+      end
+      object DBChk_IsLocked: TDBCheckBox
+        Left = 432
+        Height = 23
+        Top = 8
+        Width = 90
+        Caption = 'LOCKED'
+        DataField = 'ISLOCKED'
+        DataSource = DM_SurveyLibrary.dsItem
+        TabOrder = 19
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBLookup_ParentItem: TDBLookupComboBox
+        Left = 200
+        Height = 23
+        Top = 115
+        Width = 200
+        DataField = 'ITEMLINK_ID'
+        DataSource = DM_SurveyLibrary.dsItem
+        KeyField = 'ITEM_ID'
+        ListField = 'VARNAME'
+        ListFieldIndex = 0
+        ListSource = DM_SurveyLibrary.dsItem
+        LookupCache = False
+        OnChange = DBLookup_ItemTypeChange
+        OnChangeBounds = DBLookup_ItemTypeChangeBounds
+        OnCloseUp = DBLookup_ItemTypeCloseUp
+        OnDropDown = DBLookup_ItemTypeDropDown
+        OnEditingDone = DBLookup_ItemTypeEditingDone
+        OnEnter = DBLookup_ItemTypeEnter
+        ReadOnly = True
+        TabOrder = 20
+      end
+      object Label16: TLabel
+        Left = 130
+        Height = 15
+        Top = 120
+        Width = 61
+        Caption = 'Parent Item'
+        ParentColor = False
+      end
+      object DBEdit12: TDBEdit
+        Left = 744
+        Height = 23
+        Top = 96
+        Width = 55
+        DataField = 'GROUPORDER'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 21
+        Visible = False
+      end
+      object Label17: TLabel
+        Left = 744
+        Height = 15
+        Top = 80
+        Width = 66
+        Caption = 'GroupOrder:'
+        ParentColor = False
+        Visible = False
+      end
+      object DBEdit14: TDBEdit
+        Left = 752
+        Height = 23
+        Top = 24
+        Width = 55
+        DataField = 'SECTIONORDER'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 22
+        Visible = False
+      end
+      object Label18: TLabel
+        Left = 744
+        Height = 15
+        Top = 6
+        Width = 75
+        Caption = 'Section Order:'
+        ParentColor = False
+        Visible = False
+      end
+      object DBEdit15: TDBEdit
+        Left = 9
+        Height = 23
+        Top = 154
+        Width = 44
+        DataField = 'PAGEORDER'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 23
+      end
+      object Label19: TLabel
+        Left = 15
+        Height = 15
+        Top = 136
+        Width = 29
+        Caption = 'Page:'
+        ParentColor = False
+      end
+      object DBEdit6: TDBEdit
+        Left = 664
+        Height = 23
+        Top = 24
+        Width = 64
+        DataField = 'SG_QID'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 24
+      end
+      object Label20: TLabel
+        Left = 672
+        Height = 15
+        Top = 8
+        Width = 37
+        Caption = 'SG QID'
+        ParentColor = False
+      end
+      object Label21: TLabel
+        Left = 17
+        Height = 15
+        Top = 208
+        Width = 28
+        Caption = 'Label'
+        ParentColor = False
+      end
+      object DBEdit16: TDBEdit
+        Left = 664
+        Height = 23
+        Top = 72
+        Width = 64
+        DataField = 'SG_OPTIONID'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 25
+      end
+      object Label23: TLabel
+        Left = 664
+        Height = 15
+        Top = 56
+        Width = 133
+        Caption = 'SG OPTIONID [checkbox]'
+        ParentColor = False
+      end
+      object DBEdit_Item_Order: TDBEdit
+        Left = 77
+        Height = 23
+        Top = 154
+        Width = 64
+        DataField = 'ITEM_ORDER'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 26
+      end
+      object DBChk_Delete: TDBCheckBox
+        Left = 440
+        Height = 23
+        Hint = 'Marks for deletion'
+        Top = 152
+        Width = 66
+        Caption = 'DELETE'
+        Color = clRed
+        DataField = 'DELETE_FLG'
+        DataSource = DM_SurveyLibrary.dsItem
+        Font.Color = clYellow
+        ParentBiDiMode = False
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 27
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object btnClearMeasurementType: TButton
+        Left = 440
+        Height = 18
+        Top = 120
+        Width = 75
+        Caption = 'Clear'
+        OnClick = btnClearMeasurementTypeClick
+        TabOrder = 28
+      end
+      object DBEdit3: TDBEdit
+        Left = 200
+        Height = 23
+        Top = 88
+        Width = 200
+        DataField = 'VARNAME'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 29
+      end
+      object Label25: TLabel
+        Left = 144
+        Height = 15
+        Top = 88
+        Width = 47
+        Caption = 'Varname'
+        ParentColor = False
+      end
+      object DBEdit18: TDBEdit
+        Left = 216
+        Height = 23
+        Top = 154
+        Width = 200
+        DataField = 'VIEWNAME'
+        DataSource = DM_SurveyLibrary.dsItem
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = cl3DLight
+        MaxLength = 0
+        TabOrder = 30
+      end
+      object Label26: TLabel
+        Left = 151
+        Height = 15
+        Top = 160
+        Width = 57
+        Caption = 'ViewName'
+        ParentColor = False
+      end
+      object DBEdit19: TDBEdit
+        Left = 600
+        Height = 23
+        Top = 112
+        Width = 32
+        DataField = 'ITEM_VERSION'
+        DataSource = DM_SurveyLibrary.dsItem
+        CharCase = ecNormal
+        Color = clYellow
+        Font.Color = clRed
+        Font.Style = [fsBold]
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 31
+      end
+      object Label27: TLabel
+        Left = 544
+        Height = 15
+        Top = 112
+        Width = 50
+        Caption = 'VERSION:'
+        ParentColor = False
+      end
+      object Label28: TLabel
+        Left = 40
+        Height = 15
+        Top = 304
+        Width = 65
+        Caption = 'Label Metric'
+        ParentColor = False
+      end
+      object DBEdit20: TDBEdit
+        Left = 124
+        Height = 23
+        Top = 296
+        Width = 462
+        DataField = 'LABEL_METRIC'
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        CharCase = ecNormal
+        Color = clGradientInactiveCaption
+        MaxLength = 0
+        TabOrder = 32
+      end
+      object Label29: TLabel
+        Left = 15
+        Height = 15
+        Top = 336
+        Width = 94
+        Caption = 'Instruction Metric'
+        ParentColor = False
+      end
+      object DBEdit21: TDBEdit
+        Left = 124
+        Height = 23
+        Top = 328
+        Width = 470
+        DataField = 'LABELINSTRUCTION_METRIC'
+        DataSource = DM_SurveyLibrary.dsItemLabel
+        CharCase = ecNormal
+        Color = clGradientInactiveCaption
+        MaxLength = 0
+        TabOrder = 33
+      end
+    end
+    object tbAddValues: TTabSheet
+      Caption = 'Add Values'
+      ClientHeight = 592
+      ClientWidth = 840
+      OnEnter = tbAddValuesEnter
+      object DBGrid2: TDBGrid
+        Left = 0
+        Height = 472
+        Top = 120
+        Width = 840
+        Align = alClient
+        Color = clWindow
+        Columns = <>
+        DataSource = DM_SurveyLibrary.dsValueAndLabel
+        FixedCols = 2
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+        ReadOnly = True
+        TabOrder = 0
+      end
+      object pnl_AddValuesHeader: TPanel
+        Left = 0
+        Height = 120
+        Top = 0
+        Width = 840
+        Align = alTop
+        ClientHeight = 120
+        ClientWidth = 840
+        TabOrder = 1
+        object Label9: TLabel
+          Left = 0
+          Height = 15
+          Top = 16
+          Width = 135
+          Caption = 'Number of Values to add:'
+          ParentColor = False
+        end
+        object spn_Values: TSpinEdit
+          Left = 152
+          Height = 23
+          Top = 10
+          Width = 50
+          TabOrder = 0
+          Value = 1
+        end
+        object btn_AddValues: TButton
+          Left = 8
+          Height = 33
+          Top = 72
+          Width = 121
+          Caption = 'Add Values'
+          OnClick = btn_AddValuesClick
+          TabOrder = 1
+        end
+        object DBNavigator5: TDBNavigator
+          Left = 168
+          Height = 25
+          Top = 80
+          Width = 241
+          BevelOuter = bvNone
+          ChildSizing.EnlargeHorizontal = crsScaleChilds
+          ChildSizing.EnlargeVertical = crsScaleChilds
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 100
+          ClientHeight = 25
+          ClientWidth = 241
+          DataSource = DM_SurveyLibrary.dsValueAndLabel
+          Options = []
+          TabOrder = 2
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbCancel, nbRefresh]
+        end
+        object lblValueStart: TLabel
+          Left = 248
+          Height = 15
+          Top = 10
+          Width = 75
+          Caption = 'Manual Value:'
+          ParentColor = False
+        end
+        object edt_ManualValue: TEdit
+          Left = 344
+          Height = 23
+          Top = 8
+          Width = 80
+          TabOrder = 3
+        end
+        object ComboBox_Missing: TComboBox
+          Left = 232
+          Height = 23
+          Top = 48
+          Width = 180
+          ItemHeight = 15
+          Items.Strings = (
+            '-9 Don''t Know'
+          )
+          TabOrder = 4
+          Text = 'ComboBox_Missing'
+        end
+      end
+    end
+    object tbDisplayLogic: TTabSheet
+      Caption = 'Display Logic'
+      ClientHeight = 592
+      ClientWidth = 840
+      object DBGrid4: TDBGrid
+        Left = 8
+        Height = 320
+        Top = 8
+        Width = 168
+        Color = clWindow
+        Columns = <>
+        DataSource = DM_SurveyLibrary.dsSkipLogic
+        TabOrder = 0
+      end
+      object DBEdit17: TDBEdit
+        Left = 192
+        Height = 23
+        Top = 8
+        Width = 288
+        DataField = 'FIELDNAME'
+        DataSource = DM_SurveyLibrary.dsItem
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clActiveCaption
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object DBLookup_Operator_List: TDBLookupComboBox
+        Left = 192
+        Height = 23
+        Top = 88
+        Width = 240
+        DropDownCount = 12
+        KeyField = 'OPERATOR_ID'
+        ListField = 'OPERATOR_NM'
+        ListFieldIndex = 0
+        ListSource = DM_SurveyLibrary.dsOperator_List
+        LookupCache = False
+        OnCloseUp = DBLookup_Operator_ListCloseUp
+        ReadOnly = True
+        TabOrder = 2
+      end
+      object DBGridValues: TDBGrid
+        Left = 304
+        Height = 216
+        Top = 144
+        Width = 312
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'VALUE'
+            FieldName = 'VALUE'
+          end        
+          item
+            ButtonStyle = cbsEllipsis
+            MaxSize = 400
+            Title.Caption = 'Label'
+            Width = 200
+            FieldName = 'VALUELABEL'
+          end>
+        DataSource = DM_SurveyLibrary.dsMasterValues
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgCellEllipsis]
+        ReadOnly = True
+        Scrollbars = ssAutoBoth
+        TabOrder = 3
+        TitleStyle = tsNative
+        Visible = False
+      end
+      object DBLookup_MasterFieldList: TDBLookupComboBox
+        Left = 208
+        Height = 23
+        Top = 48
+        Width = 240
+        DropDownCount = 12
+        KeyField = 'ITEM_ID'
+        ListField = 'FIELDNAME'
+        ListFieldIndex = 0
+        ListSource = DM_SurveyLibrary.dsMasterField
+        LookupCache = False
+        OnChange = DBLookup_MasterFieldListChange
+        OnCloseUp = DBLookup_MasterFieldListCloseUp
+        ReadOnly = True
+        ScrollListDataset = True
+        Style = csDropDownList
+        TabOrder = 4
+      end
+      object grpSkipValues: TGroupBox
+        Left = 328
+        Height = 105
+        Top = 176
+        Width = 241
+        Caption = 'Value'
+        ClientHeight = 87
+        ClientWidth = 237
+        TabOrder = 5
+        Visible = False
+        object edt_SkipValue1: TEdit
+          Left = 72
+          Height = 23
+          Top = 8
+          Width = 80
+          TabOrder = 0
+        end
+        object edt_SkipValue2: TEdit
+          Left = 72
+          Height = 23
+          Hint = 'Max Value'
+          Top = 48
+          Width = 80
+          Color = clGradientActiveCaption
+          TabOrder = 1
+          Visible = False
+        end
+      end
+      object grpSkipValueList: TGroupBox
+        Left = 328
+        Height = 105
+        Top = 192
+        Width = 241
+        Caption = 'Value List'
+        ClientHeight = 87
+        ClientWidth = 237
+        TabOrder = 6
+        Visible = False
+        object edt_SkipValue3: TEdit
+          Left = 16
+          Height = 23
+          Top = 24
+          Width = 208
+          TabOrder = 0
+        end
+      end
+      object SpinEdit1: TSpinEdit
+        Left = 192
+        Height = 23
+        Top = 200
+        Width = 90
+        TabOrder = 7
+      end
+      object SpinEdit2: TSpinEdit
+        Left = 192
+        Height = 23
+        Top = 240
+        Width = 90
+        TabOrder = 8
+      end
+      object EditButton1: TEditButton
+        Left = 192
+        Height = 23
+        Top = 280
+        Width = 80
+        ButtonWidth = 23
+        CharCase = ecNormal
+        MaxLength = 0
+        NumGlyphs = 1
+        TabOrder = 9
+      end
+      object ButtonPanel1: TButtonPanel
+        Left = 6
+        Height = 34
+        Top = 552
+        Width = 828
+        OKButton.Name = 'OKButton'
+        OKButton.DefaultCaption = True
+        HelpButton.Name = 'HelpButton'
+        HelpButton.DefaultCaption = True
+        CloseButton.Name = 'CloseButton'
+        CloseButton.DefaultCaption = True
+        CancelButton.Name = 'CancelButton'
+        CancelButton.DefaultCaption = True
+        TabOrder = 10
+      end
+      object DBLookupComboBox1: TDBLookupComboBox
+        Left = 32
+        Height = 23
+        Top = 392
+        Width = 301
+        KeyField = 'COLUMN_NAME'
+        ListField = 'COLUMN_NAME'
+        ListFieldIndex = 0
+        ListSource = DM_SurveyLibrary.dsOraMetaData
+        LookupCache = False
+        OnSelect = DBLookupComboBox1Select
+        TabOrder = 11
+      end
+      object btnSchema: TButton
+        Left = 128
+        Height = 25
+        Top = 360
+        Width = 112
+        Caption = 'Open Schema'
+        OnClick = btnSchemaClick
+        TabOrder = 12
+      end
+      object DBGrid5: TDBGrid
+        Left = 384
+        Height = 100
+        Top = 400
+        Width = 416
+        Color = clWindow
+        Columns = <>
+        DataSource = DM_SurveyLibrary.dsOraMetaData
+        TabOrder = 13
+      end
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 620
+    Top = 80
+    Width = 320
+    Align = alLeft
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'FIELDNAME'
+        Width = 120
+        FieldName = 'FIELDNAME'
+      end    
+      item
+        Title.Caption = 'VarName'
+        Width = 80
+        FieldName = 'VARNAME'
+      end    
+      item
+        Title.Caption = 'VIEWNAME'
+        Width = 70
+        FieldName = 'VIEWNAME'
+      end    
+      item
+        Title.Caption = 'Page'
+        Width = 50
+        FieldName = 'PAGEORDER'
+      end    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        ReadOnly = True
+        Title.Caption = 'Calculated'
+        Width = 60
+        FieldName = 'ISCALCULATED'
+      end    
+      item
+        Title.Caption = 'ITEM_ID'
+        FieldName = 'ITEM_ID'
+      end>
+    DataSource = DM_SurveyLibrary.dsItem
+    Font.Height = -11
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    ParentFont = False
+    TabOrder = 2
+    TitleFont.Height = -11
+    TitleFont.Style = [fsBold]
+  end
+  object Button2: TButton
+    Left = 1016
+    Height = 25
+    Top = 48
+    Width = 75
+    Caption = 'Test Update'
+    OnClick = Button2Click
+    TabOrder = 3
+    Visible = False
+  end
+  object btn_exportValues: TButton
+    Left = 728
+    Height = 25
+    Top = 48
+    Width = 144
+    Caption = 'Export Field and Values'
+    OnClick = btn_exportValuesClick
+    TabOrder = 4
+  end
+  object OraDataSource1: TOraDataSource
+    DataSet = DM_SurveyLibrary.luItemType_forDataItem
+    OnDataChange = OraDataSource1DataChange
+    left = 776
+    top = 48
+  end
+  object OraDataSource2: TOraDataSource
+    DataSet = DM_SurveyLibrary.dataItemValueLabel
+    OnStateChange = OraDataSource2StateChange
+    OnDataChange = OraDataSource2DataChange
+    left = 584
+    top = 16
+  end
+  object CSVExporter1: TCSVExporter
+    Dataset = DM_SurveyLibrary.dataItem
+    ExportFields = <    
+      item
+        FieldName = 'FIELDNAME'
+        ExportedName = 'FIELDNAME'
+      end    
+      item
+        FieldName = 'ITEM_ID'
+        ExportedName = 'ITEM_ID'
+      end    
+      item
+        FieldName = 'MINVALUE'
+        ExportedName = 'MINVALUE'
+      end    
+      item
+        FieldName = 'MAXVALUE'
+        ExportedName = 'MAXVALUE'
+      end    
+      item
+        FieldName = 'ITEMTYPE_ID'
+        ExportedName = 'ITEMTYPE_ID'
+      end    
+      item
+        FieldName = 'MEASUREMENTUNIT'
+        ExportedName = 'MEASUREMENTUNIT'
+      end    
+      item
+        FieldName = 'VARNAME'
+        ExportedName = 'VARNAME'
+      end    
+      item
+        FieldName = 'ISCALCULATED'
+        ExportedName = 'ISCALCULATED'
+      end    
+      item
+        FieldName = 'CORESET'
+        ExportedName = 'CORESET'
+      end    
+      item
+        FieldName = 'VIEWNAME'
+        ExportedName = 'VIEWNAME'
+      end    
+      item
+        FieldName = 'PAGEORDER'
+        ExportedName = 'PAGEORDER'
+      end    
+      item
+        FieldName = 'SECTIONORDER'
+        ExportedName = 'SECTIONORDER'
+      end    
+      item
+        FieldName = 'ITEM_ORDER'
+        ExportedName = 'ITEM_ORDER'
+      end    
+      item
+        FieldName = 'TABLENAME'
+        ExportedName = 'TABLENAME'
+      end>
+    RestorePosition = False
+    FormatSettings.DecimalSeparator = #0
+    FormatSettings.CurrencyDigits = 0
+    FormatSettings.FieldDelimiter = ','
+    FormatSettings.QuoteStrings = [qsSpace, qsDelimiter]
+    FormatSettings.StringQuoteChar = '"'
+    OnExportRow = CSVExporter1ExportRow
+    left = 176
+    top = 24
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.csv'
+    Filter = 'CSV|*.CSV'
+    left = 728
+  end
+  object dsDataItem: TOraDataSource
+    DataSet = DM_SurveyLibrary.dataItem
+    OnStateChange = dsDataItemStateChange
+    OnDataChange = dsDataItemDataChange
+    OnUpdateData = dsDataItemUpdateData
+    left = 832
+    top = 16
+  end
+  object sql_ItemList: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'select * '
+      '  from vw_slib_itemvalues slib '
+      '  where tablename = :tablename'
+    )
+    ReadOnly = True
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 472
+    top = 32
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'tablename'
+      end>
+  end
+  object CSVExporter2: TCSVExporter
+    Dataset = sql_ItemList
+    ExportFields = <>
+    RestorePosition = False
+    FormatSettings.DecimalSeparator = #0
+    FormatSettings.CurrencyDigits = 0
+    FormatSettings.FieldDelimiter = ','
+    FormatSettings.QuoteStrings = [qsSpace, qsDelimiter]
+    FormatSettings.StringQuoteChar = '"'
+    OnExportRow = CSVExporter2ExportRow
+    left = 224
+    top = 24
+  end
+  object OraDataSource4: TOraDataSource
+    DataSet = DM_SurveyLibrary.dataItem
+    left = 544
+  end
+  object CSVExporter3: TCSVExporter
+    Dataset = DM_SurveyLibrary.vw_SLIB_DATADICT_HRA
+    ExportFields = <>
+    RestorePosition = False
+    FormatSettings.DecimalSeparator = #0
+    FormatSettings.CurrencyDigits = 0
+    FormatSettings.FieldDelimiter = ','
+    FormatSettings.QuoteStrings = [qsSpace, qsDelimiter]
+    FormatSettings.StringQuoteChar = '"'
+    OnExportRow = CSVExporter2ExportRow
+    left = 252
+    top = 52
+  end
+end

@@ -1,0 +1,8 @@
+object frmAccount: TfrmAccount
+  Left = 561
+  Height = 530
+  Top = 322
+  Width = 756
+  Caption = 'Account'
+  LCLVersion = '1.2.6.0'
+end

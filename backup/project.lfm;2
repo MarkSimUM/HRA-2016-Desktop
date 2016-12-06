@@ -1,0 +1,295 @@
+object frm_Project: Tfrm_Project
+  Left = 446
+  Height = 588
+  Top = 335
+  Width = 805
+  Caption = 'Project'
+  ClientHeight = 588
+  ClientWidth = 805
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 564
+    Top = 24
+    Width = 805
+    ActivePage = tbNewProject
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    OnChange = PageControl1Change
+    object tbNewProject: TTabSheet
+      Caption = 'New Project'
+      ClientHeight = 536
+      ClientWidth = 797
+      OnExit = tbNewProjectExit
+      object Bevel1: TBevel
+        Left = 35
+        Height = 159
+        Top = 219
+        Width = 249
+      end
+      object DBlu_ProjectStatus: TDBLookupComboBox
+        Left = 48
+        Height = 23
+        Top = 144
+        Width = 176
+        KeyField = 'STATUS_ID'
+        ListField = 'DESCRIPTION'
+        ListFieldIndex = 0
+        ListSource = luStatus
+        LookupCache = False
+        TabOrder = 0
+      end
+      object lblStatus: TLabel
+        Left = 48
+        Height = 15
+        Top = 120
+        Width = 122
+        Caption = 'Initial Project STATUS *'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblProjectName: TLabel
+        Left = 48
+        Height = 15
+        Top = 72
+        Width = 80
+        Caption = 'Project Name *'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBLookup_ProductVersion: TDBLookupComboBox
+        Left = 48
+        Height = 23
+        Top = 32
+        Width = 216
+        KeyField = 'PRODUCTVERSION_ID'
+        ListField = 'DISPLAYVERSION'
+        ListFieldIndex = 0
+        ListSource = DM_Main.dsluProductVersion
+        LookupCache = False
+        OnChange = DBLookup_ProductVersionChange
+        OnCloseUp = DBLookup_ProductVersionCloseUp
+        TabOrder = 1
+      end
+      object lblProduct: TLabel
+        Left = 48
+        Height = 15
+        Top = 17
+        Width = 62
+        Caption = 'PRODUCT *'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblStatus5: TLabel
+        Left = 360
+        Height = 15
+        Top = 191
+        Width = 77
+        Caption = 'Project NOTES'
+        ParentColor = False
+      end
+      object btnSave: TButton
+        Left = 184
+        Height = 48
+        Top = 440
+        Width = 160
+        Caption = 'Save'
+        Font.Height = -16
+        Font.Style = [fsBold]
+        OnClick = btnSaveClick
+        ParentFont = False
+        TabOrder = 2
+      end
+      object edt_ProjectName: TEdit
+        Left = 48
+        Height = 23
+        Top = 88
+        Width = 552
+        TabOrder = 3
+      end
+      object chk_AutoAddOrg: TCheckBox
+        Left = 56
+        Height = 19
+        Top = 304
+        Width = 220
+        Caption = 'Automatically Add new Organizations'
+        TabOrder = 4
+      end
+      object chk_TestProject: TCheckBox
+        Left = 56
+        Height = 19
+        Top = 336
+        Width = 82
+        Caption = 'Test project'
+        TabOrder = 5
+      end
+      object chk_EvalAnalysis: TCheckBox
+        Left = 56
+        Height = 19
+        Top = 272
+        Width = 123
+        Caption = 'Evaluation/Analysis'
+        TabOrder = 6
+      end
+      object memo_ProjectNotes: TMemo
+        Left = 320
+        Height = 168
+        Top = 216
+        Width = 448
+        ScrollBars = ssAutoBoth
+        TabOrder = 7
+      end
+      object SpeedButton1: TSpeedButton
+        Left = 8
+        Height = 22
+        Top = 17
+        Width = 23
+        Caption = '1.'
+        Color = clYellow
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object SpeedButton2: TSpeedButton
+        Left = 8
+        Height = 22
+        Top = 72
+        Width = 23
+        Caption = '2.'
+        Color = clYellow
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object SpeedButton3: TSpeedButton
+        Left = 8
+        Height = 22
+        Top = 120
+        Width = 23
+        Caption = '3.'
+        Color = clYellow
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object SpeedButton4: TSpeedButton
+        Left = 8
+        Height = 22
+        Top = 184
+        Width = 23
+        Caption = '4.'
+        Color = clYellow
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object SpeedButton5: TSpeedButton
+        Left = 320
+        Height = 22
+        Top = 184
+        Width = 23
+        Caption = '5.'
+        Color = clYellow
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblStatus1: TLabel
+        Left = 48
+        Height = 15
+        Top = 192
+        Width = 42
+        Caption = 'Options'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+  end
+  object pnlHeader: TPanel
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 805
+    Align = alTop
+    ClientHeight = 24
+    ClientWidth = 805
+    TabOrder = 1
+    object LABELACCOUNT: TLabel
+      Left = 352
+      Height = 15
+      Top = 0
+      Width = 90
+      Caption = 'LABELACCOUNT'
+      Font.Color = clGreen
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object chk_IsActive: TCheckBox
+    Left = 56
+    Height = 19
+    Top = 288
+    Width = 104
+    Caption = 'Project is Active'
+    TabOrder = 2
+  end
+  object btnCancel: TButton
+    Left = 464
+    Height = 48
+    Top = 488
+    Width = 160
+    Caption = 'Cancel'
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 3
+  end
+  object DataSource1: TDataSource
+    OnDataChange = DataSource1DataChange
+    left = 695
+    top = 78
+  end
+  object luStatus: TOraDataSource
+    DataSet = DM_Main.luStatus
+    left = 792
+    top = 104
+  end
+  object OraTable1: TOraTable
+    FilterOptions = []
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    left = 632
+    top = 64
+  end
+  object VirtualTable1: TVirtualTable
+    Options = [voPersistentData, voStored, voSkipUnSupportedFieldTypes]
+    FilterOptions = []
+    AfterEdit = VirtualTable1AfterEdit
+    left = 552
+    top = 56
+    Data = {
+      03000000000000000000
+    }
+  end
+end

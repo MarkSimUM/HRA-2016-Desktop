@@ -1,0 +1,902 @@
+unit SurveyItems;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, DividerBevel, Forms, Controls, Graphics, Dialogs,
+  ExtCtrls, ComCtrls, DbCtrls, StdCtrls, DBGrids, Spin, Buttons, EditBtn,
+  FileCtrl, ButtonPanel, Ora, DataModuleSurveyLibrary, db, fpcsvexport,
+  paswstring, SurveyItemNew, surveyitemList, fpDBExport;
+
+type
+
+  { Tfrm_SurveyItems }
+
+  Tfrm_SurveyItems = class(TForm)
+    BitBtn1: TBitBtn;
+    btnAddValue: TButton;
+    btnRefresh: TButton;
+    btn_AddValues: TButton;
+    btn_AddValuesLang: TButton;
+    btn_FilterClear: TButton;
+    btnAddNew: TButton;
+    btn_exportField: TButton;
+    btn_CheckField: TButton;
+    btnSchema: TButton;
+    btnClearMeasurementType: TButton;
+    Button1: TButton;
+    Button2: TButton;
+    btn_Filter: TButton;
+    Button3: TButton;
+    btn_exportValues: TButton;
+    ButtonPanel1: TButtonPanel;
+    chk_AutoAdvanceValues: TCheckBox;
+    cboSortOrder: TComboBox;
+    ComboBox_Missing: TComboBox;
+    CSVExporter1: TCSVExporter;
+    CSVExporter2: TCSVExporter;
+    CSVExporter3: TCSVExporter;
+    DBChk_Delete: TDBCheckBox;
+    DBChk_IsCalculated: TDBCheckBox;
+    DBChk_IsLocked: TDBCheckBox;
+    DBEdit1: TDBEdit;
+    DBEdit10: TDBEdit;
+    DBEdit11: TDBEdit;
+    DBEdit12: TDBEdit;
+    DBEdit13: TDBEdit;
+    DBEdit14: TDBEdit;
+    DBEdit15: TDBEdit;
+    DBEdit16: TDBEdit;
+    DBEdit17: TDBEdit;
+    DBEdit18: TDBEdit;
+    DBEdit19: TDBEdit;
+    DBEdit20: TDBEdit;
+    DBEdit21: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit_Item_Order: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBEdit_ValueLabel: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBEdit_ValueLabel1: TDBEdit;
+    dbedit_ValueLabelShort: TDBEdit;
+    dbedit_ValueLabel_ID: TDBEdit;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    DBGrid3: TDBGrid;
+    DBGrid4: TDBGrid;
+    DBGrid5: TDBGrid;
+    DBGridValues: TDBGrid;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookup_ItemType: TDBLookupComboBox;
+    DBLookup_MasterFieldList: TDBLookupComboBox;
+    DBLookup_ParentItem: TDBLookupComboBox;
+    DBLookup_TableName: TDBLookupComboBox;
+    DBLookup_Operator_List: TDBLookupComboBox;
+    dblu_Language: TDBLookupComboBox;
+    DBNavigator4: TDBNavigator;
+    DBNavigator5: TDBNavigator;
+    DBNavigator_ValueLabel: TDBNavigator;
+    EditButton1: TEditButton;
+    edt_locate1: TEdit;
+    edt_ManualValue: TEdit;
+    edt_SkipValue1: TEdit;
+    edt_SkipValue2: TEdit;
+    edt_SkipValue3: TEdit;
+    grpSkipValues: TGroupBox;
+    grpSkipValueList: TGroupBox;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    lblValueStart: TLabel;
+    dsDataItem: TOraDataSource;
+    OraDataSource4: TOraDataSource;
+    pnl_ValueBottom: TPanel;
+    rgCore: TDBRadioGroup;
+    edt_Filter: TEdit;
+    edt_LanguageID: TEdit;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    lbl_LangID: TLabel;
+    DBNavigator2: TDBNavigator;
+    DBNavigator3: TDBNavigator;
+    DBRG_MeasurementType: TDBRadioGroup;
+    DividerBevel1: TDividerBevel;
+    Label1: TLabel;
+    OraDataSource1: TOraDataSource;
+    OraDataSource2: TOraDataSource;
+    PageControl1: TPageControl;
+    Panel1: TPanel;
+    pnl_AddValuesHeader: TPanel;
+    PnlValueLabels: TPanel;
+    PanelHeader: TPanel;
+    pnlValueLabelEdit: TPanel;
+    rg_ItemFilter: TRadioGroup;
+    SaveDialog1: TSaveDialog;
+    SpinEdit1: TSpinEdit;
+    SpinEdit2: TSpinEdit;
+    spn_Values: TSpinEdit;
+    sql_ItemList: TOraQuery;
+    tbDisplayLogic: TTabSheet;
+    tbItem: TTabSheet;
+    tbAddValues: TTabSheet;
+    procedure btnAddNewClick(Sender: TObject);
+    procedure btnAddValueClick(Sender: TObject);
+    procedure btnClearMeasurementTypeClick(Sender: TObject);
+    procedure btnRefreshClick(Sender: TObject);
+    procedure btn_AddValuesClick(Sender: TObject);
+    procedure btn_AddValuesLangClick(Sender: TObject);
+    procedure btn_CheckFieldClick(Sender: TObject);
+    procedure btn_exportValuesClick(Sender: TObject);
+    procedure btn_FilterClearClick(Sender: TObject);
+    procedure btn_FilterClick(Sender: TObject);
+    procedure btn_exportFieldClick(Sender: TObject);
+    procedure btnSchemaClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure cbo_SortChange(Sender: TObject);
+    procedure cbo_SortClick(Sender: TObject);
+    procedure cbo_SortCloseUp(Sender: TObject);
+    procedure cboSortOrderCloseUp(Sender: TObject);
+    procedure CSVExporter2ExportRow(Sender: TObject; var AllowExport: Boolean);
+    procedure DBEdit_ValueLabelChange(Sender: TObject);
+    procedure DBEdit_ValueLabelEditingDone(Sender: TObject);
+    procedure DBEdit_ValueLabelExit(Sender: TObject);
+    procedure DBLookupComboBox1Select(Sender: TObject);
+    procedure DBLookup_ItemTypeChange(Sender: TObject);
+    procedure DBLookup_ItemTypeChangeBounds(Sender: TObject);
+    procedure DBLookup_ItemTypeCloseUp(Sender: TObject);
+    procedure DBLookup_ItemTypeDropDown(Sender: TObject);
+    procedure DBLookup_ItemTypeEditingDone(Sender: TObject);
+    procedure DBLookup_ItemTypeEnter(Sender: TObject);
+    procedure DBLookup_MasterFieldListChange(Sender: TObject);
+    procedure DBLookup_MasterFieldListCloseUp(Sender: TObject);
+    procedure DBLookup_Operator_ListCloseUp(Sender: TObject);
+    procedure dblu_LanguageChange(Sender: TObject);
+    procedure DBNavigator_ValueLabelClick(Sender: TObject;
+      Button: TDBNavButtonType);
+    procedure edt_locate1Change(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure OraDataSource1DataChange(Sender: TObject; Field: TField);
+    procedure OraDataSource2DataChange(Sender: TObject; Field: TField);
+    procedure OraDataSource2StateChange(Sender: TObject);
+    procedure dsDataItemDataChange(Sender: TObject; Field: TField);
+    procedure dsDataItemStateChange(Sender: TObject);
+    procedure dsDataItemUpdateData(Sender: TObject);
+    procedure rg_ItemFilterChangeBounds(Sender: TObject);
+    procedure rg_ItemFilterClick(Sender: TObject);
+    procedure rg_ItemFilterSelectionChanged(Sender: TObject);
+    procedure tbAddValuesEnter(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+    customFilter : boolean ;
+    procedure SetFilter();
+    procedure RefreshData();
+    procedure ChangeLanguage();
+  end;
+
+var
+  frm_SurveyItems: Tfrm_SurveyItems;
+
+implementation
+
+{$R *.lfm}
+
+{ Tfrm_SurveyItems }
+
+procedure Tfrm_SurveyItems.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.OraDataSource1DataChange(Sender: TObject;
+  Field: TField);
+begin
+  with DM_SurveyLibrary do
+  begin
+
+      PnlValueLabels.Visible:= false;
+      if    luItemType_forDataItem.FieldByName('HASVALUELIST').asInteger > 0 then
+                 PnlValueLabels.Visible:= true;
+
+       //if dataItemSTDCATEGORY_ID;
+  end;
+end;
+
+procedure Tfrm_SurveyItems.OraDataSource2DataChange(Sender: TObject;
+  Field: TField);
+begin
+ with DM_SurveyLibrary do
+ begin
+      if OraDataSource2.DataSet.RecordCount <= 0 then
+        pnlValueLabelEdit.Enabled := false else
+          pnlValueLabelEdit.Enabled := true;
+  end;
+
+
+
+end;
+
+procedure Tfrm_SurveyItems.OraDataSource2StateChange(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.dsDataItemDataChange(Sender: TObject;
+  Field: TField);
+begin
+  if  (DM_SurveyLibrary.dataItem.state  IN [dsBrowse]) then
+  begin
+   if DM_SurveyLibrary.dataItemISLOCKED.AsInteger = 1 then
+   begin
+      DM_SurveyLibrary.dataItem.ReadOnly := true;
+      DM_SurveyLibrary.dataItemLabel.ReadOnly := true;
+      DM_SurveyLibrary.dataItemValue.ReadOnly := true;
+      DM_SurveyLibrary.dataItemValueLabel.ReadOnly := true;
+
+      // DM_SurveyLibrary.dataItem.Options.;
+
+
+
+   end else
+   begin
+       DM_SurveyLibrary.dataItem.ReadOnly := false;
+       DM_SurveyLibrary.dataItemLabel.ReadOnly := false;
+      DM_SurveyLibrary.dataItemValue.ReadOnly := false;
+      DM_SurveyLibrary.dataItemValueLabel.ReadOnly := false;
+
+
+
+
+
+   end;
+
+      DBLookup_ItemType.Enabled := NOT(DM_SurveyLibrary.dataItem.ReadOnly);
+      DBLookup_TableName.Enabled := NOT(DM_SurveyLibrary.dataItem.ReadOnly);
+         WITH DM_SurveyLibrary.luMasterField do
+      begin
+          active := false ;
+          ParamByName('PageOrder').value := DM_SurveyLibrary.dataItemPAGEORDER.value ;
+          ParamByName('ItemOrder').value :=  DM_SurveyLibrary.dataItemITEM_ORDER.value ;
+          ParamByName('TableName').value := DM_SurveyLibrary.dataItemTABLENAME.value ;
+          active := true ;
+      end;
+  end;
+
+end;
+
+procedure Tfrm_SurveyItems.dsDataItemStateChange(Sender: TObject);
+begin
+ // showmessage('state change');
+end;
+
+procedure Tfrm_SurveyItems.dsDataItemUpdateData(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.rg_ItemFilterChangeBounds(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.rg_ItemFilterClick(Sender: TObject);
+begin
+        //showmessage('OnClick');
+end;
+
+procedure Tfrm_SurveyItems.rg_ItemFilterSelectionChanged(Sender: TObject);
+begin
+  //showMessage('OnSelectionChanged');
+  setfilter();
+end;
+
+procedure Tfrm_SurveyItems.tbAddValuesEnter(Sender: TObject);
+begin
+  if dblu_Language.KeyValue <> 1 then
+    PageControl1.ActivePage := tbItem;
+end;
+
+procedure Tfrm_SurveyItems.FormActivate(Sender: TObject);
+begin
+  PageControl1.ActivePage := tbItem;
+  //DBRG_MeasurementType.Values[0] := Null;
+
+  RefreshData();
+  dblu_Language.itemindex := 0;
+
+  //   DM_SurveyLibrary.dataItem.Active := true ;
+  //  DM_SurveyLibrary.dataItemLabel.active := true ;
+  //  DM_SurveyLibrary.dataItemValue.active := true ;
+  //  DM_SurveyLibrary.dataItemValueLabel.active := true ;
+  //  DM_SurveyLibrary.dataValueAndLabel.active := true ;
+  //      DM_SurveyLibrary.luItemType.active := true ;
+  //
+  //DM_SurveyLibrary.dataItemLabel.ParamByName('Language_ID').AsInteger := 1;
+end;
+
+procedure Tfrm_SurveyItems.btnRefreshClick(Sender: TObject);
+var iCurrentID :integer;
+begin
+
+    iCurrentID :=   DM_SurveyLibrary.dataItemITEM_ID.asInteger ;
+
+    With DM_SurveyLibrary do
+    begin
+     dataItem.Active := false ;
+     dataItemLabel.active := false ;
+     dataItemValue.active := false ;
+     dataItemValueLabel.active := false ;
+     dataValueAndLabel.active := false ;
+     luItemType.active := false ;
+     luItemType_forDataItem.Active := false;
+
+     dataItem.Active := true ;
+     dataItemLabel.active := true ;
+     dataItemValue.active := true ;
+     dataItemValueLabel.active := true ;
+     dataValueAndLabel.active := true ;
+     luItemType.active := true ;
+     luItemType_forDataItem.Active := true;
+
+
+
+     dataItem.Locate('item_id',iCurrentID,[]);
+     SetFilter();
+
+
+    end;
+
+
+end;
+
+procedure Tfrm_SurveyItems.btnAddNewClick(Sender: TObject);
+begin
+  frmSurveyItemNew   := TfrmSurveyItemNew.create(nil);
+ frmSurveyItemNew.ShowModal;
+ FreeAndNil(frmSurveyItemNew);
+end;
+
+procedure Tfrm_SurveyItems.btnAddValueClick(Sender: TObject);
+begin
+  PageControl1.ActivePage := tbAddValues;
+end;
+
+procedure Tfrm_SurveyItems.btnClearMeasurementTypeClick(Sender: TObject);
+begin
+  With DM_SurveyLibrary do
+  begin
+    if NOT(dataItem.State in [dsEdit]) then
+     dataItem.Edit ;
+
+ dataItemMEASUREMENTUNIT.AsVariant := Null;
+//    dataItemMEASUREMENTUNIT.IsNull;
+
+  end;
+end;
+
+procedure Tfrm_SurveyItems.btn_AddValuesClick(Sender: TObject);
+var
+   i, iBeg, iEnd : integer ;
+   iItemValue_ID : integer ;
+begin
+
+  With DM_SurveyLibrary do
+  begin
+    if edt_ManualValue.Text <> '' then
+    begin
+      iBeg := StrToInt(edt_ManualValue.Text);
+      iEnd :=  StrToInt(edt_ManualValue.Text);
+    end else
+    begin
+        // Get Current Max
+       if dataValueAndLabel.RecordCount > 0 then
+       begin
+         dataValueAndLabel.Last ;
+         iBeg := dataValueAndLabelVALUE.asInteger + 1;
+         if iBeg <= 0 then
+           iBeg := 1;
+       end else
+          iBeg := 1;
+
+        end;
+
+        iEnd := iBeg +spn_Values.Value - 1;
+  end;
+  For i := iBeg to iEnd do
+  begin
+     With DM_SurveyLibrary do
+     begin;
+    //   PR_UPSERT_ITEMVALUE(:PITEMVALUE_ID, :PITEMVALUELINK_ID, :PITEM_ID, :PVALUE, :PDISPLAYORDER, :PISMISSINGVALUE, :PSG_OPTIONID, :PSG_REPORTINGVALUE, :PMAPTO_ITEMVALUE_ID, :PMAPTO_ITEMVALUE, :PDELETE_FLG, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT, :PCOMMIT);
+
+        SP_UPSERT_ITEMVALUE.ParamByName('PITEM_ID').value :=  dataItemITEM_ID.value  ;
+        SP_UPSERT_ITEMVALUE.ParamByName('PVALUE').value := i;
+        SP_UPSERT_ITEMVALUE.ParamByName('PDISPLAYORDER').value := i;
+        SP_UPSERT_ITEMVALUE.ParamByName('PISMISSINGVALUE').value := 0;
+        SP_UPSERT_ITEMVALUE.ParamByName('PDELETE_FLG').value := 0;
+        SP_UPSERT_ITEMVALUE.Execute;
+
+        if SP_UPSERT_ITEMVALUE.ParamByName('VSEQUENCENUM').AsInteger > 0 then
+        begin
+           iItemValue_ID := SP_UPSERT_ITEMVALUE.ParamByName('VSEQUENCENUM').AsInteger;
+           if iItemValue_ID   <= 0 then
+             iitemValue_ID := 1;
+
+           SP_UPSERT_ITEMVALUELABEL.ParamByName('PITEMVALUE_ID').value := iItemValue_ID;
+           SP_UPSERT_ITEMVALUELABEL.ParamByName('PLANGUAGE_ID').value := dblu_Language.KeyValue;
+           SP_UPSERT_ITEMVALUELABEL.ParamByName('PVALUELABEL').value := '' ;
+           SP_UPSERT_ITEMVALUELABEL.ParamByName('PVALUELABELSHORT').value := '';
+           SP_UPSERT_ITEMVALUELABEL.ParamByName('PVALUELABEL_METRIC').value := '';
+
+           SP_UPSERT_ITEMVALUELABEL.Execute ;
+
+        //   SP_UPSERT_ITEMVALUELABEL.ParamByName('').value := ;
+            // SP_UPSERT_ITEMVALUE.ParamByName('').value := ;
+         // PR_UPSERT_ITEMVALUELABEL(:PITEMVALUELABEL_ID, :PITEMVALUE_ID, :PLANGUAGE_ID, :PVALUELABEL, :PVALUELABELSHORT, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT, :PCOMMIT);
+        end;
+
+      //PR_UPSERT_ITEMVALUE(:PITEMVALUE_ID, :PITEMVALUELINK_ID, :PITEM_ID, :PVALUE, :PDISPLAYORDER, :PISMISSINGVALUE, :VRETURNCODE, :VSEQUENCENUM, :PCOMMIT);
+     end;
+
+     end;
+
+   DM_SurveyLibrary.dataValueAndLabel.Refresh ;
+   DM_SurveyLibrary.dataItemValue.Refresh ;
+
+   PageControl1.ActivePage := tbItem ;
+end;
+
+procedure Tfrm_SurveyItems.btn_AddValuesLangClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.btn_CheckFieldClick(Sender: TObject);
+var
+    iResult : integer ;
+begin
+   with DM_SurveyLibrary do
+   begin
+      sp_CHECKITEMFIELDNAME.ParamByName('pTABLENAME').value := DM_SurveyLibrary.dataItemTABLENAME.AsString;
+      sp_CHECKITEMFIELDNAME.ParamByName('pFIELDNAME').value :=  DM_SurveyLibrary.dataItemFIELDNAME.AsString;
+      sp_CHECKITEMFIELDNAME.Execute;
+      iResult :=       sp_CHECKITEMFIELDNAME.ParamByName('pCNT').AsInteger;
+      if iResult = 0 then
+        ShowMessage('Field does NOT exist in '+ DM_SurveyLibrary.dataItemTABLENAME.AsString) else
+         ShowMessage('Field Found!');
+
+
+   end;
+end;
+
+procedure Tfrm_SurveyItems.btn_exportValuesClick(Sender: TObject);
+begin
+
+ sql_ItemList.active := false ;
+ sql_ItemList.ParamByName('tablename').asString := 'SD_HRA' ;
+
+ sql_ItemList.active := true;
+       SaveDialog1.Execute;
+     if  SaveDialog1.FileName <> '' then
+     begin
+
+      CSVExporter2.FileName:= SaveDialog1.FileName;
+      CSVExporter2.Execute;
+      sql_ItemList.active := false ;
+
+     end;
+end;
+
+procedure Tfrm_SurveyItems.btn_FilterClearClick(Sender: TObject);
+begin
+//  DM_SurveyLibrary.dataItem.Filtered := false ;
+   customFilter := false;
+   SetFilter();
+end;
+
+procedure Tfrm_SurveyItems.btn_FilterClick(Sender: TObject);
+begin
+    customFilter := True;
+    SetFilter();
+//    DM_SurveyLibrary.dataItem.Filter := edt_Filter.text ;
+//   DM_SurveyLibrary.dataItem.Filtered := true ;
+end;
+
+procedure Tfrm_SurveyItems.btn_exportFieldClick(Sender: TObject);
+begin
+     SaveDialog1.Execute;
+     if  SaveDialog1.FileName <> '' then
+     begin
+     CSVExporter1.FileName:= SaveDialog1.FileName;
+      CSVExporter1.Execute;
+
+     end;
+end;
+
+procedure Tfrm_SurveyItems.btnSchemaClick(Sender: TObject);
+begin
+    if DM_SurveyLibrary.OraMetaData.active = false  then
+    DM_SurveyLibrary.OraMetaData.active := true;
+end;
+
+procedure Tfrm_SurveyItems.Button1Click(Sender: TObject);
+begin
+     SaveDialog1.Execute;
+     if  SaveDialog1.FileName <> '' then
+     begin
+    DM_SurveyLibrary.vw_SLIB_DATADICT_HRA.active := true ;
+      CSVExporter3.FileName:= SaveDialog1.FileName;
+      CSVExporter3.Execute;
+      DM_SurveyLibrary.vw_SLIB_DATADICT_HRA.active := false ;
+
+     end;
+end;
+
+procedure Tfrm_SurveyItems.Button2Click(Sender: TObject);
+var
+   sql : widestring ;
+   slabel : widestring ;
+begin
+
+  slabel :=    'N"年龄 (test slabel)"';
+  //PR_UPSERT_ITEMLABEL(:PITEMLABEL_ID, :PITEM_ID, :PLANGUAGE_ID, :PLABEL, :PLABELSHORT, :PLABELREPORT, :PLABELINSTRUCTION, :PLABELINPUT, :PLABELRIGHT, :PLABELLEFT, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT, :PCOMMIT);
+  // Doesn't work like this!
+  With DM_SurveyLibrary do
+  begin
+    SP_UPSERT_ITEMLABEL.ParamByName('PITEM_ID').AsInteger := 250 ;
+    SP_UPSERT_ITEMLABEL.ParamByName('PLANGUAGE_ID').AsInteger := 1 ;
+    SP_UPSERT_ITEMLABEL.ParamByName('PLABEL').Value:= slabel;
+    SP_UPSERT_ITEMLABEL.Execute;
+
+//   pr_upsert_itemlabel(
+//250,
+//N'年龄 TEST UNICODE (pr in sql dev)',
+//)
+
+
+  end;
+
+end;
+
+procedure Tfrm_SurveyItems.Button3Click(Sender: TObject);
+begin
+    frm_SurveyItemList   := Tfrm_SurveyItemList.create(nil);
+ frm_SurveyItemList.ShowModal;
+ FreeAndNil(frm_SurveyItemList);
+end;
+
+procedure Tfrm_SurveyItems.cbo_SortChange(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.cbo_SortClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.cbo_SortCloseUp(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.cboSortOrderCloseUp(Sender: TObject);
+begin
+ if cboSortOrder.ItemIndex > 0 then
+    DM_SurveyLibrary.dataItem.IndexFieldNames := cboSortOrder.Text
+ else
+      DM_SurveyLibrary.dataItem.IndexFieldNames := 'PageOrder,Item_Order,Domain,FieldName';
+
+
+end;
+
+procedure Tfrm_SurveyItems.CSVExporter2ExportRow(Sender: TObject;
+  var AllowExport: Boolean);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.DBEdit_ValueLabelChange(Sender: TObject);
+begin
+ end;
+
+procedure Tfrm_SurveyItems.DBEdit_ValueLabelEditingDone(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.DBEdit_ValueLabelExit(Sender: TObject);
+begin
+    if DM_SurveyLibrary.dataItemValueLabelVALUELABELSHORT.AsString = '' then
+    begin
+     DM_SurveyLibrary.dataItemValueLabelVALUELABELSHORT.AsString := DM_SurveyLibrary.dataItemValueLabelVALUELABEL.AsString ;
+
+    end;
+
+end;
+
+procedure Tfrm_SurveyItems.DBLookupComboBox1Select(Sender: TObject);
+begin
+  if DM_SurveyLibrary.OraMetaData.active = false  then
+    DM_SurveyLibrary.OraMetaData.active := true;
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_ItemTypeChange(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_ItemTypeChangeBounds(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_ItemTypeCloseUp(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_ItemTypeDropDown(Sender: TObject);
+begin
+    if DM_SurveyLibrary.dataItem.ReadOnly = false then
+    if NOT ( DM_SurveyLibrary.dataItem.State IN [dsEdit, dsInsert] ) then
+     DM_SurveyLibrary.dataItem.Edit;
+
+
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_ItemTypeEditingDone(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_ItemTypeEnter(Sender: TObject);
+begin
+
+
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_MasterFieldListChange(Sender: TObject);
+begin
+        DBGridValues.Visible := false ;
+        DBLookup_Operator_List.ClearSelection;
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_MasterFieldListCloseUp(Sender: TObject);
+var v : variant ;
+begin
+  with DM_SurveyLibrary do begin
+      v :=     DBLookup_MasterFieldList.KeyValue;
+      if v >= 0 then
+      begin
+        dataMasterValues.Active:= false ;
+        dataMasterValues.ParamByName('item_id').value :=   v ;
+        dataMasterValues.Active:= true ;
+        DBGridValues.Visible := false ;
+
+         // DBGridValues.Visible := NOT(dataMasterValues.IsEmpty) ;
+      end;
+
+
+  end;
+end;
+
+procedure Tfrm_SurveyItems.DBLookup_Operator_ListCloseUp(Sender: TObject);
+begin
+
+     grpSkipValues.Visible:= false ;
+     grpSkipValueList.visible := false ;
+    if (DBLookup_Operator_List.KeyValue >= 7) AND (DBLookup_Operator_List.KeyValue <= 8)  then
+   begin
+
+       DBGridValues.Visible:= false ;
+
+   end;
+
+   if DBLookup_Operator_List.ListSource.DataSet.FieldByName('OPERATOR_TYPE').AsInteger = 0 then
+   begin
+
+       DBGridValues.Visible:= false ;
+
+   end;
+   if NOT (DM_SurveyLibrary.dataMasterValues.IsEmpty) then
+   begin
+     if DBLookup_Operator_List.KeyValue > 8 then
+     begin
+       DBGridValues.Visible:= true ;
+      DBGridValues.Options:= dbGridValues.options + [dgMultiselect] ;
+     end else
+     begin
+         if DBLookup_Operator_List.KeyValue < 7 then
+         begin
+             DBGridValues.Options:= dbGridValues.options - [dgMultiselect] ;
+             DBGridValues.Visible:= true ;
+         end;
+
+     end;
+
+   end else
+   begin
+       if DBLookup_Operator_List.KeyValue < 7 then
+       begin
+          grpSkipValues.Visible:= true ;
+          edt_SkipValue2.visible := false ;
+       end;
+       if DBLookup_Operator_List.KeyValue = 9 then
+       begin
+          grpSkipValues.Visible:= true ;
+          edt_SkipValue2.visible := true ;
+       end;
+       if DBLookup_Operator_List.KeyValue > 9 then
+       begin
+          grpSkipValues.Visible:= false ;
+          grpSkipValueList.visible := true ;
+       end;
+   end;
+
+end;
+
+procedure Tfrm_SurveyItems.dblu_LanguageChange(Sender: TObject);
+begin
+
+  ChangeLanguage();
+
+end;
+
+procedure Tfrm_SurveyItems.DBNavigator_ValueLabelClick(Sender: TObject;
+  Button: TDBNavButtonType);
+begin
+  if button = nbPost then
+  begin
+     if chk_AutoAdvanceValues.checked then
+     begin
+        DM_SurveyLibrary.dataItemValue.next;
+        DBEdit_ValueLabel.SetFocus;
+
+     end;
+  end;
+
+end;
+
+procedure Tfrm_SurveyItems.edt_locate1Change(Sender: TObject);
+begin
+with DM_SurveyLibrary.dataItem    do
+  begin
+     locate('fieldname', edt_locate1.text, [loPartialKey, loCaseInsensitive]);
+     //locate
+  end;
+end;
+
+procedure Tfrm_SurveyItems.SetFilter();
+begin
+
+  With DM_SurveyLibrary do
+  begin
+      if rg_ItemFilter.itemindex = 0 then
+        dataItem.Filter := 'TABLENAME = ''SD_HRA'' AND ISCALCULATED = 0 ' ;
+      if rg_ItemFilter.itemindex = 1 then
+        dataItem.Filter := 'TABLENAME = ''SD_HRA'' AND ISCALCULATED = 1 ' ;
+        if rg_ItemFilter.itemindex = 2 then
+          dataItem.Filter := 'TABLENAME = ''SD_BIOMETRIC''' ;
+      if rg_ItemFilter.itemindex = 3 then
+        dataItem.Filter := 'TABLENAME = ''USER_PERSON''' ;
+      if rg_ItemFilter.itemindex = 4 then
+        dataItem.Filter := 'TABLENAME = ''USER_DEMOGRAPHIC''' ;
+      if rg_ItemFilter.itemindex = 5 then
+        dataItem.Filter := 'TABLENAME = ''SD_HRACUSTOM''' ;
+
+
+
+      if rg_ItemFilter.itemindex = 6 then
+        dataItem.Filter := '' ;
+
+     if customFilter  then
+     begin
+         if dataItem.Filter <> '' then
+            dataItem.Filter := dataItem.Filter + ' AND '+edt_Filter.text else
+          dataItem.Filter := edt_Filter.text
+
+     end;
+
+
+      dataItem.filtered := true ;
+  end;
+end;
+procedure Tfrm_SurveyItems.RefreshData();
+begin
+    With DM_SurveyLibrary do
+    begin
+     dataItem.Active := false ;
+     dataItemLabel.active := false ;
+     dataItemValue.active := false ;
+     dataItemValueLabel.active := false ;
+     dataValueAndLabel.active := false ;
+     luItemType.active := false ;
+     luItemType_forDataItem.Active := false;
+     luTableName_Dict.active := false;
+
+     dataItem.Active := true ;
+     dataItemLabel.active := true ;
+     dataItemValue.active := true ;
+     dataItemValueLabel.active := true ;
+     dataValueAndLabel.active := true ;
+     luItemType.active := true ;
+     luItemType_forDataItem.Active := true;
+     luTableName_Dict.active := true;
+
+     dataItemLabel.ParamByName('Language_ID').AsInteger := 1;
+       edt_LanguageID.Text := '1';
+
+     SetFilter();
+    dblu_Language.KeyValue := 1;
+     ChangeLanguage();
+    end;
+
+
+end;
+
+procedure Tfrm_SurveyItems.ChangeLanguage();
+begin
+
+
+
+DM_SurveyLibrary.dataItemLabel.Active := false;
+ DM_SurveyLibrary.dataItemLabel.ParamByName('Language_ID').AsInteger := dblu_Language.KeyValue;
+ DM_SurveyLibrary.dataItemLabel.Active := true;
+   DM_SurveyLibrary.dataItemValueLabel.Active := false;
+ DM_SurveyLibrary.dataItemValueLabel.ParamByName('Language_ID').AsInteger := dblu_Language.KeyValue;
+ DM_SurveyLibrary.dataItemValueLabel.Active := true;
+
+    DM_SurveyLibrary.dataValueAndLabel.Active := false;
+ DM_SurveyLibrary.dataValueAndLabel.ParamByName('Language_ID').AsInteger := dblu_Language.KeyValue;
+ DM_SurveyLibrary.dataValueAndLabel.Active := true;
+
+ edt_LanguageID.Text := dblu_Language.KeyValue;
+ if dblu_Language.KeyValue <> 1 then
+ begin
+   btn_AddValuesLang.Enabled := true ;
+   tbAddValues.TabVisible := false ;
+
+ end else
+    tbAddValues.TabVisible:= true ;
+ btn_AddValuesLang.Enabled := false ;
+
+
+end;
+
+end.
+

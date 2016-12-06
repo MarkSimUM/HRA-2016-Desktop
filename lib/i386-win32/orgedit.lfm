@@ -1,0 +1,209 @@
+object frm_OrgEdit: Tfrm_OrgEdit
+  Left = 465
+  Height = 505
+  Top = 167
+  Width = 808
+  Caption = 'Organization Edit'
+  ClientHeight = 505
+  ClientWidth = 808
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 482
+    Width = 808
+    Panels = <>
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 144
+    Height = 30
+    Top = 368
+    Width = 408
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 30
+    ClientWidth = 408
+    DataSource = DM_Main.dsOrganization
+    Options = []
+    TabOrder = 1
+    VisibleButtons = [nbEdit, nbPost, nbCancel, nbRefresh]
+  end
+  object DBEdit1: TDBEdit
+    Left = 40
+    Height = 23
+    Top = 48
+    Width = 352
+    DataField = 'ORGNAME'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 2
+  end
+  object Label1: TLabel
+    Left = 40
+    Height = 15
+    Top = 24
+    Width = 151
+    Caption = 'Organization Name (display)'
+    ParentColor = False
+  end
+  object DBEdit2: TDBEdit
+    Left = 40
+    Height = 23
+    Top = 112
+    Width = 352
+    DataField = 'ORGFULLNAME'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 3
+  end
+  object Label2: TLabel
+    Left = 40
+    Height = 15
+    Top = 88
+    Width = 131
+    Caption = 'Organization Name (full)'
+    ParentColor = False
+  end
+  object DBEdit3: TDBEdit
+    Left = 40
+    Height = 23
+    Top = 160
+    Width = 296
+    DataField = 'ORGNAMEID'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 4
+  end
+  object Label3: TLabel
+    Left = 40
+    Height = 15
+    Top = 144
+    Width = 117
+    Caption = 'Organization Name ID'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 472
+    Height = 15
+    Top = 24
+    Width = 41
+    Caption = 'SSO Init'
+    ParentColor = False
+  end
+  object DBEdit4: TDBEdit
+    Left = 472
+    Height = 23
+    Top = 40
+    Width = 296
+    DataField = 'SSOINIT'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 5
+  end
+  object DBEdit5: TDBEdit
+    Left = 472
+    Height = 23
+    Top = 88
+    Width = 296
+    DataField = 'SSOKEY'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 6
+  end
+  object Label5: TLabel
+    Left = 472
+    Height = 15
+    Top = 72
+    Width = 43
+    Caption = 'SSO Key'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 48
+    Height = 15
+    Top = 208
+    Width = 117
+    Caption = 'Organization Web Site'
+    ParentColor = False
+  end
+  object DBEdit6: TDBEdit
+    Left = 48
+    Height = 23
+    Top = 224
+    Width = 560
+    DataField = 'WEBURL'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 7
+  end
+  object DBEdit7: TDBEdit
+    Left = 48
+    Height = 23
+    Top = 288
+    Width = 131
+    DataField = 'SIC'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 8
+  end
+  object Label7: TLabel
+    Left = 48
+    Height = 15
+    Top = 264
+    Width = 20
+    Caption = 'SIC '
+    ParentColor = False
+  end
+  object DBEdit8: TDBEdit
+    Left = 205
+    Height = 23
+    Top = 288
+    Width = 131
+    DataField = 'NAICS'
+    DataSource = DM_Main.dsOrganization
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 9
+  end
+  object Label8: TLabel
+    Left = 205
+    Height = 15
+    Top = 264
+    Width = 34
+    Caption = 'NAICS'
+    ParentColor = False
+  end
+  object Label9: TLabel
+    Left = 496
+    Height = 15
+    Top = 264
+    Width = 48
+    Caption = 'Parent ID'
+    ParentColor = False
+  end
+  object DBEdit9: TDBEdit
+    Left = 496
+    Height = 23
+    Top = 280
+    Width = 200
+    DataField = 'PARENT_ID'
+    DataSource = DM_Main.dsOrganization
+    ReadOnly = True
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 10
+  end
+end

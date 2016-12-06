@@ -1,0 +1,241 @@
+object frm_Project: Tfrm_Project
+  Left = 446
+  Height = 611
+  Top = 335
+  Width = 865
+  Caption = 'Project'
+  ClientHeight = 611
+  ClientWidth = 865
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 587
+    Top = 24
+    Width = 865
+    ActivePage = tbNewProject
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    OnChange = PageControl1Change
+    object tbNewProject: TTabSheet
+      Caption = 'New Project'
+      ClientHeight = 559
+      ClientWidth = 857
+      OnExit = tbNewProjectExit
+      object DBlu_ProjectStatus: TDBLookupComboBox
+        Left = 40
+        Height = 23
+        Top = 312
+        Width = 176
+        KeyField = 'STATUS_ID'
+        ListField = 'DESCRIPTION'
+        ListFieldIndex = 0
+        ListSource = luStatus
+        LookupCache = False
+        TabOrder = 0
+      end
+      object lblStatus: TLabel
+        Left = 48
+        Height = 15
+        Top = 288
+        Width = 90
+        Caption = 'Project STATUS *'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblProjectName: TLabel
+        Left = 32
+        Height = 15
+        Top = 80
+        Width = 80
+        Caption = 'Project Name *'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object labelProject2: TLabel
+        Left = 344
+        Height = 21
+        Top = 0
+        Width = 101
+        Caption = 'labelAccount'
+        Font.Color = 16384
+        Font.Height = -16
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBLookup_ProductVersion: TDBLookupComboBox
+        Left = 32
+        Height = 23
+        Top = 40
+        Width = 216
+        KeyField = 'PRODUCTVERSION_ID'
+        ListField = 'DISPLAYVERSION'
+        ListFieldIndex = 0
+        ListSource = DM_Main.dsluProductVersion
+        LookupCache = False
+        OnChange = DBLookup_ProductVersionChange
+        OnCloseUp = DBLookup_ProductVersionCloseUp
+        TabOrder = 1
+      end
+      object lblProduct: TLabel
+        Left = 32
+        Height = 15
+        Top = 24
+        Width = 62
+        Caption = 'PRODUCT *'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblStatus5: TLabel
+        Left = 328
+        Height = 15
+        Top = 120
+        Width = 77
+        Caption = 'Project NOTES'
+        ParentColor = False
+      end
+      object btnSave: TButton
+        Left = 280
+        Height = 48
+        Top = 424
+        Width = 160
+        Caption = 'Save'
+        Font.Height = -16
+        Font.Style = [fsBold]
+        OnClick = btnSaveClick
+        ParentFont = False
+        TabOrder = 2
+      end
+      object edt_ProjectName: TEdit
+        Left = 120
+        Height = 23
+        Top = 80
+        Width = 552
+        TabOrder = 3
+      end
+      object chk_AutoAddOrg: TCheckBox
+        Left = 40
+        Height = 19
+        Top = 160
+        Width = 220
+        Caption = 'Automatically Add new Organizations'
+        TabOrder = 4
+      end
+      object chk_TestProject: TCheckBox
+        Left = 64
+        Height = 19
+        Top = 192
+        Width = 82
+        Caption = 'Test project'
+        TabOrder = 5
+      end
+      object chk_EvalAnalysis: TCheckBox
+        Left = 64
+        Height = 19
+        Top = 256
+        Width = 123
+        Caption = 'Evaluation/Analysis'
+        TabOrder = 6
+      end
+      object memo_ProjectNotes: TMemo
+        Left = 320
+        Height = 194
+        Top = 144
+        Width = 448
+        ScrollBars = ssAutoBoth
+        TabOrder = 7
+      end
+    end
+  end
+  object pnlHeader: TPanel
+    Left = 0
+    Height = 24
+    Top = 0
+    Width = 865
+    Align = alTop
+    ClientHeight = 24
+    ClientWidth = 865
+    TabOrder = 1
+    object LABELACCOUNT: TLabel
+      Left = 352
+      Height = 15
+      Top = 0
+      Width = 90
+      Caption = 'LABELACCOUNT'
+      Font.Color = clGreen
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object chk_IsActive: TCheckBox
+    Left = 72
+    Height = 19
+    Top = 272
+    Width = 104
+    Caption = 'Project is Active'
+    TabOrder = 2
+  end
+  object btnCancel: TButton
+    Left = 488
+    Height = 48
+    Top = 472
+    Width = 160
+    Caption = 'Cancel'
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 3
+  end
+  object DataSource1: TDataSource
+    OnDataChange = DataSource1DataChange
+    left = 695
+    top = 78
+  end
+  object luStatus: TOraDataSource
+    DataSet = DM_Main.luStatus
+    left = 792
+    top = 104
+  end
+  object OraTable1: TOraTable
+    FilterOptions = []
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    left = 632
+    top = 64
+  end
+  object VirtualTable1: TVirtualTable
+    Options = [voPersistentData, voStored, voSkipUnSupportedFieldTypes]
+    FilterOptions = []
+    AfterEdit = VirtualTable1AfterEdit
+    left = 552
+    top = 56
+    Data = {
+      03000000000000000000
+    }
+  end
+end

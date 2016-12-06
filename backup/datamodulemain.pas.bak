@@ -1,0 +1,332 @@
+unit DataModuleMain;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, db, FileUtil, Ora, OdacVcl, paswstring ;
+
+type
+
+  { TDM_Main }
+
+  TDM_Main = class(TDataModule)
+    ConnectDialog1: TConnectDialog;
+    dataAccount: TOraQuery;
+    dataAccount_Org: TOraQuery;
+    dataAccountACCOUNTNAME: TStringField;
+    dataAccountACCOUNT_ID: TFloatField;
+    dataAccountACCOUNT_TYPE_ID: TFloatField;
+    dataAccountCREATED_BY: TStringField;
+    dataAccountCREATE_DT: TDateTimeField;
+    dataAccountISINACTIVE: TIntegerField;
+    dataAccountISTEST: TIntegerField;
+    dataAccountLEGACY_ID: TFloatField;
+    dataAccountLOGOFILENAME: TStringField;
+    dataAccountNOTES: TStringField;
+    dataAccountPARENT_ID: TFloatField;
+    dataAccountUPDATE_BY: TStringField;
+    dataAccountUPDATE_DT: TDateTimeField;
+    dataAccount_OrgACCOUNTNAME: TStringField;
+    dataAccount_OrgACCOUNT_ID: TFloatField;
+    dataAccount_OrgACCOUNT_TYPE_ID: TFloatField;
+    dataAccount_OrgACCT_PARENTID: TFloatField;
+    dataAccount_OrgDISPLAYNAME: TStringField;
+    dataAccount_OrgISINACTIVE: TIntegerField;
+    dataAccount_OrgISORGGROUP: TIntegerField;
+    dataAccount_OrgISSUBGROUP: TIntegerField;
+    dataAccount_OrgISTEST: TIntegerField;
+    dataAccount_OrgNOTES: TStringField;
+    dataAccount_OrgORGACCOUNT_ID: TFloatField;
+    dataAccount_OrgORGANIZATION_ID: TFloatField;
+    dataAccount_OrgORGFULLNAME: TStringField;
+    dataAccount_OrgORGNAME: TStringField;
+    dataAccount_OrgORG_PARENTID: TFloatField;
+    dataLanguageCODE2: TStringField;
+    dataLanguageCODE3A: TStringField;
+    dataLanguageCODE3B: TStringField;
+    dataLanguageCODEPAGE: TFloatField;
+    dataLanguageCOUNTRY_REGION_SHORT: TStringField;
+    dataLanguageISCOHSURVEY: TFloatField;
+    dataLanguageISDEFAULT: TFloatField;
+    dataLanguageISHRAMESSAGING: TFloatField;
+    dataLanguageISHRASURVEY: TFloatField;
+    dataLanguageISRTL: TIntegerField;
+    dataLanguageLANGUAGE_ENGLISH: TStringField;
+    dataLanguageLANGUAGE_ID: TFloatField;
+    dataLanguageLANGUAGE_LOCALE_ENGLISH: TStringField;
+    dataLanguageLANGUAGE_LOCALE_NATIVE: TStringField;
+    dataLanguageLANGUAGE_NATIVE: TStringField;
+    dataLanguageLCID: TFloatField;
+    dataLanguageLCIDSTRING: TStringField;
+    dataLanguageLCID_HEX: TStringField;
+    dataLanguageLOCALENAME: TStringField;
+    dataOrganization: TOraQuery;
+    dataOrganizationACCOUNT_ID: TFloatField;
+    dataOrganizationALTERNATEID: TStringField;
+    dataOrganizationCREATE_BY: TStringField;
+    dataOrganizationCREATE_DT: TDateTimeField;
+    dataOrganizationISINACTIVE: TIntegerField;
+    dataOrganizationISPROXY: TIntegerField;
+    dataOrganizationISSUBGROUP: TIntegerField;
+    dataOrganizationISTEST: TIntegerField;
+    dataOrganizationNAICS: TFloatField;
+    dataOrganizationORGANIZATIONGROUP_ID: TFloatField;
+    dataOrganizationORGANIZATION_ID: TFloatField;
+    dataOrganizationORGFULLNAME: TStringField;
+    dataOrganizationORGNAME: TStringField;
+    dataOrganizationORG_LEGACYCODE: TStringField;
+    dataOrganizationORG_LEGACYID: TFloatField;
+    dataOrganizationPARENT_ID: TFloatField;
+    dataOrganizationPROXYID: TStringField;
+    dataOrganizationSIC: TFloatField;
+    dataOrganizationUPDATE_BY: TStringField;
+    dataOrganizationUPDATE_DT: TDateTimeField;
+    dataOrg_wProjectACCOUNT_ID: TFloatField;
+    dataOrg_wProjectALTERNATEID: TStringField;
+    dataOrg_wProjectCREATE_BY: TStringField;
+    dataOrg_wProjectCREATE_DT: TDateTimeField;
+    dataOrg_wProjectDISPLAYNAME: TStringField;
+    dataOrg_wProjectISINACTIVE: TIntegerField;
+    dataOrg_wProjectISORGGROUP: TIntegerField;
+    dataOrg_wProjectISPROXY: TIntegerField;
+    dataOrg_wProjectISSUBGROUP: TIntegerField;
+    dataOrg_wProjectISTEST: TIntegerField;
+    dataOrg_wProjectNAICS: TFloatField;
+    dataOrg_wProjectORGANIZATION_ID: TFloatField;
+    dataOrg_wProjectORGFULLNAME: TStringField;
+    dataOrg_wProjectORGNAME: TStringField;
+    dataOrg_wProjectORG_LEGACYCODE: TStringField;
+    dataOrg_wProjectORG_LEGACYID: TFloatField;
+    dataOrg_wProjectPARENT_ID: TFloatField;
+    dataOrg_wProjectPROJECTCONFIG_ID: TFloatField;
+    dataOrg_wProjectPROJPROJECT_ID: TFloatField;
+    dataOrg_wProjectPROXYID: TStringField;
+    dataOrg_wProjectSIC: TFloatField;
+    dataOrg_wProjectUPDATE_BY: TStringField;
+    dataOrg_wProjectUPDATE_DT: TDateTimeField;
+    dataProductCREATE_BY: TStringField;
+    dataProductCREATE_DT: TDateTimeField;
+    dataProductPRODUCTCODE: TStringField;
+    dataProductPRODUCTDESCRIPTION: TStringField;
+    dataProductPRODUCT_ID: TFloatField;
+    dataProductUPDATE_BY: TStringField;
+    dataProductUPDATE_DT: TDateTimeField;
+    dataProductVersionNOTES: TStringField;
+    dataProductVersionPRODUCTVERSION_ID: TFloatField;
+    dataProductVersionPRODUCT_ID: TFloatField;
+    dataProductVersionRELEASEDATE: TDateTimeField;
+    dataProductVersionVERSION: TStringField;
+    dataProjectACCOUNT_ID: TFloatField;
+    dataProjectConfigForOrg: TOraQuery;
+    dataProjectConfigForOrgISACTIVE: TFloatField;
+    dataProjectConfigForOrgORGANIZATION_ID: TFloatField;
+    dataProjectConfigForOrgPRODUCTCODE: TStringField;
+    dataProjectConfigForOrgPROJECTCONFIG_ID: TFloatField;
+    dataProjectConfigForOrgPROJECTNAME: TStringField;
+    dataProjectConfigForOrgPROJECT_ID: TFloatField;
+    dataProjectConfigForOrgPROJISACTIVE: TIntegerField;
+    dataProjectConfigForOrgVERSION: TStringField;
+    dataProjectCREATE_BY: TStringField;
+    dataProjectCREATE_DT: TDateTimeField;
+    dataProjectEVALANALYSIS_FLG: TFloatField;
+    dataProjectForOrg: TOraQuery;
+    dataProjectACCOUNT_ID1: TFloatField;
+    dataProjectBIOMETRIC_DATA_FEEDS_FLG1: TStringField;
+    dataProjectBRE_FLG1: TStringField;
+    dataProjectBULK_RETURN_FLG1: TStringField;
+    dataProjectCLIENT_HOSTED_SURVEY_FLG1: TStringField;
+    dataProjectConfig_Default: TOraQuery;
+    dataProjectConfig_SurveyItem_DEFAULT: TOraQuery;
+    dataProjectCREATE_BY1: TStringField;
+    dataProjectCREATE_DT1: TDateTimeField;
+    dataProjectCUSTOM_LOGO_FLG1: TStringField;
+    dataProjectCUSTOM_SURVEY_FLG1: TStringField;
+    dataProjectELIGIBILITY_FILES_FLG1: TStringField;
+    dataProjectEVALUATION_ANALYST_FLG1: TStringField;
+    dataProjectForOrgEVALANALYSIS_FLG: TFloatField;
+    dataProjectForOrgLOCKSETTINGS_FLG: TFloatField;
+    dataProjectForOrgPRODUCTCODE: TStringField;
+    dataProjectForOrgVERSION: TStringField;
+    dataProjectGROUP_PASSWORD_FLG1: TStringField;
+    dataProjectINCOMING_DATA_FEEDS_FLG1: TStringField;
+    dataProjectISACTIVE: TIntegerField;
+    dataProjectISACTIVE1: TIntegerField;
+    dataProjectISMULTIORG: TIntegerField;
+    dataProjectISMULTIORG1: TIntegerField;
+    dataProjectISMULTIPRODUCT: TIntegerField;
+    dataProjectISMULTIPRODUCT1: TIntegerField;
+    dataProjectISTEST: TIntegerField;
+    dataProjectISTEST1: TIntegerField;
+    dataProjectLINKEDPROJECT_ID: TFloatField;
+    dataProjectLINKEDPROJECT_ID1: TFloatField;
+    dataProjectLOCKSETTINGS_FLG: TFloatField;
+    dataProjectNOTES: TStringField;
+    dataProjectNOTES1: TStringField;
+    dataProjectOUTGOING_DATA_FEEDS_FLG1: TStringField;
+    dataProjectPAPER_SURVEY_FLG1: TStringField;
+    dataProjectPARTIC_COUNT_RPT_FLG1: TStringField;
+    dataProjectPHASE: TStringField;
+    dataProjectPHASE1: TStringField;
+    dataProjectPRIVACY_SHARING_FLG1: TStringField;
+    dataProjectPRODUCTCODE: TStringField;
+    dataProjectProductCREATE_BY: TStringField;
+    dataProjectProductCREATE_DT: TDateTimeField;
+    dataProjectProductISACTIVE: TIntegerField;
+    dataProjectProductNOTES: TStringField;
+    dataProjectProductPRODUCTCODE: TStringField;
+    dataProjectProductPRODUCTDESCRIPTION: TStringField;
+    dataProjectProductPRODUCTVERSION_ID: TFloatField;
+    dataProjectProductPRODUCTVERSION_ID_1: TFloatField;
+    dataProjectProductPRODUCT_ID: TFloatField;
+    dataProjectProductPROJECTPRODUCT_ID: TFloatField;
+    dataProjectProductPROJECT_ID: TFloatField;
+    dataProjectProductRELEASEDATE: TDateTimeField;
+    dataProjectProductselected1: TBooleanField;
+    dataProjectProductSURVEYURL: TStringField;
+    dataProjectProductUPDATE_BY: TStringField;
+    dataProjectProductUPDATE_DT: TDateTimeField;
+    dataProjectProductVERSION: TStringField;
+    dataProjectPRODUCTVERSION_ID: TFloatField;
+    dataProjectPRODUCTVERSION_ID1: TFloatField;
+    dataProjectPROJECTGROUP_ID: TFloatField;
+    dataProjectPROJECTGROUP_ID1: TFloatField;
+    dataProjectPROJECTNAME: TStringField;
+    dataProjectPROJECTNAME1: TStringField;
+    dataProjectPROJECT_ID: TFloatField;
+    dataProjectPROJECT_ID1: TFloatField;
+    dataProjectSINGLE_SIGN_ON_FLG1: TStringField;
+    dataProjectSTATUS_ID: TFloatField;
+    dataProjectSURVEYCLOSEDT_DEFAULT1: TDateTimeField;
+    dataProjectSURVEYOPENDT_DEFAULT1: TDateTimeField;
+    dataProjectSURVEY_LOCKOUT_DAYS_VAL1: TFloatField;
+    dataProjectUNIQUEIDFIELDNAME: TStringField;
+    dataProjectUNIQUEIDFIELDNAME1: TStringField;
+    dataProjectVERSION: TStringField;
+    dataProjectWEB_SURVEY_FLG1: TStringField;
+    dsProjectConfigForOrg: TOraDataSource;
+    dsProjectConfig_Default: TOraDataSource;
+    dsProjectConfig_SurveyItem_DEFAULT: TOraDataSource;
+    luProductVersion: TOraQuery;
+    dsAccount: TOraDataSource;
+    dsOrganization: TOraDataSource;
+    dataProject: TOraQuery;
+    dsProject: TOraDataSource;
+    dataProjectConfig: TOraQuery;
+    dsProjectConfig: TOraDataSource;
+    dataProduct: TOraQuery;
+    dsProduct: TOraDataSource;
+    dataProductVersion: TOraQuery;
+    dsProductVersion: TOraDataSource;
+    dsluProductVersion: TOraDataSource;
+    dsProjectConfig_SurveyItem: TOraDataSource;
+    dataProjectConfig_SurveyItem: TOraQuery;
+    luProductVersionCURRENTVERSION: TFloatField;
+    luProductVersionNOTES: TStringField;
+    luProductVersionPRODUCTCODE: TStringField;
+    luProductVersionPRODUCTDESCRIPTION: TStringField;
+    luProductVersionPRODUCTVERSION_ID: TFloatField;
+    luProductVersionPRODUCT_ID: TFloatField;
+    luProductVersionRELEASEDATE: TDateTimeField;
+    luProductVersionVERSION: TStringField;
+    luStatusDESCRIPTION: TStringField;
+    luStatusDISPLAYORDER: TFloatField;
+    luStatusSTATUS_ID: TFloatField;
+    lu_Account_Type: TOraQuery;
+    dsLU_Account_Type: TOraDataSource;
+    lu_Account_TypeACCOUNT_TYPE_CD: TStringField;
+    lu_Account_TypeACCOUNT_TYPE_ID: TFloatField;
+    dataLanguage: TOraQuery;
+    dsLanguage: TOraDataSource;
+    dsAccount_Org: TOraDataSource;
+    dsAcct_Org_wProject: TOraDataSource;
+    dsProjectForOrg: TOraDataSource;
+    dsProdForOrgProject: TOraDataSource;
+    OraDataSource1: TOraDataSource;
+    dsOrg_wProject: TOraDataSource;
+    dsStatus: TOraDataSource;
+    OraQuery1: TOraQuery;
+    OraQuery1ACCOUNTNAME: TStringField;
+    OraQuery1ACCOUNT_ID: TFloatField;
+    OraQuery1ACCOUNT_TYPE_ID: TFloatField;
+    OraQuery1ACCTGRPID: TFloatField;
+    OraQuery1ACCT_PARENTID: TFloatField;
+    OraQuery1GROUPDESCRIPTION: TStringField;
+    OraQuery1ISINACTIVE: TIntegerField;
+    OraQuery1ISTEST: TIntegerField;
+    OraQuery1NOTES: TStringField;
+    OraQuery1ORGACCOUNT_ID: TFloatField;
+    OraQuery1ORGANIZATIONGROUP_ID: TFloatField;
+    OraQuery1ORGANIZATION_ID: TFloatField;
+    OraQuery1ORGFULLNAME: TStringField;
+    OraQuery1ORGGRPID: TFloatField;
+    OraQuery1ORGNAME: TStringField;
+    OraQuery1ORG_PARENTID: TFloatField;
+    dataAcct_Org_wProject: TOraQuery;
+    dataProdForOrgProject: TOraQuery;
+    OraQuery2: TOraQuery;
+    OraQuery3: TOraQuery;
+    dataOrg_wProject: TOraQuery;
+    luStatus: TOraQuery;
+    luProjectGroup: TOraQuery;
+    OraSessionMain: TOraSession;
+    OraSession_DEV: TOraSession;
+    OraSession_TEST: TOraSession;
+    OraSession_PROD: TOraSession;
+    OraSession_HRA15_TEST: TOraSession;
+    OraSQL1: TOraSQL;
+    OraStoredProc1: TOraStoredProc;
+    OraStoredProc2: TOraStoredProc;
+    OraStoredProc3: TOraStoredProc;
+    SP_HMRC_USER_VERIFY: TOraStoredProc;
+    Upsert_Organization: TOraStoredProc;
+    OraUpdateSQL1: TOraUpdateSQL;
+    OraUpdateSQL2: TOraUpdateSQL;
+
+    procedure DataModuleCreate(Sender: TObject);
+    procedure dataProjectProductselected1Change(Sender: TField);
+    procedure dsProjectDataChange(Sender: TObject; Field: TField);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  DM_Main: TDM_Main;
+
+implementation
+
+{$R *.lfm}
+
+{ TDM_Main }
+
+procedure TDM_Main.dataProjectProductselected1Change(Sender: TField);
+begin
+
+end;
+
+procedure TDM_Main.dsProjectDataChange(Sender: TObject; Field: TField);
+begin
+    IF NOT ( DM_Main.dataProject.eof) then
+    begin
+    DM_Main.dataOrg_wProject.active := false ;
+    DM_Main.dataOrg_wProject.ParamByName('Project_ID').value := DM_Main.dataProjectPROJECT_ID.value;
+    DM_Main.dataOrg_wProject.active := true;
+
+    end;
+end;
+
+
+
+procedure TDM_Main.DataModuleCreate(Sender: TObject);
+begin
+
+
+
+
+end;
+
+end.
+

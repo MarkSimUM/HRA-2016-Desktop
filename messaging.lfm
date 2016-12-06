@@ -1,0 +1,145 @@
+object frmMessaging: TfrmMessaging
+  Left = 388
+  Height = 614
+  Top = 246
+  Width = 1063
+  Caption = 'Messaging'
+  ClientHeight = 614
+  ClientWidth = 1063
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object PageControl1: TPageControl
+    Left = 56
+    Height = 582
+    Top = 32
+    Width = 1007
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'MessageGroups'
+      ClientHeight = 554
+      ClientWidth = 999
+      object DBGrid1: TDBGrid
+        Left = 0
+        Height = 314
+        Top = 0
+        Width = 999
+        Align = alClient
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'SECTIONORDER'
+            Width = 40
+            FieldName = 'SECTIONORDER'
+          end        
+          item
+            Title.Caption = 'SECTIONALPHA'
+            Width = 120
+            FieldName = 'SECTIONALPHA'
+          end        
+          item
+            Title.Caption = 'SECTIONDESCRIPTION'
+            Width = 120
+            FieldName = 'SECTIONDESCRIPTION'
+          end        
+          item
+            Title.Caption = 'BLOCKALPHA'
+            Width = 90
+            FieldName = 'BLOCKALPHA'
+          end        
+          item
+            Title.Caption = 'BLOCKDESCRIPTION'
+            Width = 200
+            FieldName = 'BLOCKDESCRIPTION'
+          end        
+          item
+            Title.Caption = 'GROUPALPHA'
+            Width = 90
+            FieldName = 'GROUPALPHA'
+          end        
+          item
+            Title.Caption = 'TOPN'
+            FieldName = 'TOPN'
+          end        
+          item
+            Title.Caption = 'GROUPDESC'
+            Width = 220
+            FieldName = 'GROUPDESC'
+          end>
+        DataSource = DM_Messaging.ds_MessagingGroup
+        TabOrder = 0
+      end
+      object DBGrid2: TDBGrid
+        Left = 0
+        Height = 240
+        Top = 314
+        Width = 999
+        Align = alBottom
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'EvalOrder'
+            FieldName = 'EVALORDER'
+          end        
+          item
+            Title.Caption = 'CRITERIAALPHA'
+            Width = 80
+            FieldName = 'CRITERIAALPHA'
+          end        
+          item
+            Title.Caption = 'CRITGMSGID'
+            Width = 80
+            FieldName = 'CRITGMSGID'
+          end        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Caption = 'ISDEFAULT'
+            FieldName = 'ISDEFAULT'
+          end        
+          item
+            Title.Caption = 'GENDERCODE'
+            FieldName = 'GENDERCODE'
+          end        
+          item
+            Title.Caption = 'AGECODEMIN'
+            FieldName = 'AGECODEMIN'
+          end        
+          item
+            Title.Caption = 'AGECODEMAX'
+            FieldName = 'AGECODEMAX'
+          end        
+          item
+            Title.Caption = 'RISKCRITERIA'
+            Width = 200
+            FieldName = 'RISKCRITERIA'
+          end        
+          item
+            Title.Caption = 'CRITERIA'
+            Width = 200
+            FieldName = 'CRITERIA'
+          end>
+        DataSource = DM_Messaging.ds_MsgCriteriaForGroup
+        TabOrder = 1
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 32
+    Top = 0
+    Width = 1063
+    Align = alTop
+    TabOrder = 1
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 582
+    Top = 32
+    Width = 56
+    Align = alLeft
+    TabOrder = 2
+  end
+end

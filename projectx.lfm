@@ -1,0 +1,291 @@
+object frm_Project: Tfrm_Project
+  Left = 269
+  Height = 611
+  Top = 297
+  Width = 864
+  Caption = 'Project'
+  ClientHeight = 611
+  ClientWidth = 864
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 563
+    Top = 48
+    Width = 864
+    ActivePage = tbNewProject
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    OnChange = PageControl1Change
+    object tbNewProject: TTabSheet
+      Caption = 'New Project'
+      ClientHeight = 535
+      ClientWidth = 856
+      OnExit = tbNewProjectExit
+      object DBMemo_ProjectNotes1: TDBMemo
+        Left = 288
+        Height = 224
+        Top = 152
+        Width = 494
+        DataField = 'NOTES'
+        DataSource = DM_Main.dsProject
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+      object DBCheckBox_IsActive2: TDBCheckBox
+        Left = 64
+        Height = 23
+        Top = 248
+        Width = 170
+        Caption = 'Evaluation/Analysis'
+        DataField = 'EVALANALYSIS_FLG'
+        DataSource = DM_Main.dsProject
+        TabOrder = 1
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBEdit_ProjectName1: TDBEdit
+        Left = 32
+        Height = 23
+        Top = 96
+        Width = 552
+        DataField = 'PROJECTNAME'
+        DataSource = DM_Main.dsProject
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+        OnChange = DBEdit_ProjectName1Change
+        OnEditingDone = DBEdit_ProjectName1EditingDone
+      end
+      object DBlu_ProjectStatus1: TDBLookupComboBox
+        Left = 56
+        Height = 23
+        Top = 312
+        Width = 176
+        DataField = 'STATUS_ID'
+        DataSource = DM_Main.dsProject
+        KeyField = 'STATUS_ID'
+        ListField = 'DESCRIPTION'
+        ListFieldIndex = 0
+        ListSource = luStatus
+        LookupCache = False
+        TabOrder = 3
+      end
+      object DBCheckBox_IsTest1: TDBCheckBox
+        Left = 72
+        Height = 23
+        Top = 176
+        Width = 90
+        Caption = 'Test Project'
+        DataField = 'ISTEST'
+        DataSource = DM_Main.dsProject
+        TabOrder = 4
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsActive3: TDBCheckBox
+        Left = 72
+        Height = 23
+        Top = 208
+        Width = 90
+        Caption = 'Is Active'
+        DataField = 'ISACTIVE'
+        DataSource = DM_Main.dsProject
+        TabOrder = 5
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object lblStatus2: TLabel
+        Left = 56
+        Height = 15
+        Top = 288
+        Width = 42
+        Caption = 'STATUS'
+        ParentColor = False
+      end
+      object lblStatus3: TLabel
+        Left = 32
+        Height = 15
+        Top = 80
+        Width = 80
+        Caption = 'Project Name *'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object labelProject2: TLabel
+        Left = 32
+        Height = 21
+        Top = 8
+        Width = 101
+        Caption = 'labelAccount'
+        Font.Color = 16384
+        Font.Height = -16
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBLookup_ProductVersion: TDBLookupComboBox
+        Left = 32
+        Height = 23
+        Top = 48
+        Width = 216
+        DataField = 'PRODUCTVERSION_ID'
+        DataSource = DM_Main.dsProject
+        KeyField = 'PRODUCTVERSION_ID'
+        ListField = 'DISPLAYVERSION'
+        ListFieldIndex = 0
+        ListSource = DM_Main.dsluProductVersion
+        LookupCache = False
+        OnChange = DBLookup_ProductVersionChange
+        OnCloseUp = DBLookup_ProductVersionCloseUp
+        TabOrder = 6
+      end
+      object lblStatus4: TLabel
+        Left = 32
+        Height = 15
+        Top = 32
+        Width = 54
+        Caption = 'PRODUCT'
+        Font.Color = clRed
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblStatus5: TLabel
+        Left = 288
+        Height = 15
+        Top = 128
+        Width = 77
+        Caption = 'Project NOTES'
+        ParentColor = False
+      end
+      object DBEdit1: TDBEdit
+        Left = 492
+        Height = 23
+        Top = 40
+        Width = 80
+        DataField = 'PROJECT_ID'
+        DataSource = DM_Main.dsProject
+        ReadOnly = True
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 7
+      end
+      object DBCheckBox_AutoOrg: TDBCheckBox
+        Left = 56
+        Height = 23
+        Top = 136
+        Width = 178
+        Caption = 'Automatically add new Orgs'
+        DataField = 'AUTOADDNEWORG_FLG'
+        DataSource = DM_Main.dsProject
+        TabOrder = 8
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object btnSave: TButton
+        Left = 84
+        Height = 25
+        Top = 403
+        Width = 75
+        Caption = 'btnSave'
+        Enabled = False
+        TabOrder = 9
+      end
+    end
+  end
+  object pnlHeader: TPanel
+    Left = 0
+    Height = 48
+    Top = 0
+    Width = 864
+    Align = alTop
+    ClientHeight = 48
+    ClientWidth = 864
+    TabOrder = 1
+    object LABELACCOUNT: TLabel
+      Left = 336
+      Height = 15
+      Top = 0
+      Width = 90
+      Caption = 'LABELACCOUNT'
+      Font.Color = clGreen
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object DBNavGlobal: TDBNavigator
+      Left = 1
+      Height = 46
+      Top = 1
+      Width = 305
+      Align = alLeft
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 46
+      ClientWidth = 305
+      DataSource = DM_Main.dsProject
+      OnClick = DBNavGlobalClick
+      Options = []
+      TabOrder = 0
+      VisibleButtons = [nbEdit, nbPost, nbCancel]
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = DM_Main.dataProject
+    OnDataChange = DataSource1DataChange
+    OnUpdateData = DataSource1UpdateData
+    left = 695
+    top = 78
+  end
+  object luStatus: TOraDataSource
+    DataSet = DM_Main.luStatus
+    left = 792
+    top = 104
+  end
+  object OraTable1: TOraTable
+    FilterOptions = []
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    left = 364
+    top = 98
+  end
+  object VirtualTable1: TVirtualTable
+    Options = [voPersistentData, voStored, voSkipUnSupportedFieldTypes]
+    FilterOptions = []
+    left = 447
+    top = 99
+    Data = {
+      03000000000000000000
+    }
+  end
+  object MemDataset1: TMemDataset
+    FieldDefs = <>
+    left = 594
+    top = 176
+  end
+end

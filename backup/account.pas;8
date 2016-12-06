@@ -1,0 +1,26 @@
+unit Account;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, DataModuleMain, db;
+
+type
+  TfrmAccount = class(TForm)
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  frmAccount: TfrmAccount;
+
+implementation
+
+{$R *.lfm}
+
+end.
+

@@ -1,0 +1,38 @@
+object frmSurveyData: TfrmSurveyData
+  Left = 441
+  Height = 571
+  Top = 457
+  Width = 874
+  Caption = 'frmSurveyData'
+  ClientHeight = 571
+  ClientWidth = 874
+  LCLVersion = '1.2.6.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 548
+    Width = 874
+    Panels = <>
+  end
+  object PageControl1: TPageControl
+    Left = 138
+    Height = 548
+    Top = 0
+    Width = 736
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 548
+    Top = 0
+    Width = 138
+    Align = alLeft
+    TabOrder = 2
+  end
+end

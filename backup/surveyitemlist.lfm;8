@@ -1,0 +1,273 @@
+object frm_SurveyItemList: Tfrm_SurveyItemList
+  Left = 466
+  Height = 625
+  Top = 249
+  Width = 888
+  Caption = 'Survey Item List'
+  ClientHeight = 625
+  ClientWidth = 888
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object DBGrid1: TDBGrid
+    Left = 48
+    Height = 400
+    Top = 152
+    Width = 800
+    Color = clWindow
+    Columns = <>
+    DataSource = OraDataSource1
+    TabOrder = 0
+  end
+  object DBGrid2: TDBGrid
+    Left = 56
+    Height = 96
+    Top = 40
+    Width = 600
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'ID'
+        FieldName = 'SURVEYTEMPLATE_ID'
+      end    
+      item
+        Title.Caption = 'TEMPLATENAME'
+        Width = 150
+        FieldName = 'TEMPLATENAME'
+      end    
+      item
+        Title.Caption = 'TEMPLATEDESC'
+        Width = 300
+        FieldName = 'TEMPLATEDESC'
+      end>
+    DataSource = OraDataSource2
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 696
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object OraStoredProc1: TOraStoredProc
+    Session = DM_Main.OraSessionMain
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 24
+    top = 88
+  end
+  object sql_ItemList: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'select slib.* from '
+      '  slib_surveytemplate st'
+      '  INNER JOIN slib_surveytemplate_item sti'
+      '    ON st.surveytemplate_id = sti.surveytemplate_id'
+      ''
+      '  LEFT OUTER JOIN vw_slib_itemvalues slib '
+      '    ON sti.item_id = slib.item_id'
+      ''
+      '  WHERE st.surveytemplate_ID = :surveytemplate_ID'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 24
+    top = 144
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'surveytemplate_ID'
+        ParamType = ptInput
+      end>
+  end
+  object OraDataSource1: TOraDataSource
+    DataSet = sql_ItemList
+    left = 160
+    top = 40
+  end
+  object sql_slibSurveyTemplate: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'select * '
+      '  FROM slib_surveytemplate'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 24
+    top = 32
+    object sql_slibSurveyTemplateSURVEYTEMPLATE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYTEMPLATE_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object sql_slibSurveyTemplatePRODUCTVERSION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRODUCTVERSION_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object sql_slibSurveyTemplateTEMPLATENAME: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'TEMPLATENAME'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object sql_slibSurveyTemplateTEMPLATEDESC: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TEMPLATEDESC'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object sql_slibSurveyTemplateTEMPLATENOTES: TStringField
+      DisplayWidth = 4000
+      FieldKind = fkData
+      FieldName = 'TEMPLATENOTES'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4000
+    end
+    object sql_slibSurveyTemplateCREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sql_slibSurveyTemplateCREATED_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATED_BY'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object sql_slibSurveyTemplateUPDATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'UPDATE_DT'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sql_slibSurveyTemplateUPDATED_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'UPDATED_BY'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object sql_slibSurveyTemplateISDEFAULT: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISDEFAULT'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+  end
+  object OraDataSource2: TOraDataSource
+    DataSet = sql_slibSurveyTemplate
+    left = 100
+    top = 24
+  end
+end

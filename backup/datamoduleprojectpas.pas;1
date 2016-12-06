@@ -1,0 +1,26 @@
+unit datamoduleProjectpas;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, DataModuleMain, db, Ora, OraScript;
+
+type
+  TDM_Project = class(TDataModule)
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  DM_Project: TDM_Project;
+
+implementation
+
+{$R *.lfm}
+
+end.
+

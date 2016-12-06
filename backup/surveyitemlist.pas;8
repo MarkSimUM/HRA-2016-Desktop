@@ -1,0 +1,80 @@
+unit surveyitemlist;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, DBGrids,
+  DbCtrls, StdCtrls, Ora, DataModuleSurveyLibrary, db;
+
+type
+
+  { Tfrm_SurveyItemList }
+
+  Tfrm_SurveyItemList = class(TForm)
+    Button1: TButton;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    OraDataSource1: TOraDataSource;
+    OraDataSource2: TOraDataSource;
+    sql_ItemList: TOraQuery;
+    sql_slibSurveyTemplate: TOraQuery;
+    OraStoredProc1: TOraStoredProc;
+    sql_slibSurveyTemplateCREATED_BY: TStringField;
+    sql_slibSurveyTemplateCREATE_DT: TDateTimeField;
+    sql_slibSurveyTemplateISDEFAULT: TFloatField;
+    sql_slibSurveyTemplatePRODUCTVERSION_ID: TFloatField;
+    sql_slibSurveyTemplateSURVEYTEMPLATE_ID: TFloatField;
+    sql_slibSurveyTemplateTEMPLATEDESC: TStringField;
+    sql_slibSurveyTemplateTEMPLATENAME: TStringField;
+    sql_slibSurveyTemplateTEMPLATENOTES: TStringField;
+    sql_slibSurveyTemplateUPDATED_BY: TStringField;
+    sql_slibSurveyTemplateUPDATE_DT: TDateTimeField;
+    procedure Button1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  frm_SurveyItemList: Tfrm_SurveyItemList;
+
+implementation
+
+{$R *.lfm}
+
+{ Tfrm_SurveyItemList }
+
+procedure Tfrm_SurveyItemList.FormActivate(Sender: TObject);
+begin
+    sql_ItemList.active := false ;
+    sql_ItemList.active := true;
+
+    sql_slibSurveyTemplate.Active := false ;
+   // sql_slibSurveyTemplate.Active := true ;
+
+
+end;
+
+procedure Tfrm_SurveyItemList.FormCreate(Sender: TObject);
+begin
+      sql_ItemList.active := false ;
+    sql_ItemList.active := true;
+
+    sql_slibSurveyTemplate.Active := false ;
+   // sql_slibSurveyTemplate.Active := true ;
+end;
+
+procedure Tfrm_SurveyItemList.Button1Click(Sender: TObject);
+begin
+    sql_slibSurveyTemplate.Active := false ;
+    sql_slibSurveyTemplate.ParamByName('surveytemplate_ID').value := sql_ItemList.fieldbyName('surveytemplate_id').Value ;
+        sql_slibSurveyTemplate.Active := true ;
+end;
+
+end.
+

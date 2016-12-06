@@ -1,0 +1,257 @@
+unit SurveyItemNew;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, DividerBevel, Forms, Controls, Graphics, Dialogs,
+  DbCtrls, StdCtrls, Spin, DataModuleSurveyLibrary;
+
+type
+
+  { TfrmSurveyItemNew }
+
+  TfrmSurveyItemNew = class(TForm)
+    Button1: TButton;
+    btnCancel: TButton;
+    chkIsCalculated: TCheckBox;
+    edtItem_Version: TEdit;
+    edtFieldName2: TEdit;
+    edtViewName: TEdit;
+    edtPageOrder: TEdit;
+    edtLabelLeft: TEdit;
+    edtLabelInstruction: TEdit;
+    edtSG_QID: TEdit;
+    edtSG_OPTIONID: TEdit;
+    edtMin: TEdit;
+    edtFieldName: TEdit;
+    edtItemOrder: TEdit;
+    edtMax: TEdit;
+    edtLabel: TEdit;
+    edtLabelInput: TEdit;
+    edtLabelRight: TEdit;
+    Label10: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    lblViewName: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    LUItemType: TDBLookupComboBox;
+    luTableName: TDBLookupComboBox;
+    memoLog: TMemo;
+    rgMeasurementType: TDBRadioGroup;
+    DividerBevel1: TDividerBevel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    SpinEdit1: TSpinEdit;
+    procedure Button1Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure DBComboBox1CloseUp(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure LUItemType1CloseUp(Sender: TObject);
+    procedure LUItemTypeCloseUp(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+     iItemType : Integer ;
+  end;
+
+var
+  frmSurveyItemNew: TfrmSurveyItemNew;
+
+implementation
+
+{$R *.lfm}
+
+{ TfrmSurveyItemNew }
+
+procedure TfrmSurveyItemNew.Button1Click(Sender: TObject);
+var
+   s1, s2, s3, s4, s5 :string;
+begin
+  With DM_SurveyLibrary.SP_UPSERT_ITEMMULTI_ITEM do
+  begin
+
+
+  //   PR_UPSERT_ITEMMULTI_ITEM(:PITEM_ID, :PITEMTYPE_ID, :PFIELDNAME, :PTABLENAME, :PORGANIZATION_ID, :PISCUSTOM, :PISSCALE, :PISCALCULATED, :PSTDCATEGORY_ID, :PCOPYFROMSTDCATEGORY, :PMINVALUE, :PMAXVALUE, :PITEMLINK_ID, :PDESCRIPTION, :PVARNAME, :PDATA_FIELDNAME, :PDATA_POSITION, :PMEASUREMENTUNIT, :PTAGS, :PNOTES, :PCORESET, :PCREATEDBY, :PDOMAIN, :PSTDORDER, :PGROUPORDER, :PSECTIONORDER, :PPAGEORDER, :PISLOCKED, :PTABLENAMELEGACY, :PDOMAINORDER, :PITEMLABEL_ID, :PLANGUAGE_ID, :PLABEL, :PLABELSHORT, :PLABELREPORT, :PLABELINSTRUCTION, :PLABELINPUT, :PLABELRIGHT, :PLABELLEFT, :VRETURNCODE, :VSEQ_ITEM, :VSEQ_ITEMLABEL, :VINSERT_UPDATE_ITEM, :VINSERT_UPDATE_ITEMLABEL, :PCUSTOM, :PINSERTONLY);
+
+
+// !! ADDED 1/29/2106
+//   PSG_OPTIONID, :PSG_REPORTINGVALUE, :PDELETE_FLG
+//        vreturncode         out varchar2 ,
+//         vseq_item               out varchar2   ,
+// 	vseq_itemlabel                out varchar2   ,
+//        vinsert_update_item                  out varchar2, -- insert or update   ,
+//        vinsert_update_itemlabel                  out varchar2 ,-- insert or update  label
+//        --- have new parameters for custom
+//         pcustom                   number default 0,
+//         pinsertonly               number  default 0
+
+ //    PR_UPSERT_ITEMMULTI_ITEM(:PITEM_ID, :PITEMTYPE_ID, :PFIELDNAME, :PTABLENAME, :PORGANIZATION_ID, :PISCUSTOM, :PISSCALE, :PISCALCULATED, :PSTDCATEGORY_ID, :PCOPYFROMSTDCATEGORY, :PMINVALUE, :PMAXVALUE, :PITEMLINK_ID, :PDESCRIPTION, :PVARNAME, :PDATA_FIELDNAME, :PDATA_POSITION, :PMEASUREMENTUNIT, :PTAGS, :PNOTES, :PCORESET, :PCREATEDBY, :PDOMAIN, :PSTDORDER, :PISLOCKED, :PTABLENAMELEGACY, :PDOMAINORDER, :PITEMLABEL_ID, :PLANGUAGE_ID, :PLABEL, :PLABELSHORT, :PLABELREPORT, :PLABELINSTRUCTION, :PLABELINPUT, :PLABELRIGHT, :PLABELLEFT, :VRETURNCODE, :VSEQ_ITEM, :VSEQ_ITEMLABEL, :VINSERT_UPDATE_ITEM, :VINSERT_UPDATE_ITEMLABEL, :PCUSTOM, :PINSERTONLY);
+
+     if LUItemType.ItemIndex < 0 then
+     begin
+        showMessage('Question Type required');
+        exit ;
+     end;
+      if edtFieldName.text = ''  then
+     begin
+        showMessage('FieldName required');
+        exit ;
+     end;
+      if luTableName.text = ''  then
+        begin
+           showMessage('TableName required');
+           exit ;
+        end;
+       if edtItem_Version.text = ''  then
+        begin
+           showMessage('Item Version number required');
+           exit ;
+        end;
+     ParamByName('PLANGUAGE_ID').AsInteger := 1 ;
+      ParamByName('PISSCALE').AsInteger :=  0 ;
+     ParamByName('PISCUSTOM').AsInteger :=  0 ;
+      ParamByName('pislocked').AsInteger :=  0 ;
+
+
+    // ParamByName('PITEMTYPE_ID').AsInteger :=  LUItemType.ItemIndex;
+     ParamByName('PITEMTYPE_ID').Value :=  LUItemType.KeyValue;
+
+     ParamByName('PFIELDNAME').AsString :=  edtFieldName.Text ;
+     ParamByName('PTABLENAME').AsString := luTableName.Text ;
+
+     if chkIsCalculated.Checked then
+         ParamByName('pISCALCULATED').Value := 1 else
+         ParamByName('pISCALCULATED').Value := 0;
+
+
+     if (edtMin.text <> '') then
+      ParamByName('PMINVALUE').AsString :=  edtMin.Text else
+      ParamByName('PMINVALUE').Value := Null;
+
+     if (edtMax.text <> '') then
+      ParamByName('PMAXVALUE').AsString :=  edtMax.Text else
+         ParamByName('PMAXVALUE').value := Null;
+     if (rgMeasurementType.ItemIndex >= 0) then
+        ParamByName('PMEASUREMENTUNIT').AsInteger := rgMeasurementType.ItemIndex + 1 else
+        ParamByName('PMEASUREMENTUNIT').value := Null;
+
+
+     if (edtLabel.text <> '') then
+      ParamByName('PLABEL').AsString :=  edtLabel.text      else
+        ParamByName('PLABEL').value := Null;
+
+     if (edtLabelInstruction.text <> '') then
+     ParamByName('PLABELINSTRUCTION').AsString := edtLabelInstruction.text       else
+        ParamByName('PLABELINSTRUCTION').value := Null;
+
+     if (edtLabelInput.text <> '') then
+     ParamByName('PLABELINPUT').AsString :=  edtLabelInput.text      else
+        ParamByName('PLABELINPUT').value := Null;
+     if (edtLabelRight.text <> '') then
+     ParamByName('PLABELRIGHT').AsString :=  edtLabelRight.text      else
+        ParamByName('PLABELRIGHT').value := Null;
+
+     if (edtLabelLeft.text <> '') then
+     ParamByName('PLABELLEFT').AsString := edtLabelLeft.text      else
+        ParamByName('PLABELLEFT').value := Null;
+
+
+     if (edtSG_QID.text <> '') then
+     ParamByName('PSG_QID').Asstring := edtSG_QID.text      else
+        ParamByName('PSG_QID').value := Null;
+
+     if (edtSG_OPTIONID.text <> '') then
+     ParamByName('PSG_OPTIONID').Asstring := edtSG_OPTIONID.text      else
+        ParamByName('PSG_OPTIONID').value := Null;
+
+        if (edtITEMORDER.text <> '') then
+     ParamByName('PITEM_ORDER').Asstring := edtITEMORDER.text      else
+        ParamByName('PITEM_ORDER').value := Null;
+
+         if (edtPageOrder.text <> '') then
+     ParamByName('PPAGEORDER').Asstring := edtPageOrder.text      else
+        ParamByName('PPAGEORDER').value := Null;
+
+       //  2/17/2016
+         if (edtItem_Version.text <> '') then
+     ParamByName('PITEM_VERSION').Asstring := edtItem_Version.text    else
+        ParamByName('PITEM_VERSION').value :=1;
+         if (edtViewName.text <> '') then
+       ParamByName('PVIEWNAME').Asstring := edtViewName.text    else
+          ParamByName('PVIEWNAME').value :=Null;
+
+   {
+             if (lu?.text <> '') then
+       ParamByName('PMAPTO_ITEM_ID').Asstring := edtViewName.text    else
+          ParamByName('PMAPTO_ITEM_ID').value :=Null;
+    }
+
+    ParamByName('PLABEL_METRIC').value :=  null ;
+    ParamByName('PLABELINSTRUCTION_METRIC').value :=  null ;
+     ParamByName('PINSERTONLY').AsInteger :=  1 ;
+     ParamByName('PCUSTOM').AsInteger :=  0 ;
+ Try
+     Execute;
+    //
+    s1 := ParamByName('VRETURNCODE').ASSTRING ;
+    s2 := ParamByName('VSEQ_ITEM').AsString ;
+    s3 :=  ParamByName('VSEQ_ITEMLABEL').AsString ;
+    s4 := ParamByName('VINSERT_UPDATE_ITEM').AsString ;
+    //
+    s5 := ParamByName('VINSERT_UPDATE_ITEMLABEL').AsString ;
+    //
+   Finally
+     memoLog.Lines.Add('vRETURNCODE: '+ s1);
+     memoLog.Lines.Add('VSEQ_ITEM: '+ s2);
+     memoLog.Lines.Add('VSEQ_ITEMLABEL: '+ s3);
+     memoLog.Lines.Add('VINSERT_UPDATE_ITEM: '+ s4);
+     memoLog.Lines.Add('VINSERT_UPDATE_ITEMLABEL: '+ s5);
+
+    DM_SurveyLibrary.dataItem.Refresh;
+    DM_SurveyLibrary.dataItem.Locate('item_id',s2,[]);
+
+   end;
+  end;
+end;
+
+procedure TfrmSurveyItemNew.ComboBox1Change(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmSurveyItemNew.DBComboBox1CloseUp(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmSurveyItemNew.FormActivate(Sender: TObject);
+begin
+ //    DM_SurveyLibrary.dataItem.Insert;
+
+end;
+
+procedure TfrmSurveyItemNew.LUItemType1CloseUp(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmSurveyItemNew.LUItemTypeCloseUp(Sender: TObject);
+begin
+
+end;
+
+end.
+

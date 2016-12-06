@@ -1,0 +1,201 @@
+unit Project;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, SynMemo, SynGutterBase, SynGutterMarks,
+  SynGutterLineNumber, SynGutterChanges, SynGutter, SynGutterCodeFolding,
+  TAStyles, TAGraph, TASeries, TARadialSeries, TASources, TADbSource, Forms,
+  Controls, Graphics, Dialogs, ComCtrls, DBGrids, DbCtrls, StdCtrls, ExtCtrls,
+  Arrow, DataModuleMain, db, process, Ora;
+
+type
+
+  { Tfrm_Project }
+
+  Tfrm_Project = class(TForm)
+    btn_AddProduct1: TButton;
+    btn_AllowProjEdit: TButton;
+    btn_OK: TButton;
+    btnSelectProjectOk: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
+    DataSource1: TDataSource;
+    DBCalendar1: TDBCalendar;
+    DBCheckBox_IsActive1: TDBCheckBox;
+    DBCheckBox_IsTest: TDBCheckBox;
+    DBCheckBox_IsActive: TDBCheckBox;
+    DBEdit_ProjectName: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBGrid1: TDBGrid;
+    DBGrid19: TDBGrid;
+    DBGrid20: TDBGrid;
+    DBGrid21: TDBGrid;
+    DBGrid5: TDBGrid;
+    DBGrid_Project: TDBGrid;
+    DBGrid4: TDBGrid;
+    DBListBox1: TDBListBox;
+    DBlu_ProjectStatus: TDBLookupComboBox;
+    DBMemo_ProjectNotes: TDBMemo;
+    DBNavigator_Acct12: TDBNavigator;
+    DBNavigator_Acct13: TDBNavigator;
+    DBNavigator_Acct16: TDBNavigator;
+    DBNavigator_Acct2: TDBNavigator;
+    DBNavigator_Project: TDBNavigator;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    labelOrg: TLabel;
+    lblStatus: TLabel;
+    labelAccount: TLabel;
+    labelProduct: TLabel;
+    labelProject: TLabel;
+    labelProject1: TLabel;
+    labelProduct2: TLabel;
+    lblStatus1: TLabel;
+    luStatus: TOraDataSource;
+    PageControl1: TPageControl;
+    pnl_projectselect: TPanel;
+    pnl_Top: TPanel;
+    pnl_Left: TPanel;
+    StatusBar2: TStatusBar;
+    SynMemo1: TSynMemo;
+    tbs_ConfigDefault: TTabSheet;
+    TabSheet6: TTabSheet;
+    tbs_ProjectSelect: TTabSheet;
+    procedure btnSelectProjectOkClick(Sender: TObject);
+    procedure btn_AddProductClick(Sender: TObject);
+    procedure btn_AllowProjEditClick(Sender: TObject);
+    procedure btn_Filter1Click(Sender: TObject);
+    procedure btn_OKClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure FormCreate(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  frm_Project: Tfrm_Project;
+
+implementation
+
+{$R *.lfm}
+
+{ Tfrm_Project }
+
+procedure Tfrm_Project.btn_Filter1Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.btn_AllowProjEditClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.btn_AddProductClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.btnSelectProjectOkClick(Sender: TObject);
+begin
+
+      DBGrid_Project.Enabled:= true;
+      DBGrid_Project.Visible:= false;
+       btnSelectProjectOk.visible := false ;
+end;
+
+procedure Tfrm_Project.btn_OKClick(Sender: TObject);
+begin
+
+
+end;
+
+procedure Tfrm_Project.Button1Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.Button3Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.Button5Click(Sender: TObject);
+begin
+
+
+end;
+
+procedure Tfrm_Project.Button6Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.Button7Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.Button9Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+
+  //labelProject.caption := 'PROJECT: '+ DM_Main.dataProject.fieldbyname('projectname').AsString ;
+  //labelProject1.caption := 'PROJECT: '+ DM_Main.dataProject.fieldbyname('projectname').AsString ;
+  //labelProduct.caption := 'PRODUCT: '+ DM_Main.dataProjectPRODUCTCODE.asString;
+  //labelProduct2.caption := labelProduct.caption;
+  //
+  //labelOrg.caption := 'ORGANIZATION: '+DM_Main.dataOrg_wProject.FieldByName('DisplayName').AsString;
+
+end;
+
+procedure Tfrm_Project.FormCreate(Sender: TObject);
+begin
+    With DM_Main do
+  begin
+
+    dataProject.active := true ;
+    dataProjectConfig_DEFAULT.Active := true ;
+     dataProjectConfig.Active := true ;
+
+    dataProjectConfig_SurveyItem_DEFAULT.active := true ;
+
+    // dataProjectConfig_HRA.active := true ;
+     dataProjectConfig_SurveyItem.active := true ;
+
+     labelAccount.caption := 'ACCOUNT: '+dataAccount.fieldbyName('AccountName').value ;
+
+
+    // tbs_ConfigDefault.TabVisible:= false;
+
+  end;
+   PageControl1.ActivePage := tbs_ProjectSelect;
+end;
+
+procedure Tfrm_Project.PageControl1Change(Sender: TObject);
+begin
+
+end;
+
+end.
+

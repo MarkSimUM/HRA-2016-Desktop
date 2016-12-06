@@ -1,0 +1,401 @@
+unit Project;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, SynMemo, SynGutterBase, SynGutterMarks,
+  SynGutterLineNumber, SynGutterChanges, SynGutter, SynGutterCodeFolding,
+  TAStyles, TAGraph, TASeries, TARadialSeries, TASources, TADbSource, Forms,
+  Controls, Graphics, Dialogs, ComCtrls, DBGrids, DbCtrls, StdCtrls, ExtCtrls,
+  Arrow, ButtonPanel, DataModuleMain, db, process, Ora, OraSmart, globals,
+  VirtualTable, datamoduleproject;
+
+type
+
+  { Tfrm_Project }
+
+  Tfrm_Project = class(TForm)
+    btnCancel: TButton;
+    btnSelectProjectOk: TButton;
+    btnSave: TButton;
+
+    Button5: TButton;
+    Button7: TButton;
+    chk_AutoAddOrg: TCheckBox;
+    chk_EvalAnalysis: TCheckBox;
+    chk_TestProject: TCheckBox;
+    chk_IsActive: TCheckBox;
+    DataSource1: TDataSource;
+    DBCalendar1: TDBCalendar;
+    DBGrid19: TDBGrid;
+    DBGrid20: TDBGrid;
+    DBGrid21: TDBGrid;
+    DBGrid5: TDBGrid;
+    DBGrid_Project: TDBGrid;
+    DBGrid4: TDBGrid;
+    DBLookup_ProductVersion: TDBLookupComboBox;
+    DBlu_ProjectStatus: TDBLookupComboBox;
+    DBNavigator_Acct12: TDBNavigator;
+    DBNavigator_Acct13: TDBNavigator;
+    DBNavigator_Acct16: TDBNavigator;
+    DBNavigator_Acct2: TDBNavigator;
+    edt_ProjectName: TEdit;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    labelProject2: TLabel;
+    labelAccount: TLabel;
+    lblStatus: TLabel;
+    lblProjectName: TLabel;
+    lblProduct: TLabel;
+    lblStatus5: TLabel;
+    luStatus: TOraDataSource;
+    memo_ProjectNotes: TMemo;
+    OraTable1: TOraTable;
+    PageControl1: TPageControl;
+    pnlHeader: TPanel;
+    pnl_Top: TPanel;
+    pnl_Left: TPanel;
+    StatusBar2: TStatusBar;
+    SynMemo1: TSynMemo;
+    tbNewProject: TTabSheet;
+    tbs_ConfigDefault: TTabSheet;
+    TabSheet6: TTabSheet;
+    VirtualTable1: TVirtualTable;
+    procedure btnSaveClick(Sender: TObject);
+    procedure btnSelectProjectOkClick(Sender: TObject);
+    procedure btn_AddProductClick(Sender: TObject);
+    procedure btn_AllowProjEditClick(Sender: TObject);
+    procedure btn_Filter1Click(Sender: TObject);
+    procedure btn_OKClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
+    procedure CRBatchMove1BatchMoveProgress(Sender: TObject; Percent: integer);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure DBLookup_ProductVersionChange(Sender: TObject);
+    procedure DBLookup_ProductVersionCloseUp(Sender: TObject);
+    procedure DBNavGlobalClick(Sender: TObject; Button: TDBNavButtonType);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormCreate(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
+    procedure tbNewProjectExit(Sender: TObject);
+    procedure VirtualTable1AfterEdit(DataSet: TDataSet);
+    procedure SaveProject();
+  private
+    { private declarations }
+  public
+    { public declarations }
+     product_ID : integer ;
+  end;
+
+var
+  frm_Project: Tfrm_Project;
+
+implementation
+
+{$R *.lfm}
+
+{ Tfrm_Project }
+
+procedure Tfrm_Project.btn_Filter1Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.btn_AllowProjEditClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.btn_AddProductClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.btnSelectProjectOkClick(Sender: TObject);
+begin
+
+      DBGrid_Project.Enabled:= true;
+      DBGrid_Project.Visible:= false;
+       btnSelectProjectOk.visible := false ;
+end;
+
+procedure Tfrm_Project.btnSaveClick(Sender: TObject);
+begin
+
+
+ SaveProject();
+
+end;
+
+procedure Tfrm_Project.btn_OKClick(Sender: TObject);
+begin
+
+
+end;
+
+procedure Tfrm_Project.Button1Click(Sender: TObject);
+begin
+  with DM_Project do
+  begin
+     countCurrentProject.active := false;
+     countCurrentProject.ParamByName('Account_ID').value := DM_MAIN.dataAccountACCOUNT_ID.value ;
+     countCurrentProject.ParamByName('Product_ID').value := 0 ;
+  end;
+end;
+
+procedure Tfrm_Project.Button3Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.Button5Click(Sender: TObject);
+begin
+
+
+end;
+
+procedure Tfrm_Project.Button6Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.Button7Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.Button9Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.CRBatchMove1BatchMoveProgress(Sender: TObject;
+  Percent: integer);
+begin
+
+end;
+
+procedure Tfrm_Project.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+
+  if (DM_Project.dataProject.fieldbyname('projectname').AsString <> '') AND
+      (DM_Project.dataProjectPRODUCTCODE.asString <> '') then
+  begin
+       btnSave.enabled := true;
+
+  end else
+         btnSave.enabled := false;
+
+  //labelProject.caption := 'PROJECT: '+ DM_Main.dataProject.fieldbyname('projectname').AsString ;
+  //labelProject1.caption := 'PROJECT: '+ DM_Main.dataProject.fieldbyname('projectname').AsString ;
+  //labelProduct.caption := 'PRODUCT: '+ DM_Main.dataProjectPRODUCTCODE.asString;
+  //labelProduct2.caption := labelProduct.caption;
+  //
+  //labelOrg.caption := 'ORGANIZATION: '+DM_Main.dataOrg_wProject.FieldByName('DisplayName').AsString;
+
+end;
+
+procedure Tfrm_Project.DBLookup_ProductVersionChange(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.DBLookup_ProductVersionCloseUp(Sender: TObject);
+var
+   iCount : integer ;
+begin
+    with DM_Project do
+  begin
+
+
+     if  dataProjectPRODUCTVERSION_ID.AsInteger > 0 then
+      begin
+      DBLookup_ProductVersion.ListSource.DataSet.Locate('productversion_id',  dataProjectPRODUCTVERSION_ID.AsInteger ,[]);
+      product_Id :=  DBLookup_ProductVersion.ListSource.DataSet.fieldbyname('product_id').asInteger;
+
+         countCurrentProject.active := false ;
+         countCurrentProject.ParamByName('Account_ID').value := DM_MAIN.dataAccountACCOUNT_ID.value ;
+         countCurrentProject.ParamByName('product_id').value := product_Id;
+         countCurrentProject.active := true ;
+         iCount := countCurrentProject.FieldByName('CurrentCount').asinteger ;
+         if iCount > 0 then
+          begin
+
+              if  MessageDlg('WARNING', 'Already an active Project using this Product...Ok or Cancel?'+ #13#10+' (recommend to cancel and make other project inactive)',mtWarning,[mbOk,mbCancel],0) = mrCancel then
+               begin
+                   dataProject.Cancel;
+                   close ;
+               end;
+           end;
+
+
+      end;
+  end;
+end;
+
+procedure Tfrm_Project.DBNavGlobalClick(Sender: TObject;
+  Button: TDBNavButtonType);
+var
+    bOk : boolean ;
+begin
+  if button = button.nbCancel then
+   begin
+    // ShowMessage('cancelling changes...');
+     ModalResult:= mrCancel;
+   end;
+   if button = button.nbPost then
+    begin
+     //ShowMessage('Saving new project...');
+      bOk := true ;
+     if DM_Main.dataProjectPROJECTNAME.asString = '' then
+      begin
+         ShowMessage('Complete project name');
+          bOk := false ;
+      end;
+     if bOk then
+      begin
+         ModalResult := mrOK;
+         globals.tProject_ID := DM_Main.dataProjectPROJECT_ID.AsInteger ;
+         globals.tAccount_ID := DM_Main.dataAccountACCOUNT_ID.asInteger ;
+
+      end;
+    end;
+
+
+end;
+
+procedure Tfrm_Project.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+
+end;
+
+procedure Tfrm_Project.FormCreate(Sender: TObject);
+begin
+    With DM_Project, DM_MAIN do
+  begin
+
+    dataProject.active := true ;
+    dataProjectConfig_DEFAULT.Active := true ;
+     dataProjectConfig.Active := true ;
+
+    dataSurvey_SurveyItem_DEFAULT.active := true ;
+
+    // dataProjectConfig_HRA.active := true ;
+     dataSurvey_SurveyItem.active := true ;
+
+     labelAccount.caption := 'ACCOUNT: '+dataAccount.fieldbyName('AccountName').value ;
+
+     DBlu_ProjectStatus.KeyValue:= 0; // not started
+      //virtualtable1.
+
+  end;
+   PageControl1.ActivePage := tbNewProject;
+end;
+
+procedure Tfrm_Project.PageControl1Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.tbNewProjectExit(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Project.VirtualTable1AfterEdit(DataSet: TDataSet);
+begin
+
+end;
+
+procedure Tfrm_Project.SaveProject();
+begin
+
+ //PR_UPSERT_PROJECT_V1(:PPROJECT_ID, :PACCOUNT_ID, :PACCOUNT_NAME, :PPROJECTNAME, :PISTEST, :PISACTIVE, :PISMULTIPRODUCT,
+ // :PISMULTIORG, :PSTATUS, :PLINKEDPROJECT_ID, :PCREATE_BY, :PPHASE, :PUNIQUEFIELDNAME, :PNOTES, :PPRODUCTVERSION_ID,
+ //:PPROJECTGROUP_ID, :PEVALANALYSIS_FLG, :PLOCKSETTINGS_FLG, :PAUTOADDNEWORG_FLG, :PPROJECT_START_DATE, :PPROJECT_END_DATE, \
+ // :PDELETE_FLG, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT);
+
+   // Validate
+
+   if edt_ProjectName.Text = '' then
+    begin
+     ShowMessage('Enter a project name');
+     exit ;
+    end;
+   if DBLookup_ProductVersion.KeyValue < 0 then
+    begin
+     ShowMessage('Enter a Product Version');
+     exit ;
+    end;
+
+if  MessageDlg ('Question', 'Save new project?', mtConfirmation,
+                  [mbYes, mbNo, mbIgnore],0) <> mrYes  then
+                  exit ;
+
+ with DM_Project, DM_MAIN do
+ begin
+   with sp_upsert_project_V1 do
+   begin
+     ParamByName('PACCOUNT_ID').value := dataAccount.fieldbyName('Account_ID').value ;
+   //  ParamByName('PACCOUNT_NAME').value := dataAccount.fieldbyName('AccountName').value ;
+     ParamByName('PPROJECTNAME').value := edt_ProjectName.text  ;
+     if chk_TestProject.checked then
+     ParamByName('PISTEST').value := 1 else
+        ParamByName('PISTEST').value := 0;
+     if chk_IsActive.checked then
+        ParamByName('PISACTIVE').value := 1 else
+       ParamByName('PISACTIVE').value := 0;
+
+     ParamByName('PISMULTIPRODUCT').value := 0;
+
+     ParamByName('PISMULTIORG').value := 1;
+     ParamByName('PSTATUS').value := DBlu_ProjectStatus.KeyValue;
+    // ParamByName('PLINKEDPROJECT_ID').value := ;
+    // ParamByName('PPHASE').value := ;
+    // ParamByName('PUNIQUEFIELDNAME').value := ;
+
+     ParamByName('PNOTES').value := memo_ProjectNotes.Text ;
+
+     ParamByName('PPRODUCTVERSION_ID').value := DBLookup_ProductVersion.KeyValue ;
+   //  ParamByName('PPROJECTGROUP_ID').value := ;
+
+     if chk_EvalAnalysis.checked then
+     ParamByName('PEVALANALYSIS_FLG').value := 1 else
+       ParamByName('PEVALANALYSIS_FLG').value := 0;
+
+     ParamByName('PLOCKSETTINGS_FLG').value := 0;
+
+        If chk_AutoAddOrg.checked then
+         ParamByName('PAUTOADDNEWORG_FLG').value := 1 else
+          ParamByName('PAUTOADDNEWORG_FLG').value := 0 ;
+
+    // ParamByName('PPROJECT_START_DATE').value := ;
+    // ParamByName('PPROJECT_END_DATE').value := ;
+     ParamByName('PDELETE_FLG').value := 0 ;
+
+     try
+     execute;
+
+     finally
+         ShowMessage(' Create new Project with PROJECT_ID: '+ParamByName('VSEQUENCENUM').AsString );
+         Close ;
+
+     end;
+
+   end;
+ end;
+
+
+end;
+
+end.
+

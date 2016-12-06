@@ -1,0 +1,267 @@
+unit ProjectConfigEdit;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
+  ExtCtrls, StdCtrls, DbCtrls, Buttons, EditBtn, DBGrids, Ora, DataModuleMain,
+  datamoduleproject, db, types;
+
+type
+
+  { Tfrm_ProjectConfigEdit }
+
+  Tfrm_ProjectConfigEdit = class(TForm)
+    DBCheckBox_ExtBio: TDBCheckBox;
+    DBEdit10: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBlu_ProjectConfigStatus: TDBLookupComboBox;
+    DBlu_ProjectConfigStatus1: TDBLookupComboBox;
+    DBlu_SurveyID: TDBLookupComboBox;
+    DBRadioGroup1: TDBRadioGroup;
+    DBText1: TDBText;
+    OrgName: TDBText;
+    BitBtn1: TBitBtn;
+    DateEdit_ReportBeg: TDateEdit;
+    DateEdit_ReportEnd: TDateEdit;
+    DateEdit_SurveyCloseDT: TDateEdit;
+    DateEdit_SurveyOpenDT: TDateEdit;
+    DBCheckBox_CustomItems: TDBCheckBox;
+    DBCheckBox_CustomItems1: TDBCheckBox;
+    DBCheckBox_CustomItems10: TDBCheckBox;
+    DBCheckBox_CustomItems11: TDBCheckBox;
+    DBCheckBox_CustomItems12: TDBCheckBox;
+    DBCheckBox_CustomItems13: TDBCheckBox;
+    DBCheckBox_CustomItems14: TDBCheckBox;
+    DBCheckBox_CustomItems15: TDBCheckBox;
+    DBCheckBox_CustomItems16: TDBCheckBox;
+    DBCheckBox_CustomItems17: TDBCheckBox;
+    DBCheckBox_CustomItems18: TDBCheckBox;
+    DBCheckBox_CustomItems19: TDBCheckBox;
+    DBCheckBox_CustomItems2: TDBCheckBox;
+    DBCheckBox_CustomItems20: TDBCheckBox;
+    DBCheckBox_CustomItems21: TDBCheckBox;
+    DBCheckBox_CustomItems22: TDBCheckBox;
+    DBCheckBox_CustomItems23: TDBCheckBox;
+    DBCheckBox_CustomItems3: TDBCheckBox;
+    DBCheckBox_CustomItems4: TDBCheckBox;
+    DBCheckBox_CustomItems5: TDBCheckBox;
+    DBCheckBox_CustomItems6: TDBCheckBox;
+    DBCheckBox_CustomItems7: TDBCheckBox;
+    DBCheckBox_CustomItems8: TDBCheckBox;
+    DBCheckBox_CustomItems9: TDBCheckBox;
+    DBCheckBox_ExtBio1: TDBCheckBox;
+    DBCheckBox_IsAnonymous: TDBCheckBox;
+    DBCheckBox_IsAnonymous1: TDBCheckBox;
+    DBCheckBox_IsAnonymous10: TDBCheckBox;
+    DBCheckBox_IsAnonymous11: TDBCheckBox;
+    DBCheckBox_IsAnonymous12: TDBCheckBox;
+    DBCheckBox_IsAnonymous13: TDBCheckBox;
+    DBCheckBox_IsAnonymous2: TDBCheckBox;
+    DBCheckBox_IsAnonymous3: TDBCheckBox;
+    DBCheckBox_IsAnonymous4: TDBCheckBox;
+    DBCheckBox_IsAnonymous5: TDBCheckBox;
+    DBCheckBox_IsAnonymous6: TDBCheckBox;
+    DBCheckBox_IsAnonymous7: TDBCheckBox;
+    DBCheckBox_IsAnonymous8: TDBCheckBox;
+    DBCheckBox_IsAnonymous9: TDBCheckBox;
+    DBEdit11: TDBEdit;
+    DBEdit12: TDBEdit;
+    DBEdit13: TDBEdit;
+    DBEdit14: TDBEdit;
+    DBEdit15: TDBEdit;
+    DBEdit16: TDBEdit;
+    DBEdit17: TDBEdit;
+    DBEdit18: TDBEdit;
+    DBEdit19: TDBEdit;
+    DBEdit20: TDBEdit;
+    DBEdit21: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBEdit8: TDBEdit;
+    DBGrid_ProjectConfig: TDBGrid;
+    DBlu_ProjectConfigStatus2: TDBLookupComboBox;
+    DBlu_ProjectConfigStatus3: TDBLookupComboBox;
+    DBlu_SurveyID1: TDBLookupComboBox;
+    DBNavGlobal: TDBNavigator;
+    DBRadioGroup2: TDBRadioGroup;
+    DBText2: TDBText;
+    AccountName: TDBText;
+    dsProjectConfig_Default: TDataSource;
+    lblStatus12: TLabel;
+    lblStatus13: TLabel;
+    lblStatus14: TLabel;
+    lblStatus15: TLabel;
+    lblStatus16: TLabel;
+    lblStatus17: TLabel;
+    lblStatus18: TLabel;
+    lblStatus19: TLabel;
+    lblStatus20: TLabel;
+    lblStatus21: TLabel;
+    lblStatus22: TLabel;
+    lblStatus23: TLabel;
+    lblStatus3: TLabel;
+    lblStatus30: TLabel;
+    lblStatus31: TLabel;
+    luStatus: TOraDataSource;
+    PageControl1: TPageControl;
+    Panel1: TPanel;
+    pnlDefault1: TPanel;
+    pnlHeader: TPanel;
+    StatusBar1: TStatusBar;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure btn_DisplayOptionsClick(Sender: TObject);
+    procedure DateEdit_SurveyCloseDTAcceptDate(Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean);
+    procedure DateEdit_SurveyOpenDTAcceptDate(Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean);
+    procedure DBCheckBox_IsAnonymous2Change(Sender: TObject);
+    procedure dsProjectConfig_DefaultDataChange(Sender: TObject; Field: TField);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure pnlHeaderClick(Sender: TObject);
+    procedure tbConfigContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  frm_ProjectConfigEdit: Tfrm_ProjectConfigEdit;
+
+implementation
+
+{$R *.lfm}
+
+{ Tfrm_ProjectConfigEdit }
+
+procedure Tfrm_ProjectConfigEdit.pnlHeaderClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectConfigEdit.btn_DisplayOptionsClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectConfigEdit.DateEdit_SurveyCloseDTAcceptDate(
+  Sender: TObject; var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+    With DM_Project, DM_Project.sqlProjectConfig_OrgInfo do
+  begin
+     if NOT( State IN [dsEdit]) then
+         Edit ;
+
+      FieldByName('SURVEY_CLOSEDT').AsDateTime := ADate ;
+
+
+  end;
+
+end;
+
+procedure Tfrm_ProjectConfigEdit.DateEdit_SurveyOpenDTAcceptDate(
+  Sender: TObject; var ADate: TDateTime; var AcceptDate: Boolean);
+begin
+  With DM_Project, DM_Project.sqlProjectConfig_OrgInfo do
+  begin
+     if NOT( State IN [dsEdit]) then
+         Edit ;
+         FieldByName('SURVEY_OPENDT').AsDateTime := ADate ;
+
+
+  end;
+end;
+
+procedure Tfrm_ProjectConfigEdit.DBCheckBox_IsAnonymous2Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectConfigEdit.dsProjectConfig_DefaultDataChange(
+  Sender: TObject; Field: TField);
+var Proj_pvID, default_pvID, org_pvID, pvID : integer ;
+begin
+with DM_Main, DM_Project, DM_PROJECT.dataProjectConfig_Default do
+begin
+
+  //  DateEdit_SurveyOpenDT.Date := FieldByName('SURVEY_OPENDT').AsDateTime;
+  //  DateEdit_SurveyCloseDT.date := FieldByName('SURVEY_CLOSEDT').AsDateTime;
+
+   proj_pvID := dataProjectPRODUCTVERSION_ID.asInteger ;
+   default_pvID := fieldbyName('ProductVersion_ID').asInteger ;
+ //   org_pvID := dataProjectConfigPRODUCTVERSION_ID.AsInteger;
+
+  //  if org_pvID > 0 then
+  //     pvID := org_pvID else
+    if default_pvID > 0 then
+       pvID := default_pvID else
+       pvID := proj_PVID;
+
+   luSurveyID.active := false ;
+   luSurveyID.ParamByName('productversion_id').value := dataProjectPRODUCTVERSION_ID.AsInteger;
+   luSurveyID.active := true ;
+
+  // rg_WLGHPQ.ItemIndex:= FieldByName('Survey_WLG_HPQ').AsInteger ;
+
+ //  if pvID <>  lu_SurveyTemplate.ParamByName('productversion_id').asInteger then
+ //  begin
+     lu_surveyTemplate.Active := false ;
+     lu_SurveyTemplate.ParamByName('productversion_id').asInteger :=   dataProjectPRODUCTVERSION_ID.asInteger   ;
+     lu_surveyTemplate.Active := true ;
+
+ //  end;
+
+end;
+
+end;
+
+procedure Tfrm_ProjectConfigEdit.FormActivate(Sender: TObject);
+begin
+
+
+end;
+
+procedure Tfrm_ProjectConfigEdit.FormCreate(Sender: TObject);
+begin
+
+ WITH DM_Project.sqlProjectConfig_OrgInfo do
+ begin;
+   DateEdit_SurveyOpenDT.Date := FieldByName('Survey_OpenDT').AsDateTime;
+   DateEdit_SurveyCloseDT.Date :=   FieldByName('Survey_CloseDT').AsDateTime;
+
+  { ShowMessage('Org Name: '+DM_Main.dataOrganizationORGNAME.AsString );
+   ShowMessage('Proj: '+  DM_Project.dataProjectPROJECT_ID.AsString );
+   ShowMessage('Default Count'+   inttostr(DM_Project.dataProjectConfig_Default.RecordCount) );
+   }
+   DM_Main.luStatus.Active:= true ;
+
+    DM_Project.luSurveyID.Active:=  true ;
+   //  DBlu_ProjectConfigStatus
+
+ end;
+end;
+
+procedure Tfrm_ProjectConfigEdit.BitBtn1Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_ProjectConfigEdit.tbConfigContextPopup(Sender: TObject;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+
+end;
+
+end.
+

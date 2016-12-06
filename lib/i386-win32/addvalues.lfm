@@ -1,0 +1,499 @@
+object frm_AddValues: Tfrm_AddValues
+  Left = 406
+  Height = 583
+  Top = 476
+  Width = 934
+  Caption = 'Add values'
+  ClientHeight = 583
+  ClientWidth = 934
+  LCLVersion = '1.2.6.0'
+  object DBText1: TDBText
+    Left = 151
+    Height = 15
+    Top = 60
+    Width = 43
+    ParentColor = False
+  end
+  object DBEdit1: TDBEdit
+    Left = 153
+    Height = 23
+    Top = 87
+    Width = 184
+    DataField = 'CORESET'
+    DataSource = OraDataSource1
+    CharCase = ecNormal
+    MaxLength = 50
+    TabOrder = 0
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 160
+    Height = 25
+    Top = 192
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    Options = []
+    TabOrder = 1
+  end
+  object DBMemo1: TDBMemo
+    Left = 437
+    Height = 90
+    Top = 90
+    Width = 150
+    TabOrder = 2
+  end
+  object DBLookupListBox1: TDBLookupListBox
+    Left = 651
+    Height = 80
+    Top = 108
+    Width = 100
+    ListFieldIndex = 0
+    LookupCache = False
+    TabOrder = 3
+  end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 633
+    Height = 23
+    Top = 253
+    Width = 100
+    ListFieldIndex = 0
+    LookupCache = False
+    TabOrder = 4
+  end
+  object DBGrid1: TDBGrid
+    Left = 296
+    Height = 184
+    Top = 368
+    Width = 513
+    Color = clWindow
+    Columns = <>
+    DataSource = OraDataSource1
+    TabOrder = 5
+  end
+  object SmartQuery1: TSmartQuery
+    Expand = True
+    Session = DM_Main.OraSession1
+    SQL.Strings = (
+      'SELECT Item_ID, fieldname FROM SLIB_ITEM'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Active = True
+    FilterOptions = []
+    left = 142
+    top = 265
+    object SmartQuery1ITEM_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEM_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object SmartQuery1FIELDNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'FIELDNAME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object OraDataSource1: TOraDataSource
+    DataSet = OraTable1
+    left = 164
+    top = 342
+  end
+  object OraTable1: TOraTable
+    TableName = 'HMRCCENTRAL.SLIB_ITEM'
+    KeyFields = 'ROWID'
+    Session = DM_Main.OraSession1
+    Active = True
+    FilterOptions = []
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    left = 61
+    top = 386
+    object OraTable1ROWID: TStringField
+      DisplayWidth = 18
+      FieldKind = fkData
+      FieldName = 'ROWID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Visible = False
+      Size = 18
+    end
+    object OraTable1ITEM_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEM_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1ITEMLINK_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMLINK_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1ORGANIZATION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ORGANIZATION_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1ITEMTYPE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMTYPE_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1STDCATEGORY_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STDCATEGORY_ID'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1COPYFROMSTDCATEGORY: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'COPYFROMSTDCATEGORY'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1DESCRIPTION: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'DESCRIPTION'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object OraTable1FIELDNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'FIELDNAME'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object OraTable1VARNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'VARNAME'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object OraTable1TABLENAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'TABLENAME'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object OraTable1DATA_FIELDNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DATA_FIELDNAME'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object OraTable1DATA_POSITION: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATA_POSITION'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1ISSCALE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISSCALE'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1ISCUSTOM: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISCUSTOM'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1MEASUREMENTUNIT: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MEASUREMENTUNIT'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1TAGS: TStringField
+      DisplayWidth = 4000
+      FieldKind = fkData
+      FieldName = 'TAGS'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4000
+    end
+    object OraTable1NOTES: TStringField
+      DisplayWidth = 4000
+      FieldKind = fkData
+      FieldName = 'NOTES'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4000
+    end
+    object OraTable1CREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OraTable1CREATED_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATED_BY'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object OraTable1DOMAIN: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DOMAIN'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object OraTable1DOMAINORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DOMAINORDER'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1ISCALCULATED: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISCALCULATED'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object OraTable1TABLENAMELEGACY: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'TABLENAMELEGACY'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object OraTable1MINVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MINVALUE'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object OraTable1MAXVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MAXVALUE'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object OraTable1STDORDER: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STDORDER'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OraTable1CORESET: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CORESET'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

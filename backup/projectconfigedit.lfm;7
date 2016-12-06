@@ -1,0 +1,1380 @@
+object frm_ProjectConfigEdit: Tfrm_ProjectConfigEdit
+  Left = 302
+  Height = 557
+  Top = 537
+  Width = 903
+  Caption = 'Project Configuration for Org:'
+  ClientHeight = 557
+  ClientWidth = 903
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  LCLVersion = '1.2.6.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 534
+    Width = 903
+    Panels = <>
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 418
+    Top = 48
+    Width = 903
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'Config Main'
+      ClientHeight = 390
+      ClientWidth = 895
+      object DBlu_ProjectConfigStatus: TDBLookupComboBox
+        Left = 40
+        Height = 23
+        Top = 48
+        Width = 208
+        Color = clGradientInactiveCaption
+        DataField = 'STATUS_ID'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        KeyField = 'STATUS_ID'
+        ListField = 'DESCRIPTION'
+        ListFieldIndex = 0
+        ListSource = luStatus
+        LookupCache = False
+        ReadOnly = True
+        TabOrder = 0
+      end
+      object lblStatus3: TLabel
+        Left = 40
+        Height = 15
+        Top = 8
+        Width = 121
+        Caption = 'Project Config STATUS'
+        ParentColor = False
+      end
+      object lblStatus14: TLabel
+        Left = 280
+        Height = 15
+        Top = 8
+        Width = 74
+        Caption = 'Time Series ID'
+        ParentColor = False
+      end
+      object DBEdit5: TDBEdit
+        Left = 288
+        Height = 23
+        Top = 24
+        Width = 56
+        DataField = 'TIMESERIES_ID'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object lblStatus16: TLabel
+        Left = 440
+        Height = 15
+        Top = 8
+        Width = 57
+        Caption = 'Time Zone'
+        ParentColor = False
+      end
+      object DBEdit7: TDBEdit
+        Left = 424
+        Height = 23
+        Top = 48
+        Width = 131
+        DataField = 'TIMEZONE'
+        DataSource = DM_Project.dsProjectConfig_Default
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clGradientInactiveCaption
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 2
+      end
+      object lblStatus18: TLabel
+        Left = 416
+        Height = 15
+        Top = 80
+        Width = 178
+        Caption = 'Survey Lockout Days (183 default)'
+        ParentColor = False
+      end
+      object DBEdit9: TDBEdit
+        Left = 456
+        Height = 23
+        Top = 120
+        Width = 67
+        DataField = 'SURVEY_LOCKOUT_DAYS'
+        DataSource = DM_Project.dsProjectConfig_Default
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clGradientInactiveCaption
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 3
+      end
+      object DateEdit_SurveyCloseDT: TDateEdit
+        Left = 200
+        Height = 23
+        Top = 96
+        Width = 131
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        OnAcceptDate = DateEdit_SurveyCloseDTAcceptDate
+        OKCaption = 'OK'
+        CancelCaption = 'Cancel'
+        DateOrder = doNone
+        ButtonWidth = 23
+        CharCase = ecNormal
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 4
+      end
+      object lblStatus13: TLabel
+        Left = 208
+        Height = 15
+        Top = 80
+        Width = 94
+        Caption = 'Survey Close Date'
+        ParentColor = False
+      end
+      object DateEdit_SurveyOpenDT: TDateEdit
+        Left = 48
+        Height = 23
+        Top = 96
+        Width = 131
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        OnAcceptDate = DateEdit_SurveyOpenDTAcceptDate
+        OKCaption = 'OK'
+        CancelCaption = 'Cancel'
+        DateOrder = doNone
+        ButtonWidth = 23
+        CharCase = ecNormal
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 5
+      end
+      object lblStatus12: TLabel
+        Left = 46
+        Height = 15
+        Top = 80
+        Width = 94
+        Caption = 'Survey Open Date'
+        ParentColor = False
+      end
+      object DBEdit4: TDBEdit
+        Left = 46
+        Height = 23
+        Top = 120
+        Width = 131
+        DataField = 'SURVEY_OPENDT'
+        DataSource = DM_Project.dsProjectConfig_Default
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clGradientInactiveCaption
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 6
+      end
+      object DBEdit3: TDBEdit
+        Left = 200
+        Height = 23
+        Top = 120
+        Width = 131
+        DataField = 'SURVEY_CLOSEDT'
+        DataSource = DM_Project.dsProjectConfig_Default
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clGradientInactiveCaption
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 7
+      end
+      object lblStatus30: TLabel
+        Left = 46
+        Height = 15
+        Top = 152
+        Width = 92
+        Caption = 'Survey Link (URL)'
+        ParentColor = False
+      end
+      object DBlu_SurveyID: TDBLookupComboBox
+        Left = 48
+        Height = 23
+        Top = 192
+        Width = 208
+        Color = clGradientInactiveCaption
+        DataField = 'SURVEY_ID'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        KeyField = 'SURVEY_ID'
+        ListField = 'SURVEYNAME'
+        ListFieldIndex = 0
+        ListSource = DM_Project.ds_luSurveyID
+        LookupCache = False
+        ReadOnly = True
+        TabOrder = 8
+      end
+      object lblStatus31: TLabel
+        Left = 46
+        Height = 15
+        Top = 224
+        Width = 181
+        Caption = 'Survey Link (double-click to open)'
+        ParentColor = False
+      end
+      object DBText1: TDBText
+        Left = 56
+        Height = 17
+        Top = 272
+        Width = 52
+        DataField = 'SURVEYURL'
+        DataSource = DM_Project.dsSurveyID_Default
+        Enabled = False
+        Font.Color = clBackground
+        Font.Height = -13
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblStatus21: TLabel
+        Left = 304
+        Height = 15
+        Top = 152
+        Width = 124
+        Caption = 'Survey Template to Use'
+        ParentColor = False
+      end
+      object DBlu_ProjectConfigStatus1: TDBLookupComboBox
+        Left = 280
+        Height = 23
+        Top = 192
+        Width = 208
+        Color = clGradientInactiveCaption
+        DataField = 'SURVEYTEMPLATE_ID'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        KeyField = 'SURVEYTEMPLATE_ID'
+        ListField = 'TEMPLATENAME'
+        ListFieldIndex = 0
+        ListSource = DM_Main.ds_LUSurveyTemplate
+        LookupCache = False
+        ReadOnly = True
+        TabOrder = 9
+      end
+      object lblStatus19: TLabel
+        Left = 46
+        Height = 15
+        Top = 304
+        Width = 97
+        Caption = 'Survey Return URL'
+        ParentColor = False
+      end
+      object DBEdit10: TDBEdit
+        Left = 48
+        Height = 23
+        Top = 344
+        Width = 464
+        DataField = 'SURVEY_RETURN_URL'
+        DataSource = DM_Project.dsProjectConfig_Default
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clGradientInactiveCaption
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 10
+      end
+      object DBCheckBox_ExtBio: TDBCheckBox
+        Left = 560
+        Height = 23
+        Top = 144
+        Width = 240
+        Caption = 'Display Extended Biometrics (default)'
+        Color = clGradientInactiveCaption
+        DataField = 'SURVEY_EXTBIOMETRICS_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 11
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBEdit6: TDBEdit
+        Left = 200
+        Height = 23
+        Top = 96
+        Width = 131
+        DataField = 'SURVEY_CLOSEDT'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clMoneyGreen
+        MaxLength = 0
+        TabOrder = 12
+      end
+      object DBEdit8: TDBEdit
+        Left = 48
+        Height = 23
+        Top = 96
+        Width = 131
+        DataField = 'SURVEY_OPENDT'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        ReadOnly = True
+        CharCase = ecNormal
+        Color = clMoneyGreen
+        MaxLength = 0
+        TabOrder = 13
+      end
+      object DBEdit11: TDBEdit
+        Left = 456
+        Height = 23
+        Top = 96
+        Width = 67
+        DataField = 'SURVEY_LOCKOUT_DAYS'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        Color = clMoneyGreen
+        MaxLength = 0
+        TabOrder = 14
+      end
+      object DBEdit12: TDBEdit
+        Left = 424
+        Height = 23
+        Top = 24
+        Width = 131
+        DataField = 'TIMEZONE'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 15
+      end
+      object DBlu_ProjectConfigStatus2: TDBLookupComboBox
+        Left = 40
+        Height = 23
+        Top = 24
+        Width = 208
+        DataField = 'STATUS_ID'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        KeyField = 'STATUS_ID'
+        ListField = 'DESCRIPTION'
+        ListFieldIndex = 0
+        ListSource = luStatus
+        LookupCache = False
+        TabOrder = 16
+      end
+      object DBlu_SurveyID1: TDBLookupComboBox
+        Left = 46
+        Height = 23
+        Top = 168
+        Width = 208
+        Color = clMoneyGreen
+        DataField = 'SURVEY_ID'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        KeyField = 'SURVEY_ID'
+        ListField = 'SURVEYNAME'
+        ListFieldIndex = 0
+        ListSource = DM_Project.ds_luSurveyID
+        LookupCache = False
+        TabOrder = 17
+      end
+      object DBText2: TDBText
+        Left = 56
+        Height = 17
+        Top = 248
+        Width = 52
+        DataField = 'SURVEYURL'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clBackground
+        Font.Height = -13
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBEdit13: TDBEdit
+        Left = 48
+        Height = 23
+        Top = 320
+        Width = 464
+        DataField = 'SURVEY_RETURN_URL'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        Color = clMoneyGreen
+        MaxLength = 0
+        TabOrder = 18
+      end
+      object DBCheckBox_ExtBio1: TDBCheckBox
+        Left = 560
+        Height = 23
+        Top = 120
+        Width = 168
+        Caption = 'Display Extended Biometrics'
+        Color = clMoneyGreen
+        DataField = 'SURVEY_EXTBIOMETRICS_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 19
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBlu_ProjectConfigStatus3: TDBLookupComboBox
+        Left = 280
+        Height = 23
+        Top = 168
+        Width = 208
+        Color = clMoneyGreen
+        DataField = 'SURVEYTEMPLATE_ID'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        KeyField = 'SURVEYTEMPLATE_ID'
+        ListField = 'TEMPLATENAME'
+        ListFieldIndex = 0
+        ListSource = DM_Main.ds_LUSurveyTemplate
+        LookupCache = False
+        TabOrder = 20
+      end
+      object DBRadioGroup1: TDBRadioGroup
+        Left = 559
+        Height = 56
+        Top = 240
+        Width = 185
+        Caption = 'WLG or HPQ (default)'
+        Columns = 3
+        DataField = 'Survey_WLG_HPQ'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Items.Strings = (
+          'None'
+          'WLG'
+          'HPQ'
+        )
+        TabOrder = 21
+        Values.Strings = (
+          '0'
+          '1'
+          '2'
+        )
+      end
+      object DBRadioGroup2: TDBRadioGroup
+        Left = 559
+        Height = 56
+        Top = 184
+        Width = 185
+        Caption = 'WLG or HPQ'
+        Columns = 3
+        DataField = 'Survey_WLG_HPQ'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Items.Strings = (
+          'None'
+          'WLG'
+          'HPQ'
+        )
+        TabOrder = 22
+        Values.Strings = (
+          '0'
+          '1'
+          '2'
+        )
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Survey'
+      ClientHeight = 390
+      ClientWidth = 895
+      object DBCheckBox_CustomItems4: TDBCheckBox
+        Left = 48
+        Height = 23
+        Top = 24
+        Width = 168
+        Caption = 'Spouse Eligible'
+        Color = clGray
+        DataField = 'SURVEY_SPOUSEELIGIBLE_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 0
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems8: TDBCheckBox
+        Left = 48
+        Height = 23
+        Top = 72
+        Width = 168
+        Caption = 'Client Hosted Survey'
+        Color = clGray
+        DataField = 'SURVEYTYPE_CLIENTHOSTED_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 1
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems2: TDBCheckBox
+        Left = 48
+        Height = 23
+        Top = 96
+        Width = 168
+        Caption = 'Multi-Language Survey'
+        Color = clGray
+        DataField = 'SURVEY_LANGUAGES_MULTI_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 2
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems9: TDBCheckBox
+        Left = 48
+        Height = 23
+        Top = 120
+        Width = 124
+        Caption = 'Web Survey'
+        Color = clGray
+        DataField = 'SURVEYTYPE_WEB_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 3
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems10: TDBCheckBox
+        Left = 48
+        Height = 23
+        Top = 144
+        Width = 96
+        Caption = 'Paper Survey'
+        Color = clGray
+        DataField = 'SURVEYTYPE_PAPER_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 4
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems12: TDBCheckBox
+        Left = 72
+        Height = 23
+        Top = 168
+        Width = 96
+        Caption = 'BRE'
+        Color = clGray
+        DataField = 'PAPER_BRE_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 5
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems13: TDBCheckBox
+        Left = 72
+        Height = 23
+        Top = 192
+        Width = 88
+        Caption = 'Bulk Return'
+        Color = clGray
+        DataField = 'PAPER_BULKRETURN_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 6
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous: TDBCheckBox
+        Left = 56
+        Height = 23
+        Top = 256
+        Width = 136
+        Caption = 'Is Anonymous Survey'
+        Color = clGray
+        DataField = 'SURVEY_ANONYMOUS_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 7
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object lblStatus17: TLabel
+        Left = 48
+        Height = 15
+        Top = 304
+        Width = 124
+        Caption = 'Survey Group Password'
+        ParentColor = False
+      end
+      object DBEdit14: TDBEdit
+        Left = 48
+        Height = 23
+        Top = 328
+        Width = 144
+        DataField = 'SURVEY_GROUPPW'
+        DataSource = DM_Project.dsProjectConfig_Default
+        CharCase = ecNormal
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 8
+      end
+      object DBCheckBox_CustomItems6: TDBCheckBox
+        Left = 448
+        Height = 23
+        Top = 144
+        Width = 168
+        Caption = 'Custom Survey CSS'
+        Color = clGray
+        DataField = 'SURVEYLOOK_CUSTOMCSS_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 9
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems5: TDBCheckBox
+        Left = 448
+        Height = 23
+        Top = 120
+        Width = 168
+        Caption = 'Custom Survey Look'
+        Color = clGray
+        DataField = 'SURVEYLOOK_CUSTOM_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 10
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems7: TDBCheckBox
+        Left = 448
+        Height = 23
+        Top = 96
+        Width = 168
+        Caption = 'Hide HMRC Logo'
+        Color = clGray
+        DataField = 'SURVEYLOOK_HMRCLOGO_HIDE_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 11
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems3: TDBCheckBox
+        Left = 448
+        Height = 23
+        Top = 72
+        Width = 168
+        Caption = 'Has Privacy Statement'
+        Color = clGray
+        DataField = 'SURVEY_PRIVACYSTATEMENT_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 12
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems: TDBCheckBox
+        Left = 440
+        Height = 23
+        Top = 24
+        Width = 168
+        Caption = 'Has Custom Question Items'
+        Color = clGray
+        DataField = 'SURVEY_CUSTOMITEMS_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 13
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBEdit15: TDBEdit
+        Left = 455
+        Height = 23
+        Top = 320
+        Width = 185
+        DataField = 'SURVEY_CUSTOMLOGO_FILENAME'
+        DataSource = DM_Project.dsProjectConfig_Default
+        CharCase = ecNormal
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 14
+      end
+      object lblStatus15: TLabel
+        Left = 448
+        Height = 15
+        Top = 304
+        Width = 125
+        Caption = 'Custom Logo FileName'
+        ParentColor = False
+      end
+      object DBCheckBox_CustomItems11: TDBCheckBox
+        Left = 208
+        Height = 23
+        Top = 24
+        Width = 168
+        Caption = 'Spouse Eligible'
+        Color = clGray
+        DataField = 'SURVEY_SPOUSEELIGIBLE_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 15
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems14: TDBCheckBox
+        Left = 208
+        Height = 23
+        Top = 72
+        Width = 168
+        Caption = 'Client Hosted Survey'
+        Color = clGray
+        DataField = 'SURVEYTYPE_CLIENTHOSTED_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 16
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems15: TDBCheckBox
+        Left = 208
+        Height = 23
+        Top = 96
+        Width = 168
+        Caption = 'Multi-Language Survey'
+        Color = clGray
+        DataField = 'SURVEY_LANGUAGES_MULTI_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 17
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems16: TDBCheckBox
+        Left = 208
+        Height = 23
+        Top = 120
+        Width = 124
+        Caption = 'Web Survey'
+        Color = clGray
+        DataField = 'SURVEYTYPE_WEB_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 18
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems17: TDBCheckBox
+        Left = 208
+        Height = 23
+        Top = 144
+        Width = 96
+        Caption = 'Paper Survey'
+        Color = clGray
+        DataField = 'SURVEYTYPE_PAPER_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 19
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems18: TDBCheckBox
+        Left = 232
+        Height = 23
+        Top = 168
+        Width = 96
+        Caption = 'BRE'
+        Color = clGray
+        DataField = 'PAPER_BRE_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 20
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems19: TDBCheckBox
+        Left = 232
+        Height = 23
+        Top = 192
+        Width = 88
+        Caption = 'Bulk Return'
+        Color = clGray
+        DataField = 'PAPER_BULKRETURN_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 21
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous1: TDBCheckBox
+        Left = 216
+        Height = 23
+        Top = 256
+        Width = 136
+        Caption = 'Is Anonymous Survey'
+        Color = clGray
+        DataField = 'SURVEY_ANONYMOUS_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 22
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object lblStatus20: TLabel
+        Left = 208
+        Height = 15
+        Top = 304
+        Width = 124
+        Caption = 'Survey Group Password'
+        ParentColor = False
+      end
+      object DBEdit16: TDBEdit
+        Left = 208
+        Height = 23
+        Top = 328
+        Width = 152
+        DataField = 'SURVEY_GROUPPW'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 23
+      end
+      object DBCheckBox_CustomItems1: TDBCheckBox
+        Left = 640
+        Height = 23
+        Top = 24
+        Width = 168
+        Caption = 'Has Custom Question Items'
+        Color = clGray
+        DataField = 'SURVEY_CUSTOMITEMS_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 24
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems20: TDBCheckBox
+        Left = 648
+        Height = 23
+        Top = 72
+        Width = 168
+        Caption = 'Has Privacy Statement'
+        Color = clGray
+        DataField = 'SURVEY_PRIVACYSTATEMENT_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 25
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems21: TDBCheckBox
+        Left = 648
+        Height = 23
+        Top = 96
+        Width = 168
+        Caption = 'Hide HMRC Logo'
+        Color = clGray
+        DataField = 'SURVEYLOOK_HMRCLOGO_HIDE_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 26
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems22: TDBCheckBox
+        Left = 648
+        Height = 23
+        Top = 120
+        Width = 168
+        Caption = 'Custom Survey Look'
+        Color = clGray
+        DataField = 'SURVEYLOOK_CUSTOM_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 27
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_CustomItems23: TDBCheckBox
+        Left = 648
+        Height = 23
+        Top = 144
+        Width = 168
+        Caption = 'Custom Survey CSS'
+        Color = clGray
+        DataField = 'SURVEYLOOK_CUSTOMCSS_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 28
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBEdit17: TDBEdit
+        Left = 655
+        Height = 23
+        Top = 320
+        Width = 185
+        DataField = 'SURVEY_CUSTOMLOGO_FILENAME'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 29
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Report'
+      ClientHeight = 390
+      ClientWidth = 895
+      object DBCheckBox_IsAnonymous2: TDBCheckBox
+        Left = 56
+        Height = 23
+        Top = 48
+        Width = 91
+        Caption = 'Benchmark '
+        Color = clGray
+        DataField = 'RPTAGG_BENCHMARK_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        OnChange = DBCheckBox_IsAnonymous2Change
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 0
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous3: TDBCheckBox
+        Left = 168
+        Height = 23
+        Top = 48
+        Width = 88
+        Caption = 'Biometric'
+        Color = clGray
+        DataField = 'RPTAGG_BIOMETRIC_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 1
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous5: TDBCheckBox
+        Left = 56
+        Height = 23
+        Top = 88
+        Width = 88
+        Caption = 'T1 T2'
+        Color = clGray
+        DataField = 'RPTAGG_T1T2_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 2
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous4: TDBCheckBox
+        Left = 168
+        Height = 23
+        Top = 88
+        Width = 96
+        Caption = 'P1 P2'
+        Color = clGray
+        DataField = 'RPTAGG_P1P2_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 3
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous6: TDBCheckBox
+        Left = 59
+        Height = 23
+        Top = 128
+        Width = 88
+        Caption = 'T1 T3'
+        Color = clGray
+        DataField = 'RPTAGG_T1T3_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 4
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous7: TDBCheckBox
+        Left = 168
+        Height = 23
+        Top = 128
+        Width = 88
+        Caption = 'P1 P3'
+        Color = clGray
+        DataField = 'RPTAGG_P1P3_FLG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        Enabled = False
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 5
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object lblStatus22: TLabel
+        Left = 32
+        Height = 15
+        Top = 168
+        Width = 135
+        Caption = 'Report Time Period Begin'
+        Enabled = False
+        ParentColor = False
+      end
+      object lblStatus23: TLabel
+        Left = 206
+        Height = 15
+        Top = 168
+        Width = 125
+        Caption = 'Report Time Period End'
+        Enabled = False
+        ParentColor = False
+      end
+      object DateEdit_ReportBeg: TDateEdit
+        Left = 408
+        Height = 23
+        Top = 200
+        Width = 131
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        OnAcceptDate = DateEdit_SurveyOpenDTAcceptDate
+        OKCaption = 'OK'
+        CancelCaption = 'Cancel'
+        DateOrder = doNone
+        ButtonWidth = 23
+        CharCase = ecNormal
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 6
+      end
+      object DateEdit_ReportEnd: TDateEdit
+        Left = 576
+        Height = 23
+        Top = 200
+        Width = 131
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        OnAcceptDate = DateEdit_SurveyCloseDTAcceptDate
+        OKCaption = 'OK'
+        CancelCaption = 'Cancel'
+        DateOrder = doNone
+        ButtonWidth = 23
+        CharCase = ecNormal
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 7
+      end
+      object DBEdit18: TDBEdit
+        Left = 36
+        Height = 23
+        Top = 200
+        Width = 131
+        DataField = 'RPTAGG_DATE_BEG'
+        DataSource = DM_Project.dsProjectConfig_Default
+        CharCase = ecNormal
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 8
+      end
+      object DBEdit19: TDBEdit
+        Left = 184
+        Height = 23
+        Top = 200
+        Width = 131
+        DataField = 'RPTAGG_DATE_END'
+        DataSource = DM_Project.dsProjectConfig_Default
+        CharCase = ecNormal
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 9
+      end
+      object DBCheckBox_IsAnonymous8: TDBCheckBox
+        Left = 464
+        Height = 23
+        Top = 48
+        Width = 91
+        Caption = 'Benchmark '
+        Color = clGray
+        DataField = 'RPTAGG_BENCHMARK_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 10
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous9: TDBCheckBox
+        Left = 568
+        Height = 23
+        Top = 48
+        Width = 88
+        Caption = 'Biometric'
+        Color = clGray
+        DataField = 'RPTAGG_BIOMETRIC_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 11
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous10: TDBCheckBox
+        Left = 467
+        Height = 23
+        Top = 96
+        Width = 88
+        Caption = 'T1 T2'
+        Color = clGray
+        DataField = 'RPTAGG_T1T2_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 12
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous11: TDBCheckBox
+        Left = 568
+        Height = 23
+        Top = 96
+        Width = 96
+        Caption = 'P1 P2'
+        Color = clGray
+        DataField = 'RPTAGG_P1P2_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 13
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous12: TDBCheckBox
+        Left = 467
+        Height = 23
+        Top = 128
+        Width = 88
+        Caption = 'T1 T3'
+        Color = clGray
+        DataField = 'RPTAGG_T1T3_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 14
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBCheckBox_IsAnonymous13: TDBCheckBox
+        Left = 568
+        Height = 23
+        Top = 128
+        Width = 88
+        Caption = 'P1 P3'
+        Color = clGray
+        DataField = 'RPTAGG_P1P3_FLG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        Font.Color = clGreen
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 15
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+      end
+      object DBEdit20: TDBEdit
+        Left = 408
+        Height = 23
+        Top = 200
+        Width = 131
+        DataField = 'RPTAGG_DATE_BEG'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 16
+      end
+      object DBEdit21: TDBEdit
+        Left = 576
+        Height = 23
+        Top = 200
+        Width = 131
+        DataField = 'RPTAGG_DATE_END'
+        DataSource = DM_Project.dsProjectConfig_OrgInfo
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 17
+      end
+    end
+  end
+  object pnlHeader: TPanel
+    Left = 0
+    Height = 48
+    Top = 0
+    Width = 903
+    Align = alTop
+    ClientHeight = 48
+    ClientWidth = 903
+    TabOrder = 2
+    OnClick = pnlHeaderClick
+    object DBNavGlobal: TDBNavigator
+      Left = 1
+      Height = 46
+      Top = 1
+      Width = 241
+      Align = alLeft
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 46
+      ClientWidth = 241
+      DataSource = DM_Project.dsProjectConfig_OrgInfo
+      Options = []
+      TabOrder = 0
+      VisibleButtons = [nbEdit, nbPost, nbCancel, nbRefresh]
+    end
+    object BitBtn1: TBitBtn
+      Left = 827
+      Height = 46
+      Top = 1
+      Width = 75
+      Align = alRight
+      DefaultCaption = True
+      Kind = bkClose
+      ModalResult = 11
+      OnClick = BitBtn1Click
+      TabOrder = 1
+    end
+    object AccountName: TDBText
+      Left = 264
+      Height = 15
+      Top = 1
+      Width = 79
+      DataField = 'ACCOUNTNAME'
+      DataSource = DM_Main.dsAccount
+      Font.Color = clGreen
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object OrgName: TDBText
+      Left = 264
+      Height = 15
+      Top = 24
+      Width = 54
+      DataField = 'OrgName'
+      DataSource = DM_Project.dsProjectConfig_OrgInfo
+      Font.Color = clGreen
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object DBGrid_ProjectConfig: TDBGrid
+    Left = 0
+    Height = 68
+    Top = 466
+    Width = 903
+    Align = alBottom
+    Color = clWindow
+    Columns = <>
+    DataSource = DM_Project.dsProjectConfig_OrgInfo
+    TabOrder = 3
+  end
+  object dsProjectConfig_Default: TDataSource
+    DataSet = DM_Project.dataProjectConfig_Default
+    OnDataChange = dsProjectConfig_DefaultDataChange
+    left = 760
+    top = 16
+  end
+  object luStatus: TOraDataSource
+    DataSet = DM_Main.luStatus
+    left = 648
+    top = 16
+  end
+end

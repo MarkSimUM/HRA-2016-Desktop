@@ -1,0 +1,1020 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+ Classes, SysUtils, db, FileUtil, MRUList,
+ StrHolder, IDEWindowIntf, IpHtml, Ipfilebroker, Forms, Controls,
+ Graphics, Dialogs, DBGrids, DbCtrls, StdCtrls, ComCtrls, ExtCtrls, Buttons,
+  EditBtn,   Menus, ValEdit, ActnList, HtmlView,
+  fpspreadsheetctrls, fpspreadsheetgrid,
+ OdacVcl, fpDBExport, fpstdexports, fpcsvexport,
+  OraPackage, VirtualTable, DataModuleMain, SurveyLibrary, SLEdit,
+ extjsjson, fphtml, ServiceManager,  DataModuleMessaging,
+ Project, AccountNew, MemData, Ora, OraSQLMonitor, globals, messaging,
+ surveyitems, DBSelect, paswstring, GlobalTables, ZedDBTreeView
+ ;
+type
+  TDBTreeNode = class(TTreeNode)
+
+  public
+   dbkey: integer;
+   dbkey2: integer;
+   dbtablename : string ;
+   dbdataset : TDataSet ;
+   dbKeyField : string ;
+//  PopUpMenu: tvNodeType;
+end;
+type
+
+  { Tfrm_Main }
+
+  Tfrm_Main = class(TForm)
+    ActionProjectForm: TAction;
+    ActionLoadProject: TAction;
+    ActionList1: TActionList;
+    ApplicationProperties1: TApplicationProperties;
+    BitBtn1: TBitBtn;
+    btnGlobalTables: TButton;
+    btnNewProject: TButton;
+    btntest: TBitBtn;
+    btn_Filter: TButton;
+    btn_OpenDBFiles: TButton;
+    btn_Project1: TButton;
+    btn_Project2: TButton;
+    btn_Project3: TButton;
+    btn_Project4: TButton;
+    btn_Project5: TButton;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    btn_Project: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    btnMessaging: TButton;
+    Button6: TButton;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    DBGrid3: TDBGrid;
+    DBGrid4: TDBGrid;
+    DBGrid5: TDBGrid;
+    DBGrid6: TDBGrid;
+    DBGrid7: TDBGrid;
+    DBGrid8: TDBGrid;
+    DBGrid_ProjectTopLevel: TDBGrid;
+    DBGrid_ProjectConfig: TDBGrid;
+    dbgrid_product: TDBGrid;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBNavigator_Acct: TDBNavigator;
+    DBNavigator_Org: TDBNavigator;
+    Edit1: TEdit;
+    edt_Filter: TEdit;
+    edt_locate: TEdit;
+    edt_locate1: TEdit;
+    IDEDialogLayoutStorage1: TIDEDialogLayoutStorage;
+    ImageList1: TImageList;
+    Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    ListBox1: TListBox;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem_EditProject: TMenuItem;
+    MenuItem_EditOrg: TMenuItem;
+    MenuItem_NewAccount: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItem_ShowInfo: TMenuItem;
+    MenuItem_NewProject: TMenuItem;
+    MenuItem_EditAccount: TMenuItem;
+    MenuItem_NewOrganization: TMenuItem;
+    MRUManager1: TMRUManager;
+    OraDataSource1: TOraDataSource;
+    OraSQLMonitor1: TOraSQLMonitor;
+    PageControl1: TPageControl;
+    Panel1: TPanel;
+    PopupMenu1: TPopupMenu;
+    PopupMenu_Tree: TPopupMenu;
+    StatusBar1: TStatusBar;
+    StrHolder1: TStrHolder;
+    tb_AccountProject: TTabSheet;
+    tab_OrgActions: TTabSheet;
+    tb_Acct: TTabSheet;
+    tb_EnvVars: TTabSheet;
+    tb_OrgSelect: TTabSheet;
+    TreeView_Projects: TTreeView;
+    ValueListEditor1: TValueListEditor;
+    ZedDBTreeView_AllOrgs: TZedDBTreeView;
+    ZedDBTreeView_OrgWProject: TZedDBTreeView;
+    procedure ActionLoadProjectExecute(Sender: TObject);
+    procedure ActionProjectFormExecute(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure btnGlobalTablesClick(Sender: TObject);
+    procedure btnMessagingClick(Sender: TObject);
+    procedure btnNewProjectClick(Sender: TObject);
+    procedure btntestClick(Sender: TObject);
+    procedure btn_ProjectClick(Sender: TObject);
+    procedure btn_OpenDBFilesClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure btn_FilterClick(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure DataSource1UpdateData(Sender: TObject);
+    procedure DBEdit3Change(Sender: TObject);
+    procedure edt_FilterChange(Sender: TObject);
+    procedure edt_locate1Change(Sender: TObject);
+    procedure edt_locateChange(Sender: TObject);
+    procedure edt_locateClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem_EditAccountClick(Sender: TObject);
+    procedure MenuItem_ShowInfoClick(Sender: TObject);
+    procedure MRUManager1Change(Sender: TObject);
+    procedure OraDataSource1DataChange(Sender: TObject; Field: TField);
+    procedure PageControl1Change(Sender: TObject);
+    procedure SimpleJSONExporter1ExportRow(Sender: TObject;
+      var AllowExport: Boolean);
+    procedure SynMemo1Change(Sender: TObject);
+    procedure TreeView_ProjectsChange(Sender: TObject; Node: TTreeNode);
+    procedure TreeView_ProjectsClick(Sender: TObject);
+    procedure TreeView_ProjectsCreateNodeClass(Sender: TCustomTreeView;
+      var NodeClass: TTreeNodeClass);
+    procedure TreeView_ProjectsCustomDraw(Sender: TCustomTreeView; const ARect: TRect;
+      var DefaultDraw: Boolean);
+    procedure TreeView_ProjectsCustomDrawItem(Sender: TCustomTreeView;
+      Node: TTreeNode; State: TCustomDrawState; var DefaultDraw: Boolean);
+    procedure TreeView_ProjectsDeletion(Sender: TObject; Node: TTreeNode);
+    procedure TreeView_ProjectsGetSelectedIndex(Sender: TObject; Node: TTreeNode);
+    procedure TreeView_ProjectsSelectionChanged(Sender: TObject);
+
+      procedure ZedDBTreeView_AllOrgsCustomDrawItem(Sender: TCustomTreeView;
+      Node: TTreeNode; State: TCustomDrawState; var DefaultDraw: Boolean);
+      procedure ZedDBTreeView_OrgWProjectCustomDrawItem(
+        Sender: TCustomTreeView; Node: TTreeNode; State: TCustomDrawState;
+        var DefaultDraw: Boolean);
+//    procedure HMLTVCreateNodeClass(Sender: TCustomTreeView);
+    function DBTreeNode(Node:TTreeNode):TDBTreeNode;
+    procedure LoadProjectIntoTree();
+    procedure ProjectForm();
+  private
+    { private declarations }
+  public
+    EnvVars : TStringList ;
+       updateFromTree : boolean ;
+     app : TApplication;
+     procedure OpenDBFiles();
+
+
+    { public declarations }
+  end;
+
+var
+  frm_Main: Tfrm_Main;
+
+implementation
+
+{$R *.lfm}
+
+{ Tfrm_Main }
+
+procedure Tfrm_Main.btn_OpenDBFilesClick(Sender: TObject);
+var
+   lf : string;
+begin
+
+  OpenDBFiles();
+
+end;
+
+procedure Tfrm_Main.Button1Click(Sender: TObject);
+begin
+  PageControl1.ActivePage := tab_OrgActions;
+end;
+
+procedure Tfrm_Main.btn_ProjectClick(Sender: TObject);
+begin
+   frm_Project := Tfrm_Project.create(nil);
+
+   frm_Project.ShowModal;
+
+   FreeAndNil(frm_Project);
+end;
+
+procedure Tfrm_Main.BitBtn1Click(Sender: TObject);
+begin
+
+  DBGrid1.Options := [dgEditing,dgTitles,dgIndicator,dgColumnResize,dgColumnMove,dgColLines,dgRowLines,dgTabs,dgAlwaysShowSelection,dgConfirmDelete,dgCancelOnExit];
+  DBNavigator_Acct.visible := NOT( DBNavigator_Acct.visible);
+  DBNavigator_Org.visible := NOT( DBNavigator_Org.visible);
+
+  if (DBNavigator_Acct.visible) then
+  begin
+       DBGrid1.Options := [dgEditing,dgTitles,dgIndicator,dgColumnResize,dgColumnMove,dgColLines,dgRowLines,dgTabs,dgAlwaysShowSelection,dgConfirmDelete,dgCancelOnExit];
+
+  end else
+  begin
+       DBGrid1.Options := [dgTitles,dgIndicator,dgColumnResize,dgColumnMove,dgColLines,dgRowLines,dgTabs,dgAlwaysShowSelection,dgConfirmDelete,dgCancelOnExit];
+
+  end;
+
+
+end;
+
+procedure Tfrm_Main.ActionLoadProjectExecute(Sender: TObject);
+begin
+    with DM_Main do
+   begin
+     dataAccount.active := false ;
+    dataProject.active := false ;
+    dataProjectConfig.active := false ;
+    dataOrg_wProject.active := false;
+
+     dataAccount.active := true ;
+    dataProject.active := true ;
+     dataProjectConfig.active := true ;
+    dataOrg_wProject.active := true;
+   end;
+
+   LoadProjectIntoTree();
+end;
+
+procedure Tfrm_Main.ActionProjectFormExecute(Sender: TObject);
+begin
+    ProjectForm();
+end;
+
+procedure Tfrm_Main.btnGlobalTablesClick(Sender: TObject);
+begin
+   frm_GlobalTables := Tfrm_GlobalTables.create(nil);
+
+   frm_GlobalTables.ShowModal;
+
+   FreeAndNil(frm_GlobalTables);
+end;
+
+procedure Tfrm_Main.btnMessagingClick(Sender: TObject);
+begin
+    frmMessaging := TfrmMessaging.create(nil);
+
+   frmMessaging.ShowModal;
+
+   FreeAndNil(frmMessaging);
+end;
+
+procedure Tfrm_Main.btnNewProjectClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.btntestClick(Sender: TObject);
+var UTF8TestString: string;
+begin
+
+ //messa
+UTF8TestString:= 'rosé, водка and ούζο （在过去的生日）';
+
+edit1.Caption:= UTF8TestString;
+//messagetext ('plain: ' + UTF8TestString);
+
+end;
+
+procedure Tfrm_Main.Button2Click(Sender: TObject);
+begin
+
+ frm_SurveyItems   := Tfrm_SurveyItems.create(nil);
+ frm_SurveyItems.ShowModal;
+ FreeAndNil(frm_SurveyItems);
+
+
+  //frm_SurveyLibrary := Tfrm_SurveyLibrary.create(nil);
+  //frm_SurveyLibrary.ShowModal;
+  //FreeAndNil(frm_SurveyLibrary);
+end;
+
+procedure Tfrm_Main.Button3Click(Sender: TObject);
+begin
+   frm_SLibEdit := Tfrm_SLibEdit.create(nil);
+
+   frm_SLibEdit.ShowModal;
+
+   FreeAndNil(frm_SLibEdit);
+end;
+
+procedure Tfrm_Main.btn_FilterClick(Sender: TObject);
+begin
+    with DM_Main.dataAccount    do
+  begin
+    Filter := edt_Filter.text ;
+    Filtered := true ;
+
+  end;
+end;
+
+procedure Tfrm_Main.Button4Click(Sender: TObject);
+begin
+  frm_AccountNew := Tfrm_AccountNew .create(nil);
+
+     frm_AccountNew .ShowModal;
+
+     FreeAndNil(frm_Project);
+end;
+
+procedure Tfrm_Main.Button5Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.Button6Click(Sender: TObject);
+var
+   tNode , tNodeSib, tNodeChild, tNodeSelected, tNodeCurrent : TTreeNode ;
+   bNoChild : boolean;
+begin
+
+end;
+
+procedure Tfrm_Main.Button7Click(Sender: TObject);
+var
+   Node: TTreeNode;
+begin
+
+  //node := TreeView_Projects.items.FindNodeWithText(DM_Main.dataAccountACCOUNTNAME.asString);
+    //node.Selected:= true;
+
+
+end;
+
+procedure Tfrm_Main.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+
+end;
+
+procedure Tfrm_Main.DataSource1UpdateData(Sender: TObject);
+begin
+    //D
+  showmessage('update: '+DM_Main.dataAccount.fieldbyname('account_id').asString);
+
+end;
+
+procedure Tfrm_Main.DBEdit3Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.edt_FilterChange(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.edt_locate1Change(Sender: TObject);
+var
+Node: TTreeNode;
+begin
+     with DM_Main.dataAccount    do
+  begin
+     locateEX('accountname', edt_locate1.text, [lxPartialKey, lxCaseInsensitive]);
+
+    node := TreeView_Projects.items.FindNodeWithText(DM_Main.dataAccountACCOUNTNAME.asString);
+    node.Selected:= true;
+
+  end;
+end;
+
+procedure Tfrm_Main.edt_locateChange(Sender: TObject);
+begin
+   with DM_Main.dataAccount    do
+  begin
+     locateEX('accountname', edt_locate.text, [lxPartialKey, lxCaseInsensitive]);
+
+  end;
+end;
+
+procedure Tfrm_Main.edt_locateClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.FormActivate(Sender: TObject);
+begin
+    if not globals.ExitApplication then
+     LoadProjectIntoTree();
+end;
+
+procedure Tfrm_Main.FormCreate(Sender: TObject);
+var
+I: Integer;
+key : string ;
+begin
+  EnvVars := TStringList.create ;
+
+  pageControl1.ActivePage := tb_AccountProject;
+
+//  ValueListEditor1. := EnvVars ;
+  //showMessage((Application.Params[0]));
+  For i := 0 to Application.ParamCount  do
+  begin
+   //  showMessage(Application.Params[i]);
+  end;
+ try
+     Application.GetEnvironmentList(EnvVars);
+
+     For i := 1 to Envvars.count - 1 do
+     begin
+         key:=EnvVars.Names[i];
+           ValueListEditor1.Keys[i] := key;
+           ValueListEditor1.Values[key] := EnvVars.ValueFromIndex[i];
+
+           if key = 'USERNAME' then
+               globals.UserName:= EnvVars.ValueFromIndex[i];
+           if key = 'USERDNSDOMAIN' then
+               globals.DNSDomain := EnvVars.ValueFromIndex[i];
+           if key = 'COMPUTERNAME' then
+               globals.Computername := EnvVars.ValueFromIndex[i];
+
+          //ValueListEditor1.InsertRow(key,EnvVars.ValueFromIndex[i],true);
+
+          //ValueListEditor1.InsertRow();
+     end;
+      ListBox1.Items := EnvVars;
+
+
+    // For I:=1 to GetEnvironmentVariableCount do
+       //showMessage(GetEnvironmentString(i));
+
+ finally
+
+ end;
+ //OraS := TOraSession.Create(DM_Main);
+ //OraS := DM_Main.OraSession_DEV;
+
+
+
+ TRY
+   frm_DBSelect := Tfrm_DBSelect.create(nil);
+   frm_DBSelect.ShowModal;
+
+   //if frm_DBSelect.rg_DBVersion.ItemIndex = 0 then
+   //begin
+   //   showmessage('DEV');
+   //end;
+ FINALLY
+  FreeAndNil(frm_DBSelect);
+ end;
+ if globals.ExitApplication then
+   exit ;
+//DM_Main.OraSessionMain.connected := false ;
+
+ TRY
+    WITH   DM_MAIN do
+    begin
+          SP_HMRC_USER_VERIFY.ParamByName('puniquename').ASString := globals.UserName;
+          SP_HMRC_USER_VERIFY.Execute;
+          IF SP_HMRC_USER_VERIFY.ParamByName('pAccessLevel').AsInteger > 0 then
+          begin
+               globals.UserAccessLevel:= SP_HMRC_USER_VERIFY.ParamByName('pAccessLevel').AsInteger;
+               //ShowMessage('Access level: '+IntToStr( globals.UserAccessLevel));
+
+          end else
+          begin
+                ShowMessage('Invalid or inactive user '+globals.UserName+' ... will exit program!');
+                Application.Terminate;
+          end;
+    end;
+
+ finally
+ end;
+
+  Caption := caption + ' USER: '+globals.Username+'  [DB: '+globals.DBType+']';
+
+  OpenDBFiles();
+
+
+
+
+end;
+
+procedure Tfrm_Main.FormDestroy(Sender: TObject);
+begin
+   EnvVars.Free;
+end;
+
+procedure Tfrm_Main.MenuItem2Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.MenuItem_EditAccountClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.MenuItem_ShowInfoClick(Sender: TObject);
+begin
+      ShowMessage('Key: '+ IntToStr(DBTreeNode(TreeView_Projects.selected).dbkey)+' DataSet: '+DBTreeNode(TreeView_Projects.selected).dbdataset.name);
+     //  ShowMessage( DBTreeNode(TreeView_Projects.selected).dbtablename);
+end;
+
+procedure Tfrm_Main.MRUManager1Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.OraDataSource1DataChange(Sender: TObject; Field: TField);
+begin
+   if DM_Main.dataAcct_Org_wProject.FieldByName('ORG_PARENTID').ASInteger = -1 then
+   begin
+       // TOP LEVEL
+       DBGrid_ProjectTopLevel.visible := true ;
+       DBGrid_ProjectConfig.Visible := false ;
+   end else
+   begin
+     DBGrid_ProjectTopLevel.visible := false ;
+     DBGrid_ProjectConfig.Visible := true ;
+
+   end;
+   //if DM_Main.dataAccount_OrgISORGGROUP.AsInteger = 1 then
+   //  if DM_Main.dataAccount_OrgISORGGROUP.AsInteger = 1 then
+   //  begin
+   //      if Assigned(ZedDBTreeView_AllOrgs.Selected) AND (ZedDBTreeView_AllOrgs.selected.Level = 1) then
+   //         ZedDBTreeView_AllOrgs.Selected.ImageIndex:= 7;
+   //  end;
+end;
+
+procedure Tfrm_Main.PageControl1Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.SimpleJSONExporter1ExportRow(Sender: TObject;
+  var AllowExport: Boolean);
+begin
+
+end;
+
+procedure Tfrm_Main.SynMemo1Change(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsChange(Sender: TObject; Node: TTreeNode);
+var
+ table : string ;
+ key : integer ;
+ dataSet : TDataSet ;
+ keyfield : string ;
+ nextnode : TTreeNode;
+ i : integer ;
+begin
+
+if node <> nil then
+begin
+  nextnode  := node.GetNextSkipChildren;
+
+  if nextnode <> nil then
+    nextnode.MakeVisible;
+
+    MenuItem_EditProject.enabled := false ;
+
+  if node.Level > 1 then
+  begin
+         MenuItem_EditProject.enabled := true ;
+  end;
+  if node.Level > 2 then
+  MenuItem_EditOrg.Enabled := true else
+     MenuItem_EditOrg.Enabled := false;
+
+  //if node.Level = 0 then
+  //begin
+  //    if  node.HasChildren then
+  //    begin
+  //      MenuItem_EditProject.enabled := true ;
+  //
+  //    end else
+  //    begin
+  //      MenuItem_EditProject.enabled := false ;
+  //
+  //    end;
+  //end;
+
+ // after recreating tree, node becomes nil
+
+  table :=   DBTreeNode(node).dbtablename;
+  key :=      DBTreeNode(node).dbkey;
+  dataSet :=  DBTreeNode(node).dbdataset;
+  keyfield :=    DBTreeNode(node).dbKeyField;
+  if table <> '' then
+  begin
+      dataSet.Locate(keyfield,key,[]);
+  end;
+
+end;
+
+
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsClick(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsCreateNodeClass(Sender: TCustomTreeView;
+  var NodeClass: TTreeNodeClass);
+begin
+
+   NodeClass := TDBTreeNode ;
+
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsCustomDraw(Sender: TCustomTreeView;
+  const ARect: TRect; var DefaultDraw: Boolean);
+begin
+
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsCustomDrawItem(Sender: TCustomTreeView;
+  Node: TTreeNode; State: TCustomDrawState; var DefaultDraw: Boolean);
+begin
+    //if node.Level = 0 then
+    // Node.ImageIndex:= 1;
+    //if node.Level = 1 then
+    // Node.ImageIndex :=
+    //
+    //if   COPY(node.Text,1,7) = '[GROUP]' then
+    //  Node.ImageIndex:= 7;
+    // if   COPY(node.Text,1,10) = '[SubGroup]' then
+    //  Node.ImageIndex:= 9;
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsDeletion(Sender: TObject; Node: TTreeNode);
+begin
+   TDBTreeNode(Node.Data).Free;
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsGetSelectedIndex(Sender: TObject; Node: TTreeNode);
+begin
+
+end;
+
+procedure Tfrm_Main.TreeView_ProjectsSelectionChanged(Sender: TObject);
+begin
+end;
+
+
+
+procedure Tfrm_Main.ZedDBTreeView_AllOrgsCustomDrawItem(Sender: TCustomTreeView;
+  Node: TTreeNode; State: TCustomDrawState; var DefaultDraw: Boolean);
+begin
+   if node.Level = 0 then
+     Node.ImageIndex:= 1;
+    if   COPY(node.Text,1,7) = '[GROUP]' then
+      Node.ImageIndex:= 7;
+     if   COPY(node.Text,1,10) = '[SubGroup]' then
+      Node.ImageIndex:= 9;
+  //  if Assigned(ZedDBTreeView_AllOrgs.Selected) then
+    // begin
+
+
+     //end;
+end;
+
+procedure Tfrm_Main.ZedDBTreeView_OrgWProjectCustomDrawItem(
+  Sender: TCustomTreeView; Node: TTreeNode; State: TCustomDrawState;
+  var DefaultDraw: Boolean);
+begin
+   if node.Level = 0 then
+     Node.ImageIndex:= 1;
+    if   COPY(node.Text,1,7) = '[GROUP]' then
+      Node.ImageIndex:= 7;
+    if   COPY(node.Text,1,10) = '[SubGroup]' then
+      Node.ImageIndex:= 9;
+end;
+
+procedure Tfrm_Main.OpenDBFiles();
+var
+   lf : string;
+begin
+  With DM_Main do
+  begin
+    OraSessionMain.Connected := false;
+  dataProduct.active := false ;
+     dataProductVersion.active := false ;
+     luProductVersion.active := false ;
+
+     dataAccount.active := false ;
+     dataOrganization.active := false ;
+     dataProject.active := false ;
+
+
+       dataProjectConfig_DEFAULT.Active := false ;
+    // dataProjectConfig_HRA_DEFAULT.active := false ;
+     dataProjectConfig_SurveyItem_DEFAULT.active := false ;
+
+     dataProjectConfig.Active := false ;
+    // dataProjectConfig_HRA.active := false ;
+     dataProjectConfig_SurveyItem.active := false ;
+
+     //dataProjectProduct.active := false;
+     //dataProjectProductOrg.active := false ;
+
+     dataLanguage.active := false ;
+
+       dataOrg_wProject.active := false;
+
+     dataAccount_Org.active := false ;
+     dataAcct_Org_wProject.active := false ;
+     dataProjectForOrg.active := false ;
+     dataProjectConfigForOrg.active := false ;
+     dataProdForOrgProject.active := false ;
+
+     luStatus.active := false;
+     luProjectGroup.active := false ;
+     lu_Account_Type.active := false ;
+
+     //---**** OPEN TABLES
+
+
+    OraSessionMain.Connected := true;
+
+     dataProduct.active := true ;
+     dataProductVersion.active := true ;
+     luProductVersion.active := true ;
+
+     dataAccount.active := true ;
+     dataOrganization.active := true ;
+     dataProject.active := true ;
+
+       dataProjectConfig_DEFAULT.Active := true ;
+    // dataProjectConfig_HRA_DEFAULT.active := true ;
+     dataProjectConfig_SurveyItem_DEFAULT.active := true ;
+
+     dataProjectConfig.Active := true ;
+   //  dataProjectConfig_HRA.active := true ;
+     dataProjectConfig_SurveyItem.active := true ;
+
+     //dataProjectProduct.active := true;
+     //dataProjectProductOrg.active := true ;
+     //
+     dataLanguage.active := true ;
+
+     dataOrg_wProject.active := true;
+
+     dataAccount_Org.active := true ;
+     dataAcct_Org_wProject.active := true ;
+     dataProjectForOrg.active := true ;
+     dataProjectConfigForOrg.active := true ;
+     dataProdForOrgProject.active := true ;
+
+     luStatus.active := true;
+     luProjectGroup.active := true ;
+     lu_Account_Type.active := true ;
+
+  //While Not dataAccount.eof do
+  //begin
+  //   lf := dataAccount.FieldByName('AccountName').asString ;
+  //   Memo1.lines.add(lf);
+  //   dataAccount.next ;
+  //
+  //end;
+  //dataAccount.First ;
+
+  //  XMLXSDExporter1.Execute;
+  //simpleJsonExporter1.execute ;
+  //simpleXMLExporter1.execute;
+    dataAccount.First ;
+  end;
+
+  With DM_Messaging do
+  begin
+   data_MessagingCriteria.active := false ;
+   data_MessagingCriteria.params[0].value := 1; //
+    data_MessagingCriteria.active := true ;
+  end;
+
+end;
+
+function Tfrm_Main.DBTreeNode(Node:TTreeNode):TDBTreeNode;
+begin
+  result := TDBTreeNode(Node); //you could even use AS here for extra safety
+end;
+
+procedure Tfrm_Main.ProjectForm();
+begin
+  frm_Project := Tfrm_Project.create(nil);
+  frm_Project.ShowModal;
+  FreeAndNil(frm_Project);
+
+end;
+
+procedure Tfrm_Main.LoadProjectIntoTree();
+var
+   tRoot, tNode , tNodeSib, tNodeChild, tNodeSelected, tNodeCurrent, tNodeOrg : TTreeNode ;
+   bNoChild : boolean;
+   iLoop : integer ;
+begin
+   updateFromTree:= false;
+   with DM_Main do
+   begin
+    dataOrg_wProject.active := true;
+    dataProjectConfig.active := false ;
+   end;
+
+    TreeView_Projects.Items.Clear;
+    TreeView_Projects.Items.FreeAllNodeData;
+
+    TreeView_Projects.BeginUpdate;
+
+
+
+
+   //   tNodeSelected := TreeView_Projects.Selected;
+
+  For iLoop := 0 to 1 do
+  begin
+    if iLoop = 0 then
+       tRoot := TreeView_Projects.Items.Add(nil,'Accounts with Projects')
+    else
+       tRoot := TreeView_Projects.Items.Add(nil,'Accounts');
+
+    With DM_Main do
+    begin
+         // dataAccount.DisableControls;
+
+
+          dbgrid5.BeginUpdate;
+          dbgrid6.BeginUpdate;
+          dbgrid7.BeginUpdate;
+          dbgrid8.BeginUpdate;
+
+
+          dataAccount.first ;
+          While NOT dataAccount.eof do
+          begin
+           bNoChild := False ;
+           if dataAccountISINACTIVE.asBoolean = true then
+              bNoChild := true ;
+           if (dataProject.eof) then
+           begin
+               // dataAccount.next;
+               // Continue;
+                bNoChild := true ;
+           end ;
+
+              if (bNoChild = false ) and (iLoop = 0) then
+              begin
+
+                  tNode :=  TreeView_Projects.Items.AddChild(tRoot, dataAccountACCOUNTNAME.asString);
+                   with DBTreeNode(tNode) do
+                   begin
+                       dbkey := dataAccountACCOUNT_ID.AsInteger;
+                       dbkey2 := -1 ;
+                       dbtablename := 'CORE_ACCOUNT';
+                       dbdataset := DM_Main.dataAccount ;
+                       dbKeyField:= 'ACCOUNT_ID';
+                   end  ;
+                   tNodeCurrent := tNode;
+                    if bNoChild then
+                     tNodeCurrent.ImageIndex:= 3
+                    else
+                     tNodeCurrent.ImageIndex:= 2;
+
+                    tNodeCurrent.SelectedIndex:= 0;
+                   if NOT dataProject.eof then
+                   begin
+                       While NOT dataProject.EOF do
+                        begin
+                            tNodeChild := TreeView_Projects.Items.AddChild(tnode, '['+dataProjectProductCode.AsString+'] '+dataProjectPROJECTNAME.AsString);
+                             tNodeCurrent := tNodeChild ;
+
+                                 if dataProjectISACTIVE.asInteger = 0 then
+                                 begin
+                                  //tNodeCurrent.ImageIndex:= 18;
+
+                                 end else
+                                 begin
+                                      tNodeCurrent.ImageIndex:= 18;
+                                      tNodeCurrent.selectedIndex:= 17;
+                                 end;
+                            with DBTreeNode(tNodeCurrent) do
+                          begin
+                            dbkey := dataProjectProject_ID.AsInteger;
+                            dbkey2 := dataProjectACCOUNT_ID.AsInteger ;
+                           dbtablename := 'CORE_PROJECT';
+                            dbdataSet := DM_Main.dataProject ;
+                              dbKeyField:= 'Project_ID';
+                          end  ;
+
+
+                           WITH dataOrg_wProject do
+                           BEGIN
+                              dataOrg_wProject.First ;
+                             While Not dataOrg_wProject.EOF do
+                             begin
+
+
+                                  tNodeChild := TreeView_Projects.Items.AddChild(tNodeCurrent, FieldByName('displayname').AsString);
+                                  tNodeOrg := tNodeChild ;
+                                  with DBTreeNode(tNodeOrg) do
+                                  begin
+                                    dbkey := fieldbyname('Organization_ID').AsInteger;
+                                    dbkey2 := fieldbyname('ProjectConfig_ID').AsInteger ;
+                                     dbtablename := 'CORE_ORGANIZATION';
+                                    dbdataSet := DM_MAIN.dataOrg_wProject;
+ ;
+                                   dbKeyField:= 'Organization_ID';
+                                  end  ;
+
+
+                                  dataOrg_wProject.next ;
+                             end;   //data0rg_wProject.eof
+                            end;   //WITH dataOrg_wProject do
+
+
+                          dataProject.NEXT;
+                        end; //dataProject.EOF
+
+                   end; //not dataProject.EOF
+
+
+
+              end else
+              begin
+                    if (bNoChild = true ) and (iLoop = 1) then
+                    begin
+
+                        tNode :=  TreeView_Projects.Items.AddChild(tRoot, dataAccountACCOUNTNAME.asString);
+                        with DBTreeNode(tNode) do
+                        begin
+                           dbkey := dataAccountACCOUNT_ID.AsInteger;
+                           dbkey2 := -1 ;
+                           dbtablename := 'CORE_ACCOUNT';
+                           dbdataset := DM_Main.dataAccount ;
+                           dbKeyField:= 'ACCOUNT_ID';
+                        end  ;
+                        tNodeCurrent := tNode;
+                        if bNoChild then
+                         tNodeCurrent.ImageIndex:= 3
+                        else
+                         tNodeCurrent.ImageIndex:= 2;
+
+                        tNodeCurrent.SelectedIndex:= 0;
+                    end; // iLoop 1
+              end;
+
+              dataAccount.Next;
+          end; // dataAccount.EOF
+          dataAccount.EnableControls;
+    end; //with DM_DataMain
+  end;   //iloop
+
+
+    //     tNode :=  TreeView_Projects.Items.AddFirst(tNodeSelected,'First');
+         //tNodeChild := TreeView_Projects.Items.AddChild(tnode, 'Child');
+         // with DBTreeNode(tNodeChild) do
+         // begin
+         //         dbkey := 2 ;
+         //         //dbTable := 'Child';
+         //end ;
+         TreeView_Projects.Selected := nil ;
+     TreeView_Projects.EndUpdate;
+    dbgrid5.EndUpdate;
+          dbgrid6.EndUpdate;
+          dbgrid7.EndUpdate;
+          dbgrid8.EndUpdate;
+
+     DM_Main.dataAccount.first;
+       TreeView_Projects.Selected := nil ;     // to avoid an error
+
+         DM_Main.dataProjectConfig.active := true ;
+  end;
+
+
+
+
+
+end.
+

@@ -1,0 +1,2768 @@
+object DM_Project: TDM_Project
+  OldCreateOrder = False
+  Height = 583
+  HorizontalOffset = 575
+  VerticalOffset = 430
+  Width = 1008
+  object sp_UPSERT_PROJECT: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_PROJECT'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_PROJECT(:PPROJECT_ID, :PACCOUNT_ID, :PACCOUNT_NAME, :PPROJECTNAME, :PISTEST, :PISACTIVE, :PISMULTIPRODUCT, :PISMULTIORG, :PSTATUS, :PLINKEDPROJECT_ID, :PCREATE_BY, :PPHASE, :PUNIQUEFIELDNAME, :PNOTES, :PPRODUCTVERSION_ID, :PPROJECTGROUP_ID, :PEVALANALYSIS_FLG, :PLOCKSETTINGS_FLG, :PAUTOADDNEWORG_FLG, :PPROJECT_START_DATE, :PPROJECT_END_DATE, :PDELETE_FLG, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 56
+    top = 28
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PPROJECT_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PACCOUNT_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PACCOUNT_NAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PPROJECTNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISTEST'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISACTIVE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISMULTIPRODUCT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISMULTIORG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSTATUS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLINKEDPROJECT_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PCREATE_BY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PPHASE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PUNIQUEFIELDNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PNOTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PPRODUCTVERSION_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PPROJECTGROUP_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PEVALANALYSIS_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLOCKSETTINGS_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PAUTOADDNEWORG_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDateTime
+        Name = 'PPROJECT_START_DATE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDateTime
+        Name = 'PPROJECT_END_DATE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDELETE_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+        ParamType = ptOutput
+      end>
+    CommandStoredProcName = 'PR_UPSERT_PROJECT'
+  end
+  object dataProjectConfig_Org: TOraQuery
+    KeyFields = 'PROJECTCONFIG_ID'
+    KeySequence = 'PROJECTCONFIG_SEQ'
+    SQL.Strings = (
+      'SELECT '
+      '   pd.PRODUCTCODE'
+      '   ,pv.VERSION'
+      '   ,proj.PROJECTNAME'
+      '   ,proj.STATUS_ID as projStatus_Id'
+      '   ,proj.ISACTIVE As projIsActive'
+      '   ,proj.PHASE as projPhase'
+      '   ,proj.PRODUCTVERSION_ID '
+      ' ,  projC.* '
+      ' '
+      ''
+      '  FROM CORE_PROJECTCONFIG projC'
+      '   INNER JOIN CORE_PROJECT proj'
+      '     on projC.project_id = proj.project_id'
+      '   '
+      '   INNER JOIN GLOBAL_PRODUCTVERSION pv'
+      '     ON proj.PRODUCTVERSION_ID = pv.productversion_Id'
+      '   INNER JOIN GLOBAL_PRODUCT pd'
+      '     ON pv.PRODUCT_ID = pd.PRODUCT_ID'
+      '   '
+      '  '
+      '   '
+      '   ORDER BY pd.PRODUCTCODE, pv.version DESC, isClosed_Flg, proj.ISACTIVE DESC, proj.projectname'
+    )
+    MasterSource = DM_Main.dsOrganization
+    MasterFields = 'ORGANIZATION_ID'
+    DetailFields = 'ORGANIZATION_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Options.LocalMasterDetail = True
+    FilterOptions = []
+    left = 328
+    top = 56
+  end
+  object dsProjectConfig_Org: TOraDataSource
+    DataSet = dataProjectConfig_Org
+    left = 384
+    top = 112
+  end
+  object dataProject: TOraQuery
+    KeyFields = 'PROJECT_ID'
+    KeySequence = 'PROJECT_SEQ'
+    SQLInsert.Strings = (
+      'INSERT INTO CORE_PROJECT'
+      '  (PROJECT_ID, ACCOUNT_ID, LINKEDPROJECT_ID, PROJECTNAME, ISTEST, ISACTIVE, ISMULTIPRODUCT, ISMULTIORG, PHASE, UNIQUEIDFIELDNAME, NOTES, PRODUCTVERSION_ID, PROJECTGROUP_ID, EVALANALYSIS_FLG, LOCKSETTINGS_FLG, STATUS_ID, AUTOADDNEWORG_FLG, PROJECT_START_DATE, PROJECT_END_DATE, DELETE_FLG)'
+      'VALUES'
+      '  (:PROJECT_ID, :ACCOUNT_ID, :LINKEDPROJECT_ID, :PROJECTNAME, :ISTEST, :ISACTIVE, :ISMULTIPRODUCT, :ISMULTIORG, :PHASE, :UNIQUEIDFIELDNAME, :NOTES, :PRODUCTVERSION_ID, :PROJECTGROUP_ID, :EVALANALYSIS_FLG, :LOCKSETTINGS_FLG, :STATUS_ID, :AUTOADDNEWORG_FLG, :PROJECT_START_DATE, :PROJECT_END_DATE, :DELETE_FLG)'
+    )
+    SQLDelete.Strings = (
+      'DELETE FROM CORE_PROJECT'
+      'WHERE'
+      '  PROJECT_ID = :Old_PROJECT_ID'
+    )
+    SQLUpdate.Strings = (
+      'UPDATE CORE_PROJECT'
+      'SET'
+      '  PROJECT_ID = :PROJECT_ID, ACCOUNT_ID = :ACCOUNT_ID, LINKEDPROJECT_ID = :LINKEDPROJECT_ID, PROJECTNAME = :PROJECTNAME, ISTEST = :ISTEST, ISACTIVE = :ISACTIVE, ISMULTIPRODUCT = :ISMULTIPRODUCT, ISMULTIORG = :ISMULTIORG, PHASE = :PHASE, UNIQUEIDFIELDNAME = :UNIQUEIDFIELDNAME, NOTES = :NOTES, PRODUCTVERSION_ID = :PRODUCTVERSION_ID, PROJECTGROUP_ID = :PROJECTGROUP_ID, EVALANALYSIS_FLG = :EVALANALYSIS_FLG, LOCKSETTINGS_FLG = :LOCKSETTINGS_FLG, STATUS_ID = :STATUS_ID, AUTOADDNEWORG_FLG = :AUTOADDNEWORG_FLG, PROJECT_START_DATE = :PROJECT_START_DATE, PROJECT_END_DATE = :PROJECT_END_DATE, DELETE_FLG = :DELETE_FLG'
+      'WHERE'
+      '  PROJECT_ID = :Old_PROJECT_ID'
+    )
+    SQLLock.Strings = (
+      'SELECT PROJECT_ID, ACCOUNT_ID, LINKEDPROJECT_ID, PROJECTNAME, ISTEST, ISACTIVE, ISMULTIPRODUCT, ISMULTIORG, PHASE, UNIQUEIDFIELDNAME, NOTES, PRODUCTVERSION_ID, PROJECTGROUP_ID, EVALANALYSIS_FLG, LOCKSETTINGS_FLG, STATUS_ID, AUTOADDNEWORG_FLG, PROJECT_START_DATE, PROJECT_END_DATE, DELETE_FLG FROM CORE_PROJECT'
+      'WHERE'
+      '  PROJECT_ID = :Old_PROJECT_ID'
+      'FOR UPDATE NOWAIT'
+    )
+    SQLRefresh.Strings = (
+      'SELECT PROJECT_ID, ACCOUNT_ID, LINKEDPROJECT_ID, PROJECTNAME, ISTEST, ISACTIVE, ISMULTIPRODUCT, ISMULTIORG, PHASE, UNIQUEIDFIELDNAME, NOTES, PRODUCTVERSION_ID, PROJECTGROUP_ID, EVALANALYSIS_FLG, LOCKSETTINGS_FLG, STATUS_ID, AUTOADDNEWORG_FLG, PROJECT_START_DATE, PROJECT_END_DATE, DELETE_FLG FROM CORE_PROJECT'
+      'WHERE'
+      '  PROJECT_ID = :PROJECT_ID'
+    )
+    SQLRecCount.Strings = (
+      'SELECT Count(*) FROM ('
+      'SELECT * FROM CORE_PROJECT'
+      ''
+      ')'
+    )
+    SQL.Strings = (
+      'SELECT '
+      '  CORE_PROJECT.* '
+      '  ,prod.productCode'
+      '  ,prodv.version'
+      ''
+      '  FROM CORE_PROJECT'
+      '   '
+      '   INNER JOIN GLOBAL_PRODUCTVERSION prodV'
+      '     ON CORE_PROJECT.PRODUCTVERSION_ID = prodV.PRODUCTVERSION_ID'
+      ''
+      '   INNER JOIN GLOBAL_PRODUCT prod'
+      '     ON prodV.product_ID = prod.product_ID'
+      ''
+      ' ORDER BY isActive DESC'
+    )
+    MasterSource = DM_Main.dsAccount
+    MasterFields = 'ACCOUNT_ID'
+    DetailFields = 'ACCOUNT_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Options.LocalMasterDetail = True
+    FilterOptions = []
+    AfterPost = dataProjectAfterPost
+    OnNewRecord = dataProjectNewRecord
+    left = 192
+    top = 72
+    object dataProjectPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectACCOUNT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ACCOUNT_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectLINKEDPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LINKEDPROJECT_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectPROJECTNAME: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'PROJECTNAME'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1500
+    end
+    object dataProjectISTEST: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISTEST'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectISACTIVE: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISACTIVE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectISMULTIPRODUCT: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISMULTIPRODUCT'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectISMULTIORG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISMULTIORG'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectCREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectCREATE_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATE_BY'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 90
+    end
+    object dataProjectPHASE: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'PHASE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 75
+    end
+    object dataProjectUNIQUEIDFIELDNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'UNIQUEIDFIELDNAME'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object dataProjectNOTES: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'NOTES'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 6000
+    end
+    object dataProjectPRODUCTVERSION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRODUCTVERSION_ID'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectPROJECTGROUP_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECTGROUP_ID'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectEVALANALYSIS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'EVALANALYSIS_FLG'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectLOCKSETTINGS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LOCKSETTINGS_FLG'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectSTATUS_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STATUS_ID'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectAUTOADDNEWORG_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'AUTOADDNEWORG_FLG'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectPROJECT_START_DATE: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_START_DATE'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectPROJECT_END_DATE: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_END_DATE'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectDELETE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DELETE_FLG'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectPRODUCTCODE: TStringField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRODUCTCODE'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object dataProjectVERSION: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'VERSION'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+  end
+  object dsProject: TOraDataSource
+    DataSet = dataProject
+    OnDataChange = dsProjectDataChange
+    left = 212
+    top = 126
+  end
+  object dataProjectConfig: TOraQuery
+    KeyFields = 'PROJECTCONFIG_ID'
+    KeySequence = 'PROJECTCONFIG_SEQ'
+    SQL.Strings = (
+      'SELECT * '
+      '  FROM CORE_PROJECTCONFIG'
+      ''
+      '   WHERE CORE_PROJECTCONFIG.ORGANIZATION_ID = :ORGANIZATION_ID'
+    )
+    MasterSource = dsProject
+    MasterFields = 'PROJECT_ID'
+    DetailFields = 'PROJECT_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Options.LocalMasterDetail = True
+    FilterOptions = []
+    OnNewRecord = dataProjectConfigNewRecord
+    left = 200
+    top = 192
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ORGANIZATION_ID'
+      end>
+    object dataProjectConfigPROJECTCONFIG_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECTCONFIG_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigORGANIZATION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ORGANIZATION_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigSURVEY_OPENDT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_OPENDT'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_CLOSEDT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_CLOSEDT'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_LOCKOUT_DAYS: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_LOCKOUT_DAYS'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigSURVEY_URL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'SURVEY_URL'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 360
+    end
+    object dataProjectConfigSURVEY_URL_ALT: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'SURVEY_URL_ALT'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 360
+    end
+    object dataProjectConfigSURVEY_RETURN_URL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'SURVEY_RETURN_URL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 360
+    end
+    object dataProjectConfigSURVEY_WLG_HPQ: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_WLG_HPQ'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectConfigSURVEY_CUSTOMITEMS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_CUSTOMITEMS_FLG'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_CUSTOMLOGO_FILENAME: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'SURVEY_CUSTOMLOGO_FILENAME'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object dataProjectConfigSURVEYTYPE_WEB_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYTYPE_WEB_FLG'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEYTYPE_PAPER_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYTYPE_PAPER_FLG'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEYTYPE_CLIENTHOSTED_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYTYPE_CLIENTHOSTED_FLG'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigCSIM_METHOD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CSIM_METHOD'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectConfigPAPER_BRE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PAPER_BRE_FLG'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigPAPER_BULKRETURN_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PAPER_BULKRETURN_FLG'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEYLOOK_CUSTOM_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYLOOK_CUSTOM_FLG'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEYLOOK_LOGO_FILENAME: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'SURVEYLOOK_LOGO_FILENAME'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object dataProjectConfigSURVEYLOOK_HMRCLOGO_HIDE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYLOOK_HMRCLOGO_HIDE_FLG'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEYLOOK_CUSTOMCSS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYLOOK_CUSTOMCSS_FLG'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_LANGUAGES_MULTI_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_LANGUAGES_MULTI_FLG'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigREPORT_LANGUAGES_MULTI_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'REPORT_LANGUAGES_MULTI_FLG'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigDATAFEED_ELIGIBILITY_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATAFEED_ELIGIBILITY_FLG'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigDATAFEED_BIOMETRIC_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATAFEED_BIOMETRIC_FLG'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigDATAFEED_OTHER_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATAFEED_OTHER_FLG'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_SPOUSEELIGIBLE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_SPOUSEELIGIBLE_FLG'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigDATAOUT_CASE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATAOUT_CASE_FLG'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigDATAOUT_INDREPORT_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATAOUT_INDREPORT_FLG'
+      Index = 29
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigDATAOUT_AGGREPORT_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATAOUT_AGGREPORT_FLG'
+      Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigDATAOUT_INDCALC_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATAOUT_INDCALC_FLG'
+      Index = 31
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_PRIVACYSTATEMENT_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_PRIVACYSTATEMENT_FLG'
+      Index = 32
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_DATE_BEG: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_DATE_BEG'
+      Index = 33
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_DATE_END: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_DATE_END'
+      Index = 34
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_T1T2_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_T1T2_FLG'
+      Index = 35
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_T1T3_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_T1T3_FLG'
+      Index = 36
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_P1P2_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_P1P2_FLG'
+      Index = 37
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_P1P3_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_P1P3_FLG'
+      Index = 38
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_BENCHMARK_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_BENCHMARK_FLG'
+      Index = 39
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigRPTAGG_BIOMETRIC_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'RPTAGG_BIOMETRIC_FLG'
+      Index = 40
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_ANONYMOUS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_ANONYMOUS_FLG'
+      Index = 41
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigTIMEZONE: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'TIMEZONE'
+      Index = 42
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 24
+    end
+    object dataProjectConfigSURVEYTEMPLATE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEYTEMPLATE_ID'
+      Index = 43
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectConfigFRAMEWORKVERSION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FRAMEWORKVERSION_ID'
+      Index = 44
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectConfigISACTIVE: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISACTIVE'
+      Index = 45
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigACTIVE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ACTIVE_DT'
+      Index = 46
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_UNITOFMEASURE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_UNITOFMEASURE'
+      Index = 47
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectConfigSURVEY_EXTBIOMETRICS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_EXTBIOMETRICS_FLG'
+      Index = 48
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSTATUS_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STATUS_ID'
+      Index = 49
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigISDEFAULT: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISDEFAULT'
+      Index = 50
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigPRODUCTVERSION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRODUCTVERSION_ID'
+      Index = 51
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectConfigSURVEY_SPONSORURL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'SURVEY_SPONSORURL'
+      Index = 52
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 360
+    end
+    object dataProjectConfigREPORT_DOCTOR: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'REPORT_DOCTOR'
+      Index = 53
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigSURVEY_SUBMITDAYS: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SURVEY_SUBMITDAYS'
+      Index = 54
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectConfigSURVEY_GROUPPW: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'SURVEY_GROUPPW'
+      Index = 55
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object dataProjectConfigTIMESERIES_ID: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'TIMESERIES_ID'
+      Index = 56
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object dataProjectConfigPROJECT_START_DATE: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_START_DATE'
+      Index = 57
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigPROJECT_END_DATE: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_END_DATE'
+      Index = 58
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigISCLOSED_FLG: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISCLOSED_FLG'
+      Index = 59
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigDELETE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DELETE_FLG'
+      Index = 60
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsProjectConfig: TOraDataSource
+    DataSet = dataProjectConfig
+    left = 224
+    top = 256
+  end
+  object dataProjectForOrg: TOraQuery
+    SQL.Strings = (
+      'SELECT '
+      ' proj.projectname'
+      '   ,prod.PRODUCTCODE'
+      '   ,prodV.VERSION'
+      '   ,proj.*'
+      ''
+      '  FROM CORE_PROJECT proj'
+      ''
+      '   INNER JOIN  GLOBAL_PRODUCTVERSION prodV'
+      '     ON proj.PRODUCTVERSION_ID = prodV.PRODUCTVERSION_ID'
+      '   INNER JOIN GLOBAL_PRODUCT prod'
+      '     ON prodV.PRODUCT_ID = prod.PRODUCT_ID'
+      'ORDER BY proj.ISACTIVE DESC, ProductCode'
+    )
+    MasterSource = DM_Main.dsAccount
+    MasterFields = 'ACCOUNT_ID'
+    DetailFields = 'ACCOUNT_ID'
+    ReadOnly = True
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 132
+    top = 360
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'ACCOUNT_ID'
+        ParamType = ptInput
+      end>
+    object dataProjectForOrgPROJECTNAME: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'PROJECTNAME'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 500
+    end
+    object dataProjectForOrgPRODUCTCODE: TStringField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRODUCTCODE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object dataProjectForOrgVERSION: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'VERSION'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectForOrgPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectForOrgACCOUNT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ACCOUNT_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectForOrgLINKEDPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LINKEDPROJECT_ID'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectForOrgPROJECTNAME_1: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'PROJECTNAME_1'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 500
+    end
+    object dataProjectForOrgISTEST: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISTEST'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectForOrgISACTIVE: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISACTIVE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectForOrgISMULTIPRODUCT: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISMULTIPRODUCT'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectForOrgISMULTIORG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISMULTIORG'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataProjectForOrgCREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectForOrgCREATE_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATE_BY'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object dataProjectForOrgPHASE: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'PHASE'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object dataProjectForOrgUNIQUEIDFIELDNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'UNIQUEIDFIELDNAME'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataProjectForOrgNOTES: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'NOTES'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object dataProjectForOrgPRODUCTVERSION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRODUCTVERSION_ID'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectForOrgPROJECTGROUP_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECTGROUP_ID'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataProjectForOrgEVALANALYSIS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'EVALANALYSIS_FLG'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectForOrgLOCKSETTINGS_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LOCKSETTINGS_FLG'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectForOrgSTATUS_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STATUS_ID'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectForOrgAUTOADDNEWORG_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'AUTOADDNEWORG_FLG'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectForOrgPROJECT_START_DATE: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_START_DATE'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectForOrgPROJECT_END_DATE: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_END_DATE'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectForOrgDELETE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DELETE_FLG'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsProjectForOrg: TOraDataSource
+    DataSet = dataProjectForOrg
+    left = 120
+    top = 421
+  end
+  object dataProjectConfig_Default: TOraQuery
+    SQL.Strings = (
+      'SELECT * '
+      '  FROM CORE_PROJECTCONFIG'
+      '  WHERE ORGANIZATION_ID IS NULL'
+    )
+    MasterSource = dsProject
+    MasterFields = 'PROJECT_ID'
+    DetailFields = 'PROJECT_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Options.LocalMasterDetail = True
+    FilterOptions = []
+    left = 412
+    top = 244
+  end
+  object dsProjectConfig_Default: TOraDataSource
+    DataSet = dataProjectConfig_Default
+    OnDataChange = dsProjectConfig_DefaultDataChange
+    left = 484
+    top = 300
+  end
+  object dataProjectConfigForOrg: TOraQuery
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM CORE_PROJECTCONFIG '
+      '   WHERE Project_ID = :Project_ID'
+      '    AND Organization_ID = :Organization_ID'
+      ''
+      ''
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Options.LocalMasterDetail = True
+    FilterOptions = []
+    left = 304
+    top = 400
+    ParamData = <    
+      item
+        Name = 'Project_ID'
+        ExtDataType = 107
+      end    
+      item
+        Name = 'Organization_ID'
+        ExtDataType = 107
+      end>
+    object dataProjectConfigForOrgPROJECTNAME: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'PROJECTNAME'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object dataProjectConfigForOrgPRODUCTCODE: TStringField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRODUCTCODE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object dataProjectConfigForOrgVERSION: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'VERSION'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataProjectConfigForOrgPROJECTCONFIG_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECTCONFIG_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigForOrgPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigForOrgORGANIZATION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ORGANIZATION_ID'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigForOrgISACTIVE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISACTIVE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataProjectConfigForOrgPROJISACTIVE: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJISACTIVE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsProjectConfigForOrg: TOraDataSource
+    DataSet = dataProjectConfigForOrg
+    left = 336
+    top = 480
+  end
+  object dataProdForOrgProject: TOraQuery
+    SQL.Strings = (
+      'SELECT prod.PRODUCTCODE'
+      '     ,prod.PRODUCTDESCRIPTION'
+      '     ,prod.PRODUCT_ID'
+      '     ,prodV.PRODUCTVERSION_ID'
+      '     ,prodV.VERSION'
+      ''
+      '  FROM GLOBAL_PRODUCTVERSION prodV'
+      '  INNER JOIN GLOBAL_PRODUCT prod'
+      '    ON prodV.product_ID = prod.product_ID'
+    )
+    MasterSource = dsProject
+    MasterFields = 'PRODUCTVERSION_ID'
+    DetailFields = 'PRODUCTVERSION_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 632
+    top = 256
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PRODUCTVERSION_ID'
+        ParamType = ptInput
+      end>
+  end
+  object dsProdForOrgProject: TOraDataSource
+    DataSet = dataProdForOrgProject
+    left = 662
+    top = 319
+  end
+  object dataOrg_wProject: TOraQuery
+    SQL.Strings = (
+      '-- Organizations in selected Project'
+      ''
+      'SELECT  '
+      'org.ACCOUNT_ID , '
+      'org.ALTERNATEID '
+      ', org.CREATE_BY'
+      '  , org.CREATE_DT'
+      ' , org.ISINACTIVE '
+      ' , org.ISORGGROUP '
+      ', org.ISPROXY'
+      ' , org.ISSUBGROUP '
+      ', org.ISTEST '
+      ', org.NAICS '
+      ', org.ORG_LEGACYCODE '
+      ', org.ORG_LEGACYID '
+      ', org.ORGANIZATION_ID '
+      ', org.ORGFULLNAME'
+      ' , org.ORGNAME '
+      ', org.PARENT_ID'
+      ' , org.PROXYID'
+      ' , org.SIC'
+      ' , org.UPDATE_BY '
+      ', org.UPDATE_DT'
+      ', projectC.projectconfig_ID'
+      ', projectC.isDefault '
+      ', projectC.project_ID '
+      ''
+      ''
+      '  FROM CORE_ORGANIZATION org'
+      ''
+      '  INNER JOIN CORE_PROJECTCONFIG projectC'
+      '   ON org.Organization_ID = projectC.Organization_ID'
+      ''
+      '--   INNER JOIN CORE_PROJECT project'
+      '--     On projectC.project_ID = project.project_ID'
+      ''
+      '--   WHERE project.project_ID = :Project_ID'
+      ''
+      '   '
+      ''
+      '--ORDER BY project.Project_ID, projectC.isDefault DESC, org.organization_ID'
+      '  ORDER BY org.ORGNAME'
+    )
+    MasterSource = dsProject
+    MasterFields = 'PROJECT_ID'
+    DetailFields = 'PROJECT_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    Options.LocalMasterDetail = True
+    FilterOptions = []
+    left = 816
+    top = 328
+    object dataOrg_wProjectACCOUNT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ACCOUNT_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataOrg_wProjectALTERNATEID: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'ALTERNATEID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object dataOrg_wProjectCREATE_BY: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'CREATE_BY'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object dataOrg_wProjectCREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataOrg_wProjectISINACTIVE: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISINACTIVE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataOrg_wProjectISORGGROUP: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISORGGROUP'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataOrg_wProjectISPROXY: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISPROXY'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataOrg_wProjectISSUBGROUP: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISSUBGROUP'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataOrg_wProjectISTEST: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISTEST'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object dataOrg_wProjectNAICS: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NAICS'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataOrg_wProjectORG_LEGACYCODE: TStringField
+      DisplayWidth = 3
+      FieldKind = fkData
+      FieldName = 'ORG_LEGACYCODE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 9
+    end
+    object dataOrg_wProjectORG_LEGACYID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ORG_LEGACYID'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataOrg_wProjectORGANIZATION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ORGANIZATION_ID'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataOrg_wProjectORGFULLNAME: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'ORGFULLNAME'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1500
+    end
+    object dataOrg_wProjectORGNAME: TStringField
+      DisplayWidth = 250
+      FieldKind = fkData
+      FieldName = 'ORGNAME'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 750
+    end
+    object dataOrg_wProjectPARENT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PARENT_ID'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataOrg_wProjectPROXYID: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'PROXYID'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object dataOrg_wProjectSIC: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SIC'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataOrg_wProjectUPDATE_BY: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'UPDATE_BY'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object dataOrg_wProjectUPDATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'UPDATE_DT'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataOrg_wProjectPROJECTCONFIG_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECTCONFIG_ID'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataOrg_wProjectISDEFAULT: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISDEFAULT'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataOrg_wProjectPROJPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJPROJECT_ID'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataOrg_wProjectDISPLAYNAME: TStringField
+      DisplayWidth = 753
+      FieldKind = fkData
+      FieldName = 'DISPLAYNAME'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 753
+    end
+    object dataOrg_wProjectORGTYPE: TStringField
+      DisplayWidth = 7
+      FieldKind = fkData
+      FieldName = 'ORGTYPE'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 7
+    end
+    object dataOrg_wProjectPROJECT_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROJECT_ID'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+  end
+  object dataOrg_InAccount: TOraQuery
+    SQL.Strings = (
+      'select '
+      ''
+      '  org.Account_ID '
+      '  ,org.ORGANIZATION_ID'
+      '  ,org.PARENT_ID '
+      '  , '
+      '    CASE org.ISORGGROUP '
+      '     WHEN 1 THEN '
+      '       ''[GROUP] '' || org.orgname '
+      '     ELSE '
+      '       CASE org.ISSUBGROUP'
+      '        WHEN 1 then'
+      '          ''[SubGroup] '' || org.orgname '
+      '       ELSE'
+      '       CASE org.PARENT_ID '
+      '         WHEN -1 THEN'
+      '             org.orgname '
+      '         ELSE'
+      '            org.orgname || '' ('' || org.ORGFULLNAME || '')'''
+      '       END'
+      '       END'
+      '     END AS displayname'
+      ''
+      '   , org.ORGNAME'
+      '  ,org.ORGFULLNAME'
+      '  , org.ISORGGROUP'
+      '  , org.ISSUBGROUP '
+      ''
+      '  FROM  core_Organization org'
+      '  WHERE org.account_id = :Account_ID'
+      '  start with parent_ID = -1'
+      '  connect by prior organization_ID = parent_ID'
+    )
+    MasterSource = dsOrg_wProject
+    MasterFields = 'ACCOUNT_ID'
+    DetailFields = 'ACCOUNT_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 680
+    top = 88
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'ACCOUNT_ID'
+        ParamType = ptInput
+      end>
+  end
+  object dsOrg_InAccount: TOraDataSource
+    DataSet = dataOrg_InAccount
+    left = 696
+    top = 152
+  end
+  object dsOrg_wProject: TOraDataSource
+    DataSet = dataOrg_wProject
+    left = 832
+    top = 408
+  end
+  object countCurrentProject: TOraQuery
+    SQL.Strings = (
+      'select count(*) AS CurrentCount'
+      '  FROM CORE_PROJECT proj'
+      '  INNER JOIN GLOBAL_PRODUCTVERSION  pver'
+      '  ON proj.PRODUCTVERSION_ID = pver.PRODUCTVERSION_ID'
+      '   AND pver.PRODUCT_ID = :PRODUCT_ID'
+      '   '
+      '   WHERE proj.ACCOUNT_ID = :ACCOUNT_ID'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 496
+    top = 440
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'PRODUCT_ID'
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ACCOUNT_ID'
+      end>
+  end
+  object sqlProjectConfig_OrgInfo: TOraQuery
+    SQLInsert.Strings = (
+      'INSERT INTO CORE_PROJECTCONFIG'
+      '  (SURVEYTYPE_CLIENTHOSTED_FLG, CSIM_METHOD, PAPER_BRE_FLG, PAPER_BULKRETURN_FLG, SURVEYLOOK_CUSTOM_FLG, SURVEYLOOK_LOGO_FILENAME, SURVEYLOOK_HMRCLOGO_HIDE_FLG, SURVEYLOOK_CUSTOMCSS_FLG, SURVEY_LANGUAGES_MULTI_FLG, REPORT_LANGUAGES_MULTI_FLG, DATAFEED_ELIGIBILITY_FLG, DATAFEED_BIOMETRIC_FLG, DATAFEED_OTHER_FLG, SURVEY_SPOUSEELIGIBLE_FLG, DATAOUT_CASE_FLG, DATAOUT_INDREPORT_FLG, DATAOUT_AGGREPORT_FLG, DATAOUT_INDCALC_FLG, SURVEY_PRIVACYSTATEMENT_FLG, RPTAGG_DATE_BEG, RPTAGG_DATE_END, RPTAGG_T1T2_FLG, RPTAGG_T1T3_FLG, RPTAGG_P1P2_FLG, RPTAGG_P1P3_FLG, RPTAGG_BENCHMARK_FLG, RPTAGG_BIOMETRIC_FLG, SURVEY_ANONYMOUS_FLG, TIMEZONE, SURVEYTEMPLATE_ID, FRAMEWORKVERSION_ID, ISACTIVE, ACTIVE_DT, SURVEY_UNITOFMEASURE, SURVEY_EXTBIOMETRICS_FLG, STATUS_ID, ISDEFAULT, PRODUCTVERSION_ID, SURVEY_SPONSORURL, REPORT_DOCTOR, SURVEY_SUBMITDAYS, SURVEY_GROUPPW, TIMESERIES_ID, PROJECT_START_DATE, PROJECT_END_DATE, ISCLOSED_FLG, DELETE_FLG, SURVEY_ID)'
+      'VALUES'
+      '  (:SURVEYTYPE_CLIENTHOSTED_FLG, :CSIM_METHOD, :PAPER_BRE_FLG, :PAPER_BULKRETURN_FLG, :SURVEYLOOK_CUSTOM_FLG, :SURVEYLOOK_LOGO_FILENAME, :SURVEYLOOK_HMRCLOGO_HIDE_FLG, :SURVEYLOOK_CUSTOMCSS_FLG, :SURVEY_LANGUAGES_MULTI_FLG, :REPORT_LANGUAGES_MULTI_FLG, :DATAFEED_ELIGIBILITY_FLG, :DATAFEED_BIOMETRIC_FLG, :DATAFEED_OTHER_FLG, :SURVEY_SPOUSEELIGIBLE_FLG, :DATAOUT_CASE_FLG, :DATAOUT_INDREPORT_FLG, :DATAOUT_AGGREPORT_FLG, :DATAOUT_INDCALC_FLG, :SURVEY_PRIVACYSTATEMENT_FLG, :RPTAGG_DATE_BEG, :RPTAGG_DATE_END, :RPTAGG_T1T2_FLG, :RPTAGG_T1T3_FLG, :RPTAGG_P1P2_FLG, :RPTAGG_P1P3_FLG, :RPTAGG_BENCHMARK_FLG, :RPTAGG_BIOMETRIC_FLG, :SURVEY_ANONYMOUS_FLG, :TIMEZONE, :SURVEYTEMPLATE_ID, :FRAMEWORKVERSION_ID, :ISACTIVE, :ACTIVE_DT, :SURVEY_UNITOFMEASURE, :SURVEY_EXTBIOMETRICS_FLG, :STATUS_ID, :ISDEFAULT, :PRODUCTVERSION_ID, :SURVEY_SPONSORURL, :REPORT_DOCTOR, :SURVEY_SUBMITDAYS, :SURVEY_GROUPPW, :TIMESERIES_ID, :PROJECT_START_DATE, :PROJECT_END_DATE, :ISCLOSED_FLG, :DELETE_FLG, :SURVEY_ID)'
+    )
+    SQLDelete.Strings = (
+      'DELETE FROM CORE_PROJECTCONFIG'
+      'WHERE'
+      '  SURVEYTYPE_CLIENTHOSTED_FLG = :Old_15'
+    )
+    SQLUpdate.Strings = (
+      'UPDATE CORE_PROJECTCONFIG'
+      'SET'
+      '  SURVEYTYPE_CLIENTHOSTED_FLG = :SURVEYTYPE_CLIENTHOSTED_FLG, CSIM_METHOD = :CSIM_METHOD, PAPER_BRE_FLG = :PAPER_BRE_FLG, PAPER_BULKRETURN_FLG = :PAPER_BULKRETURN_FLG, SURVEYLOOK_CUSTOM_FLG = :SURVEYLOOK_CUSTOM_FLG, SURVEYLOOK_LOGO_FILENAME = :SURVEYLOOK_LOGO_FILENAME, SURVEYLOOK_HMRCLOGO_HIDE_FLG = :SURVEYLOOK_HMRCLOGO_HIDE_FLG, SURVEYLOOK_CUSTOMCSS_FLG = :SURVEYLOOK_CUSTOMCSS_FLG, SURVEY_LANGUAGES_MULTI_FLG = :SURVEY_LANGUAGES_MULTI_FLG, REPORT_LANGUAGES_MULTI_FLG = :REPORT_LANGUAGES_MULTI_FLG, DATAFEED_ELIGIBILITY_FLG = :DATAFEED_ELIGIBILITY_FLG, DATAFEED_BIOMETRIC_FLG = :DATAFEED_BIOMETRIC_FLG, DATAFEED_OTHER_FLG = :DATAFEED_OTHER_FLG, SURVEY_SPOUSEELIGIBLE_FLG = :SURVEY_SPOUSEELIGIBLE_FLG, DATAOUT_CASE_FLG = :DATAOUT_CASE_FLG, DATAOUT_INDREPORT_FLG = :DATAOUT_INDREPORT_FLG, DATAOUT_AGGREPORT_FLG = :DATAOUT_AGGREPORT_FLG, DATAOUT_INDCALC_FLG = :DATAOUT_INDCALC_FLG, SURVEY_PRIVACYSTATEMENT_FLG = :SURVEY_PRIVACYSTATEMENT_FLG, RPTAGG_DATE_BEG = :RPTAGG_DATE_BEG, RPTAGG_DATE_END = :RPTAGG_DATE_END, RPTAGG_T1T2_FLG = :RPTAGG_T1T2_FLG, RPTAGG_T1T3_FLG = :RPTAGG_T1T3_FLG, RPTAGG_P1P2_FLG = :RPTAGG_P1P2_FLG, RPTAGG_P1P3_FLG = :RPTAGG_P1P3_FLG, RPTAGG_BENCHMARK_FLG = :RPTAGG_BENCHMARK_FLG, RPTAGG_BIOMETRIC_FLG = :RPTAGG_BIOMETRIC_FLG, SURVEY_ANONYMOUS_FLG = :SURVEY_ANONYMOUS_FLG, TIMEZONE = :TIMEZONE, SURVEYTEMPLATE_ID = :SURVEYTEMPLATE_ID, FRAMEWORKVERSION_ID = :FRAMEWORKVERSION_ID, ISACTIVE = :ISACTIVE, ACTIVE_DT = :ACTIVE_DT, SURVEY_UNITOFMEASURE = :SURVEY_UNITOFMEASURE, SURVEY_EXTBIOMETRICS_FLG = :SURVEY_EXTBIOMETRICS_FLG, STATUS_ID = :STATUS_ID, ISDEFAULT = :ISDEFAULT, PRODUCTVERSION_ID = :PRODUCTVERSION_ID, SURVEY_SPONSORURL = :SURVEY_SPONSORURL, REPORT_DOCTOR = :REPORT_DOCTOR, SURVEY_SUBMITDAYS = :SURVEY_SUBMITDAYS, SURVEY_GROUPPW = :SURVEY_GROUPPW, TIMESERIES_ID = :TIMESERIES_ID, PROJECT_START_DATE = :PROJECT_START_DATE, PROJECT_END_DATE = :PROJECT_END_DATE, ISCLOSED_FLG = :ISCLOSED_FLG, DELETE_FLG = :DELETE_FLG, SURVEY_ID = :SURVEY_ID'
+      'WHERE'
+      '  SURVEYTYPE_CLIENTHOSTED_FLG = :Old_15'
+    )
+    SQLLock.Strings = (
+      'SELECT SURVEYTYPE_CLIENTHOSTED_FLG, CSIM_METHOD, PAPER_BRE_FLG, PAPER_BULKRETURN_FLG, SURVEYLOOK_CUSTOM_FLG, SURVEYLOOK_LOGO_FILENAME, SURVEYLOOK_HMRCLOGO_HIDE_FLG, SURVEYLOOK_CUSTOMCSS_FLG, SURVEY_LANGUAGES_MULTI_FLG, REPORT_LANGUAGES_MULTI_FLG, DATAFEED_ELIGIBILITY_FLG, DATAFEED_BIOMETRIC_FLG, DATAFEED_OTHER_FLG, SURVEY_SPOUSEELIGIBLE_FLG, DATAOUT_CASE_FLG, DATAOUT_INDREPORT_FLG, DATAOUT_AGGREPORT_FLG, DATAOUT_INDCALC_FLG, SURVEY_PRIVACYSTATEMENT_FLG, RPTAGG_DATE_BEG, RPTAGG_DATE_END, RPTAGG_T1T2_FLG, RPTAGG_T1T3_FLG, RPTAGG_P1P2_FLG, RPTAGG_P1P3_FLG, RPTAGG_BENCHMARK_FLG, RPTAGG_BIOMETRIC_FLG, SURVEY_ANONYMOUS_FLG, TIMEZONE, SURVEYTEMPLATE_ID, FRAMEWORKVERSION_ID, ISACTIVE, ACTIVE_DT, SURVEY_UNITOFMEASURE, SURVEY_EXTBIOMETRICS_FLG, STATUS_ID, ISDEFAULT, PRODUCTVERSION_ID, SURVEY_SPONSORURL, REPORT_DOCTOR, SURVEY_SUBMITDAYS, SURVEY_GROUPPW, TIMESERIES_ID, PROJECT_START_DATE, PROJECT_END_DATE, ISCLOSED_FLG, DELETE_FLG, SURVEY_ID FROM CORE_PROJECTCONFIG'
+      'WHERE'
+      '  SURVEYTYPE_CLIENTHOSTED_FLG = :Old_15'
+      'FOR UPDATE NOWAIT'
+    )
+    SQLRefresh.Strings = (
+      'SELECT SURVEYTYPE_CLIENTHOSTED_FLG, CSIM_METHOD, PAPER_BRE_FLG, PAPER_BULKRETURN_FLG, SURVEYLOOK_CUSTOM_FLG, SURVEYLOOK_LOGO_FILENAME, SURVEYLOOK_HMRCLOGO_HIDE_FLG, SURVEYLOOK_CUSTOMCSS_FLG, SURVEY_LANGUAGES_MULTI_FLG, REPORT_LANGUAGES_MULTI_FLG, DATAFEED_ELIGIBILITY_FLG, DATAFEED_BIOMETRIC_FLG, DATAFEED_OTHER_FLG, SURVEY_SPOUSEELIGIBLE_FLG, DATAOUT_CASE_FLG, DATAOUT_INDREPORT_FLG, DATAOUT_AGGREPORT_FLG, DATAOUT_INDCALC_FLG, SURVEY_PRIVACYSTATEMENT_FLG, RPTAGG_DATE_BEG, RPTAGG_DATE_END, RPTAGG_T1T2_FLG, RPTAGG_T1T3_FLG, RPTAGG_P1P2_FLG, RPTAGG_P1P3_FLG, RPTAGG_BENCHMARK_FLG, RPTAGG_BIOMETRIC_FLG, SURVEY_ANONYMOUS_FLG, TIMEZONE, SURVEYTEMPLATE_ID, FRAMEWORKVERSION_ID, ISACTIVE, ACTIVE_DT, SURVEY_UNITOFMEASURE, SURVEY_EXTBIOMETRICS_FLG, STATUS_ID, ISDEFAULT, PRODUCTVERSION_ID, SURVEY_SPONSORURL, REPORT_DOCTOR, SURVEY_SUBMITDAYS, SURVEY_GROUPPW, TIMESERIES_ID, PROJECT_START_DATE, PROJECT_END_DATE, ISCLOSED_FLG, DELETE_FLG, SURVEY_ID FROM CORE_PROJECTCONFIG'
+      'WHERE'
+      '  SURVEYTYPE_CLIENTHOSTED_FLG = :SURVEYTYPE_CLIENTHOSTED_FLG'
+    )
+    SQLRecCount.Strings = (
+      'SELECT Count(*) FROM ('
+      'SELECT * FROM CORE_PROJECTCONFIG'
+      ''
+      ')'
+    )
+    SQL.Strings = (
+      'SELECT CORE_PROJECTCONFIG.* '
+      ''
+      ' ,NVL(org.orgname, ''Default Project Settings'') AS orgname'
+      ' ,gs.SurveyName As SurveyName'
+      ' ,gs.SurveyURL as SurveyURL'
+      ' ,gs.SG_ID as SG_ID'
+      ''
+      '  FROM CORE_PROJECTCONFIG'
+      '   LEFT OUTER JOIN core_Organization org'
+      '   ON CORE_PROJECTCONFIG.organization_ID = org.organization_ID'
+      ''
+      '   LEFT OUTER JOIN global_survey gs'
+      '     ON CORE_PROJECTCONFIG.survey_id = gs.survey_id'
+      ''
+      '  ORDER BY NVL(org.orgname,'' '');'
+      ''
+    )
+    MasterSource = dsProject
+    MasterFields = 'PROJECT_ID'
+    DetailFields = 'PROJECT_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 59
+    top = 154
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PROJECT_ID'
+        ParamType = ptInput
+      end>
+  end
+  object dsProjectConfig_OrgInfo: TOraDataSource
+    DataSet = sqlProjectConfig_OrgInfo
+    OnDataChange = dsProjectConfig_OrgInfoDataChange
+    left = 63
+    top = 217
+  end
+  object sp_upsert_project_V1: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_PROJECT_V1'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_PROJECT_V1(:PPROJECT_ID, :PACCOUNT_ID, :PACCOUNT_NAME, :PPROJECTNAME, :PISTEST, :PISACTIVE, :PISMULTIPRODUCT, :PISMULTIORG, :PSTATUS, :PLINKEDPROJECT_ID, :PCREATE_BY, :PPHASE, :PUNIQUEFIELDNAME, :PNOTES, :PPRODUCTVERSION_ID, :PPROJECTGROUP_ID, :PEVALANALYSIS_FLG, :PLOCKSETTINGS_FLG, :PAUTOADDNEWORG_FLG, :PPROJECT_START_DATE, :PPROJECT_END_DATE, :PDELETE_FLG, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 845
+    top = 77
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PPROJECT_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PACCOUNT_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PACCOUNT_NAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PPROJECTNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISTEST'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISACTIVE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISMULTIPRODUCT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISMULTIORG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSTATUS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLINKEDPROJECT_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PCREATE_BY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PPHASE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PUNIQUEFIELDNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PNOTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PPRODUCTVERSION_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PPROJECTGROUP_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PEVALANALYSIS_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLOCKSETTINGS_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PAUTOADDNEWORG_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDateTime
+        Name = 'PPROJECT_START_DATE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDateTime
+        Name = 'PPROJECT_END_DATE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDELETE_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+        ParamType = ptOutput
+      end>
+    CommandStoredProcName = 'PR_UPSERT_PROJECT_V1'
+  end
+  object dataOrgNotInProject: TOraQuery
+    SQL.Strings = (
+      'select org.ORGANIZATION_ID'
+      '  ,org.OrgName'
+      '  ,org.OrgFullName'
+      '  ,org.Parent_ID'
+      '  ,org.Account_ID'
+      '  ,org.ISSUBGROUP'
+      '  ,org.ISINACTIVE'
+      '  ,org.ISORGGROUP'
+      '  FROM CORE_ORGANIZATION org'
+      '  INNER JOIN CORE_ACCOUNT acct'
+      '    ON org.account_ID = acct.Account_ID'
+      '    '
+      '  WHERE org.Account_ID = :ACCOUNT_ID '
+      '  AND ISSUBGROUP = 0'
+      '   AND'
+      '    org.Organization_ID  NOT IN (Select organization_ID'
+      '    FROM CORE_PROJECTCONFIG projC'
+      '    WHERE projC.ORGANIZATION_ID IS NOT NULL '
+      '      AND projC.Project_ID = :PROJECT_ID '
+      '    )'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 800
+    top = 256
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ACCOUNT_ID'
+      end    
+      item
+        DataType = ftInteger
+        Name = 'PROJECT_ID'
+      end>
+  end
+  object sp_INSERT_PROJECTCONFIG_V1: TOraStoredProc
+    StoredProcName = 'PR_INSERT_PROJECTCONFIG_V1'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_INSERT_PROJECTCONFIG_V1(:PPROJECTCONFIG_ID, :PPROJECT_ID, :PORGANIZATION_ID, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 842
+    top = 156
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PPROJECTCONFIG_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PPROJECT_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PORGANIZATION_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+        ParamType = ptOutput
+      end>
+    CommandStoredProcName = 'PR_INSERT_PROJECTCONFIG_V1'
+  end
+  object luSurveyID: TOraQuery
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM GLOBAL_SURVEY'
+      '  WHERE ProductVersion_ID = :ProductVersion_ID'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 480
+    top = 48
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ProductVersion_ID'
+      end>
+  end
+  object ds_luSurveyID: TOraDataSource
+    DataSet = luSurveyID
+    left = 502
+    top = 107
+  end
+  object sqlSurveyID_Default: TOraQuery
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM GLOBAL_SURVEY'
+      ' '
+    )
+    MasterSource = dsProjectConfig_Default
+    MasterFields = 'SURVEY_ID'
+    DetailFields = 'SURVEY_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 536
+    top = 190
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'SURVEY_ID'
+        ParamType = ptInput
+      end>
+  end
+  object dsSurveyID_Default: TOraDataSource
+    DataSet = sqlSurveyID_Default
+    left = 555
+    top = 242
+  end
+end

@@ -1,0 +1,205 @@
+object frm_GlobalTables: Tfrm_GlobalTables
+  Left = 0
+  Height = 614
+  Top = 76
+  Width = 1008
+  Caption = 'Global Tables'
+  ClientHeight = 614
+  ClientWidth = 1008
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 596
+    Top = 18
+    Width = 1008
+    ActivePage = tab_Products
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object tab_Products: TTabSheet
+      Caption = 'Products'
+      ClientHeight = 568
+      ClientWidth = 1000
+      object DBGrid6: TDBGrid
+        Left = 24
+        Height = 160
+        Top = 40
+        Width = 504
+        Color = clWindow
+        Columns = <>
+        DataSource = DM_Main.dsProduct
+        TabOrder = 0
+      end
+      object Label6: TLabel
+        Left = 40
+        Height = 15
+        Top = 16
+        Width = 79
+        Caption = 'PRODUCT LIST'
+        ParentColor = False
+      end
+      object Label8: TLabel
+        Left = 56
+        Height = 15
+        Top = 224
+        Width = 146
+        Caption = 'PRODUCT VERSION LOOUP'
+        ParentColor = False
+      end
+      object DBGrid8: TDBGrid
+        Left = 32
+        Height = 136
+        Top = 248
+        Width = 808
+        Color = clWindow
+        Columns = <>
+        DataSource = DM_Main.dsluProductVersion
+        DefaultRowHeight = 30
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgDisableDelete, dgDisableInsert]
+        TabOrder = 1
+      end
+      object DBGrid7: TDBGrid
+        Left = 600
+        Height = 100
+        Top = 56
+        Width = 344
+        Color = clWindow
+        Columns = <>
+        DataSource = DM_Main.dsProductVersion
+        TabOrder = 2
+      end
+      object Label7: TLabel
+        Left = 632
+        Height = 15
+        Top = 24
+        Width = 154
+        Caption = 'Versions for Selected Product'
+        ParentColor = False
+      end
+    end
+    object tab_Languages: TTabSheet
+      Caption = 'Languages'
+      ClientHeight = 568
+      ClientWidth = 1162
+      object DBGrid_Language: TDBGrid
+        Left = 0
+        Height = 448
+        Top = 0
+        Width = 1162
+        Align = alTop
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'LANGUAGE_ID'
+            Width = 110
+            FieldName = 'LANGUAGE_ID'
+          end        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Caption = 'ISRTL'
+            FieldName = 'ISRTL'
+          end        
+          item
+            Title.Caption = 'LANGUAGE_LOCALE_ENGLISH'
+            Width = 250
+            FieldName = 'LANGUAGE_LOCALE_ENGLISH'
+          end        
+          item
+            Title.Caption = 'LANGUAGE_LOCALE_NATIVE'
+            Width = 200
+            FieldName = 'LANGUAGE_LOCALE_NATIVE'
+          end        
+          item
+            Title.Caption = 'LANGUAGE_ENGLISH'
+            Width = 200
+            FieldName = 'LANGUAGE_ENGLISH'
+          end        
+          item
+            Title.Caption = 'LANGUAGE_NATIVE'
+            Width = 200
+            FieldName = 'LANGUAGE_NATIVE'
+          end        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Caption = 'ISHRASURVEY'
+            FieldName = 'ISHRASURVEY'
+          end        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Caption = 'ISHRAMESSAGING'
+            FieldName = 'ISHRAMESSAGING'
+          end        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Caption = 'ISCOHSURVEY'
+            FieldName = 'ISCOHSURVEY'
+          end        
+          item
+            Title.Caption = 'LCID_HEX'
+            FieldName = 'LCID_HEX'
+          end        
+          item
+            Title.Caption = 'COUNTRY_REGION_SHORT'
+            FieldName = 'COUNTRY_REGION_SHORT'
+          end        
+          item
+            Title.Caption = 'ISDEFAULT'
+            FieldName = 'ISDEFAULT'
+          end        
+          item
+            Title.Caption = 'LANGUAGE_NATIVE'
+            FieldName = 'LANGUAGE_NATIVE'
+          end        
+          item
+            Title.Caption = 'LANGUAGE_LOCALE_NATIVE'
+            Width = 200
+            FieldName = 'LANGUAGE_LOCALE_NATIVE'
+          end>
+        DataSource = DM_Main.dsLanguage
+        TabOrder = 0
+      end
+      object DBNavigator_Language: TDBNavigator
+        Left = 0
+        Height = 25
+        Top = 511
+        Width = 400
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 25
+        ClientWidth = 400
+        DataSource = DM_Main.dsLanguage
+        Options = []
+        TabOrder = 1
+      end
+    end
+    object tab_Messaging: TTabSheet
+      Caption = 'Messaging'
+      ClientHeight = 536
+      ClientWidth = 1162
+      object DBGrid15: TDBGrid
+        Left = 32
+        Height = 160
+        Top = 64
+        Width = 856
+        Color = clWindow
+        Columns = <>
+        DataSource = DM_Messaging.ds_MessagingCriteria
+        TabOrder = 0
+      end
+    end
+  end
+  object pnl_Header: TPanel
+    Left = 0
+    Height = 18
+    Top = 0
+    Width = 1008
+    Align = alTop
+    TabOrder = 1
+  end
+end

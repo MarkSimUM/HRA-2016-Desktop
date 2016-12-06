@@ -1,0 +1,150 @@
+unit datamoduleSurveyLibrary;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, DataModuleMain, db, Ora, OraScript,paswstring ;
+
+type
+
+  { TDM_SurveyLibrary }
+
+  TDM_SurveyLibrary = class(TDataModule)
+    dataItem: TOraQuery;
+    dataItemCORESET: TIntegerField;
+    dataItemISLOCKED: TIntegerField;
+    dataItemLabelITEMLABEL_ID: TFloatField;
+    dataItemLabelITEM_ID: TFloatField;
+    dataItemLabelLABEL: TStringField;
+    dataItemLabelLABELINPUT: TStringField;
+    dataItemLabelLABELINSTRUCTION: TStringField;
+    dataItemLabelLABELLEFT: TStringField;
+    dataItemLabelLABELREPORT: TStringField;
+    dataItemLabelLABELRIGHT: TStringField;
+    dataItemLabelLABELSHORT: TStringField;
+    dataItemLabelLANGUAGE_ID: TFloatField;
+    dataItemSTDORDER: TFloatField;
+    dataItemValue: TOraQuery;
+    dataItemLabel: TOraQuery;
+    dataItemCOPYFROMSTDCATEGORY: TFloatField;
+    dataItemCREATED_BY: TStringField;
+    dataItemCREATE_DT: TDateTimeField;
+    dataItemDATA_FIELDNAME: TStringField;
+    dataItemDATA_POSITION: TFloatField;
+    dataItemDESCRIPTION: TStringField;
+    dataItemDOMAIN: TStringField;
+    dataItemDOMAINORDER: TFloatField;
+    dataItemFIELDNAME: TStringField;
+    dataItemISCALCULATED: TFloatField;
+    dataItemISCUSTOM: TFloatField;
+    dataItemISSCALE: TFloatField;
+    dataItemITEMLINK_ID: TFloatField;
+    dataItemITEMTYPE_ID: TFloatField;
+    dataItemITEM_ID: TFloatField;
+    dataItemMAXVALUE: TFloatField;
+    dataItemMEASUREMENTUNIT: TFloatField;
+    dataItemMINVALUE: TFloatField;
+    dataItemNOTES: TStringField;
+    dataItemORGANIZATION_ID: TFloatField;
+    dataItemSTDCATEGORY_ID: TFloatField;
+    dataItemTABLENAME: TStringField;
+    dataItemTABLENAMELEGACY: TStringField;
+    dataItemTAGS: TStringField;
+    dataValueAndLabel: TOraQuery;
+    dataItemValueDISPLAYORDER: TFloatField;
+    dataItemValueISMISSINGVALUE: TFloatField;
+    dataItemValueITEMVALUELINK_ID: TFloatField;
+    dataItemValueITEMVALUE_ID: TFloatField;
+    dataItemValueITEM_ID: TFloatField;
+    dataItemValueLabel: TOraQuery;
+    dataItemValueLabelITEMVALUELABEL_ID: TFloatField;
+    dataItemValueLabelITEMVALUE_ID: TFloatField;
+    dataItemValueLabelLANGUAGE_ID: TFloatField;
+    dataItemValueLabelVALUE: TFloatField;
+    dataItemValueLabelVALUELABEL: TStringField;
+    dataItemValueLabelVALUELABELSHORT: TStringField;
+    dataItemValueVALUE: TFloatField;
+    dataItemVARNAME: TStringField;
+    dataValueAndLabelITEM_ID: TFloatField;
+    dataValueAndLabelVALUELABELSHORT: TStringField;
+    luItemType: TOraQuery;
+    luItemType_forDataItemCREATED_BY: TStringField;
+    luItemTypeCREATED_BY1: TStringField;
+    luItemType_forDataItemCREATE_DT: TDateTimeField;
+    luItemTypeCREATE_DT1: TDateTimeField;
+    luItemType_forDataItemDATATYPE: TStringField;
+    luItemTypeDATATYPE1: TStringField;
+    luItemType_forDataItemDESCRIPTION: TStringField;
+    luItemTypeDESCRIPTION1: TStringField;
+    luItemType_forDataItemDISPLAYORDER: TFloatField;
+    luItemTypeDISPLAYORDER1: TFloatField;
+    luItemType_forDataItemHASVALUELIST: TFloatField;
+    luItemTypeHASVALUELIST1: TFloatField;
+    luItemType_forDataItemISVISIBLE: TFloatField;
+    luItemTypeISVISIBLE1: TFloatField;
+    luItemType_forDataItemITEMTYPE_ID: TFloatField;
+    luItemTypeITEMTYPE_ID1: TFloatField;
+    LUValueAndLabel: TOraQuery;
+    dataValueAndLabelITEMVALUELABEL_ID: TFloatField;
+    dataValueAndLabelITEMVALUE_ID: TFloatField;
+    dsItem: TOraDataSource;
+    dsItemLabel: TOraDataSource;
+    dsluItemType: TOraDataSource;
+    luItemType_forDataItem: TOraQuery;
+    dataValueAndLabelDISPLAYORDER: TFloatField;
+    dataValueAndLabelVALUE: TFloatField;
+    dataValueAndLabelVALUELABEL: TStringField;
+    dsItemValue: TOraDataSource;
+    dsValueAndLabel: TOraDataSource;
+    dsItemValueLabel: TOraDataSource;
+    dataStdCategory: TOraQuery;
+    dataStdCategoryISSCALE: TFloatField;
+    dataStdCategoryMAXVALUE: TFloatField;
+    dataStdCategoryMINVALUE: TFloatField;
+    dataStdCategorySTDCATEGORY_DESC: TStringField;
+    dataStdCategorySTDCATEGORY_ID: TFloatField;
+    dsStdCategory: TOraDataSource;
+    LUValueAndLabelDISPLAYORDER: TFloatField;
+    LUValueAndLabelITEMVALUELABEL_ID: TFloatField;
+    LUValueAndLabelITEMVALUE_ID: TFloatField;
+    LUValueAndLabelVALUE: TFloatField;
+    LUValueAndLabelVALUELABEL: TStringField;
+    dsluTableName_Dict: TOraDataSource;
+    OraEncryptor1: TOraEncryptor;
+    luTableName_Dict: TOraQuery;
+    OraMetaData1: TOraMetaData;
+    OraScript1: TOraScript;
+    OraSQL1: TOraSQL;
+    OraSQLGeneric: TOraSQL;
+    OraStoredProc1: TOraStoredProc;
+    SP_UPSERT_ITEMMULTI_ITEM: TOraStoredProc;
+    SP_Upsert_Item: TOraStoredProc;
+    SP_UPSERT_ITEMVALUE: TOraStoredProc;
+    SP_UPSERT_ITEMLABEL: TOraStoredProc;
+    SP_UPSERT_ITEMMULTI_ITEMVALUE: TOraStoredProc;
+    SP_UPSERT_ITEMVALUELABEL: TOraStoredProc;
+    procedure dataItemAfterPost(DataSet: TDataSet);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  DM_SurveyLibrary: TDM_SurveyLibrary;
+
+implementation
+
+{$R *.lfm}
+
+{ TDM_SurveyLibrary }
+
+procedure TDM_SurveyLibrary.dataItemAfterPost(DataSet: TDataSet);
+begin
+
+end;
+
+end.
+

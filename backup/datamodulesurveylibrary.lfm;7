@@ -1,0 +1,3067 @@
+object DM_SurveyLibrary: TDM_SurveyLibrary
+  OldCreateOrder = False
+  Height = 600
+  HorizontalOffset = 366
+  VerticalOffset = 160
+  Width = 788
+  object OraSQL1: TOraSQL
+    Session = DM_Main.OraSessionMain
+    left = 432
+    top = 24
+  end
+  object dataItem: TOraQuery
+    KeyFields = 'ITEM_ID'
+    KeySequence = 'SLIB_ITEM_SEQ'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM SLIB_Item'
+      '  ORDER BY ISCALCULATED ASC'
+      '     , PAGEORDER'
+      '    '
+      '     , ITEM_ORDER'
+      '     , DOMAIN'
+      ''
+      '     , FIELDNAME'
+    )
+    FetchAll = True
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = [foCaseInsensitive]
+    AfterOpen = dataItemAfterOpen
+    AfterPost = dataItemAfterPost
+    left = 40
+    top = 40
+    object dataItemITEM_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEM_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemITEMLINK_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMLINK_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemORGANIZATION_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ORGANIZATION_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemITEMTYPE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMTYPE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemSTDCATEGORY_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STDCATEGORY_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemCOPYFROMSTDCATEGORY: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'COPYFROMSTDCATEGORY'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemDESCRIPTION: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'DESCRIPTION'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object dataItemFIELDNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'FIELDNAME'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataItemVARNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'VARNAME'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataItemTABLENAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'TABLENAME'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataItemDATA_FIELDNAME: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DATA_FIELDNAME'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataItemDATA_POSITION: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DATA_POSITION'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemISSCALE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISSCALE'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemISCUSTOM: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISCUSTOM'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemMEASUREMENTUNIT: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MEASUREMENTUNIT'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemTAGS: TStringField
+      DisplayWidth = 4000
+      FieldKind = fkData
+      FieldName = 'TAGS'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4000
+    end
+    object dataItemNOTES: TStringField
+      DisplayWidth = 4000
+      FieldKind = fkData
+      FieldName = 'NOTES'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4000
+    end
+    object dataItemCREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataItemCREATED_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATED_BY'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object dataItemDOMAIN: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DOMAIN'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataItemDOMAINORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DOMAINORDER'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemISCALCULATED: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISCALCULATED'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemTABLENAMELEGACY: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'TABLENAMELEGACY'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataItemMINVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MINVALUE'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object dataItemMAXVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MAXVALUE'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object dataItemSTDORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STDORDER'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object dataItemCORESET: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CORESET'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemISLOCKED: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISLOCKED'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemSECTIONORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SECTIONORDER'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemGROUPORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GROUPORDER'
+      Index = 29
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemPAGEORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PAGEORDER'
+      Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemDELETE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DELETE_FLG'
+      Index = 31
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataItemSG_QID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SG_QID'
+      Index = 32
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemSG_OPTIONID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SG_OPTIONID'
+      Index = 33
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemITEM_ORDER: TStringField
+      DisplayWidth = 25
+      FieldKind = fkData
+      FieldName = 'ITEM_ORDER'
+      Index = 34
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object dataItemVIEWNAME: TStringField
+      DisplayWidth = 150
+      FieldKind = fkData
+      FieldName = 'VIEWNAME'
+      Index = 35
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object dataItemITEM_VERSION: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEM_VERSION'
+      Index = 36
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataItemMAPTO_ITEM_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MAPTO_ITEM_ID'
+      Index = 37
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+  end
+  object dataItemLabel: TOraQuery
+    KeyFields = 'ITEMLabel_ID'
+    KeySequence = 'ITEMLABEL_SEQ'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM SLIB_ItemLabel'
+      '  WHERE Language_ID = :Language_ID'
+    )
+    MasterSource = dsItem
+    MasterFields = 'ITEM_ID'
+    DetailFields = 'ITEM_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 40
+    top = 96
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'Language_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'ITEM_ID'
+        ParamType = ptInput
+      end>
+    object dataItemLabelITEMLABEL_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMLABEL_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemLabelITEM_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEM_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemLabelLANGUAGE_ID: TFloatField
+      DefaultExpression = '1'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LANGUAGE_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemLabelLABEL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'LABEL'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object dataItemLabelLABELSHORT: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'LABELSHORT'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object dataItemLabelLABELREPORT: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'LABELREPORT'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object dataItemLabelLABELINSTRUCTION: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'LABELINSTRUCTION'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object dataItemLabelLABELINPUT: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'LABELINPUT'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object dataItemLabelLABELRIGHT: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'LABELRIGHT'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object dataItemLabelLABELLEFT: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'LABELLEFT'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object dataItemLabelLABEL_METRIC: TStringField
+      DisplayWidth = 6000
+      FieldKind = fkData
+      FieldName = 'LABEL_METRIC'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 6000
+    end
+    object dataItemLabelLABELINSTRUCTION_METRIC: TStringField
+      DisplayWidth = 6000
+      FieldKind = fkData
+      FieldName = 'LABELINSTRUCTION_METRIC'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 6000
+    end
+  end
+  object dataItemValue: TOraQuery
+    KeyFields = 'ITEMVALUE_ID'
+    KeySequence = 'ITEMVALUE_SEQ'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM SLIB_ItemValue'
+      '  ORDER BY displayorder'
+    )
+    MasterSource = dsItem
+    MasterFields = 'ITEM_ID'
+    DetailFields = 'ITEM_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    IndexFieldNames = 'DISPLAYORDER'
+    left = 40
+    top = 152
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'ITEM_ID'
+        ParamType = ptInput
+      end>
+    object dataItemValueITEMVALUE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUE_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueITEMVALUELINK_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUELINK_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueITEM_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEM_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'VALUE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueDISPLAYORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPLAYORDER'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueISMISSINGVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISMISSINGVALUE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueCREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataItemValueCREATED_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATED_BY'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object dataItemValueUPDATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'UPDATE_DT'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataItemValueUPDATED_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'UPDATED_BY'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object dataItemValueDELETE_FLG: TIntegerField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DELETE_FLG'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataItemValueSG_OPTIONID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SG_OPTIONID'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemValueSG_REPORTINGVALUE: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'SG_REPORTINGVALUE'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object dataItemValueMAPTO_ITEMVALUE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MAPTO_ITEMVALUE_ID'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object dataItemValueMAPTO_ITEMVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MAPTO_ITEMVALUE'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+  end
+  object dataItemValueLabel: TOraQuery
+    KeyFields = 'ITEMVALUELABEL_ID'
+    KeySequence = 'ITEMVALUELABEL_SEQ'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM SLIB_ItemValueLabel'
+      '  WHERE Language_ID = :Language_ID'
+    )
+    MasterSource = dsItemValue
+    MasterFields = 'ITEMVALUE_ID'
+    DetailFields = 'ITEMVALUE_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 40
+    top = 200
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'Language_ID'
+      end    
+      item
+        DataType = ftFloat
+        Name = 'ITEMVALUE_ID'
+        ParamType = ptInput
+      end>
+    object dataItemValueLabelITEMVALUELABEL_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUELABEL_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueLabelITEMVALUE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUE_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueLabelLANGUAGE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LANGUAGE_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueLabelVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'VALUE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataItemValueLabelVALUELABEL: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'VALUELABEL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object dataItemValueLabelVALUELABELSHORT: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'VALUELABELSHORT'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataItemValueLabelVALUELABEL_METRIC: TStringField
+      DisplayWidth = 1500
+      FieldKind = fkData
+      FieldName = 'VALUELABEL_METRIC'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1500
+    end
+  end
+  object dsItemValue: TOraDataSource
+    DataSet = dataItemValue
+    left = 40
+    top = 392
+  end
+  object dsItemValueLabel: TOraDataSource
+    DataSet = dataItemValueLabel
+    left = 112
+    top = 416
+  end
+  object dataValueAndLabel: TOraQuery
+    KeyFields = 'ITEMVALUE_ID'
+    KeySequence = 'ITEMVALUE_SEQ'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT v.value'
+      '       ,v.displayorder'
+      '       ,vLabel.ValueLabel'
+      '       ,vLabel.ValueLabelShort'
+      '       ,vLabel.ValueLabel_Metric'
+      '       ,v.ItemValue_ID'
+      '       ,v.Item_ID'
+      '       ,vLabel.ItemValueLabel_ID'
+      ''
+      '  FROM SLIB_ItemValue v'
+      '  LEFT OUTER JOIN SLIB_ItemValueLabel vLabel'
+      '   ON v.ItemValue_ID = vLabel.ItemValue_ID'
+      '   AND vLabel.Language_ID = :Language_ID'
+      ''
+      '  ORDER BY v.displayorder'
+    )
+    MasterSource = dsItem
+    MasterFields = 'ITEM_ID'
+    DetailFields = 'ITEM_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    IndexFieldNames = 'VALUE'
+    left = 136
+    top = 152
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'Language_ID'
+      end    
+      item
+        DataType = ftFloat
+        Name = 'ITEM_ID'
+        ParamType = ptInput
+      end>
+    object dataValueAndLabelVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'VALUE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataValueAndLabelDISPLAYORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPLAYORDER'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataValueAndLabelVALUELABEL: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'VALUELABEL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object dataValueAndLabelVALUELABELSHORT: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'VALUELABELSHORT'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object dataValueAndLabelVALUELABEL_METRIC: TStringField
+      DisplayWidth = 1500
+      FieldKind = fkData
+      FieldName = 'VALUELABEL_METRIC'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1500
+    end
+    object dataValueAndLabelITEMVALUE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUE_ID'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataValueAndLabelITEMVALUELABEL_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUELABEL_ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataValueAndLabelITEM_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEM_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+  end
+  object dsValueAndLabel: TOraDataSource
+    DataSet = dataValueAndLabel
+    left = 192
+    top = 360
+  end
+  object luItemType_forDataItem: TOraQuery
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM LU_ITEMTYPE'
+    )
+    MasterSource = dsItem
+    MasterFields = 'ITEMTYPE_ID'
+    DetailFields = 'ITEMTYPE_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 208
+    top = 56
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'ITEMTYPE_ID'
+        ParamType = ptInput
+      end>
+    object luItemType_forDataItemITEMTYPE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMTYPE_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemType_forDataItemDESCRIPTION: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DESCRIPTION'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 50
+    end
+    object luItemType_forDataItemDISPLAYORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPLAYORDER'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemType_forDataItemHASVALUELIST: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'HASVALUELIST'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemType_forDataItemDATATYPE: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DATATYPE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object luItemType_forDataItemISVISIBLE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemType_forDataItemCREATE_DT: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object luItemType_forDataItemCREATED_BY: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATED_BY'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+  end
+  object dsluItemType: TOraDataSource
+    DataSet = luItemType
+    left = 160
+    top = 288
+  end
+  object SP_Upsert_Item: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEM'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEM(:PITEM_ID, :PITEMTYPE_ID, :PFIELDNAME, :PTABLENAME, :PORGANIZATION_ID, :PISCUSTOM, :PISSCALE, :PISCALCULATED, :PSTDCATEGORY_ID, :PCOPYFROMSTDCATEGORY, :PMINVALUE, :PMAXVALUE, :PITEMLINK_ID, :PDESCRIPTION, :PVARNAME, :PDATA_FIELDNAME, :PDATA_POSITION, :PMEASUREMENTUNIT, :PTAGS, :PNOTES, :PCORESET, :PCREATEDBY, :PDOMAIN, :PSTDORDER, :PGROUPORDER, :PSECTIONORDER, :PPAGEORDER, :PISLOCKED, :PTABLENAMELEGACY, :PDOMAINORDER, :PSG_QID, :PSG_OPTIONID, :PITEM_ORDER, :PVIEWNAME, :PITEM_VERSION, :PMAPTO_ITEM_ID, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT, :PCOMMIT, :PCUSTOM, :PINSERTONLY);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 408
+    top = 96
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMTYPE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PFIELDNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PTABLENAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PORGANIZATION_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISCUSTOM'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISSCALE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISCALCULATED'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSTDCATEGORY_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOPYFROMSTDCATEGORY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMINVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMAXVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMLINK_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDESCRIPTION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVARNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDATA_FIELDNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDATA_POSITION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMEASUREMENTUNIT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PTAGS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PNOTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCORESET'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PCREATEDBY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDOMAIN'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSTDORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PGROUPORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSECTIONORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PPAGEORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISLOCKED'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PTABLENAMELEGACY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDOMAINORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSG_QID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSG_OPTIONID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PITEM_ORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVIEWNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_VERSION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMAPTO_ITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOMMIT'
+        ParamType = ptInput
+        HasDefault = True
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCUSTOM'
+        ParamType = ptInput
+        HasDefault = True
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PINSERTONLY'
+        ParamType = ptInput
+        HasDefault = True
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEM'
+  end
+  object dsItem: TOraDataSource
+    DataSet = dataItem
+    left = 40
+    top = 312
+  end
+  object dsItemLabel: TOraDataSource
+    DataSet = dataItemLabel
+    left = 104
+    top = 312
+  end
+  object dataStdCategory: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'Select * '
+      '  FROM SLIB_StdCategory'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 320
+    top = 96
+    object dataStdCategorySTDCATEGORY_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'STDCATEGORY_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataStdCategorySTDCATEGORY_DESC: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'STDCATEGORY_DESC'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 120
+    end
+    object dataStdCategoryISSCALE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISSCALE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataStdCategoryMINVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MINVALUE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataStdCategoryMAXVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MAXVALUE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object dataStdCategoryITEMTYPE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMTYPE_ID'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+  end
+  object dsStdCategory: TOraDataSource
+    DataSet = dataStdCategory
+    left = 248
+    top = 155
+  end
+  object OraEncryptor1: TOraEncryptor
+    DataHeader = ehNone
+    left = 304
+    top = 29
+  end
+  object LUValueAndLabel: TOraQuery
+    KeyFields = 'ITEMVALUE_ID'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT v.value'
+      '       ,v.displayorder'
+      '       ,vLabel.ValueLabel'
+      '       ,v.ItemValue_ID'
+      '       ,vLabel.ItemValueLabel_ID'
+      ''
+      '  FROM SLIB_ItemValue v'
+      '  LEFT OUTER JOIN SLIB_ItemValueLabel vLabel'
+      '   ON v.ItemValue_ID = vLabel.ItemValue_ID'
+      ' '
+      '   '
+      '   WHERE vLabel.Language_ID = 1'
+      '   AND v.Item_ID = :Item_ID'
+      '  '
+      '   ORDER BY v.value'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    IndexFieldNames = 'VALUE'
+    left = 272
+    top = 216
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'Item_ID'
+      end>
+    object LUValueAndLabelVALUE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'VALUE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object LUValueAndLabelDISPLAYORDER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPLAYORDER'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object LUValueAndLabelVALUELABEL: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'VALUELABEL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object LUValueAndLabelITEMVALUE_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object LUValueAndLabelITEMVALUELABEL_ID: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMVALUELABEL_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+  end
+  object SP_UPSERT_ITEMLABEL: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMLABEL'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEMLABEL(:PITEMLABEL_ID, :PITEM_ID, :PLANGUAGE_ID, :PLABEL, :PLABELSHORT, :PLABELREPORT, :PLABELINSTRUCTION, :PLABELINPUT, :PLABELRIGHT, :PLABELLEFT, :PLABEL_METRIC, :PLABELINSTRUCTION_METRIC, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT, :PCOMMIT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 408
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEMLABEL_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLANGUAGE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELSHORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELREPORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINSTRUCTION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINPUT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELRIGHT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELLEFT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABEL_METRIC'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINSTRUCTION_METRIC'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOMMIT'
+        ParamType = ptInput
+        HasDefault = True
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEMLABEL'
+  end
+  object SP_UPSERT_ITEMMULTI_ITEMVALUE: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMMULTI_ITEMVALUE'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEMMULTI_ITEMVALUE(:PITEM_ID, :PLANGUAGE_ID, :PITEMVALUE_ID, :PITEMVALUELINK_ID, :PVALUE, :PDISPLAYORDER, :PISMISSINGVALUE, :PMAPTO_ITEMVALUE_ID, :PMAPTO_ITEMVALUE, :PITEMVALUELABEL_ID, :PVALUELABEL, :PVALUELABELSHORT, :PSG_OPTIONID, :PSG_REPORTINGVALUE, :PDELETE_FLG, :PVALUELABEL_METRIC, :VRETURNCODE, :VSEQ_ITEMVALUEID, :VSEQ_ITEMVALUELABELID, :VINSERT_UPDATE_ITEMVALUE, :VINSERT_UPDATE_ITEMVALUELABEL);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 416
+    top = 256
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLANGUAGE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMVALUE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMVALUELINK_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDISPLAYORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISMISSINGVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMAPTO_ITEMVALUE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMAPTO_ITEMVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMVALUELABEL_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVALUELABEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVALUELABELSHORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSG_OPTIONID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PSG_REPORTINGVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDELETE_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVALUELABEL_METRIC'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQ_ITEMVALUEID'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQ_ITEMVALUELABELID'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VINSERT_UPDATE_ITEMVALUE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VINSERT_UPDATE_ITEMVALUELABEL'
+        ParamType = ptOutput
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEMMULTI_ITEMVALUE'
+  end
+  object SP_UPSERT_ITEMVALUE: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMVALUE'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEMVALUE(:PITEMVALUE_ID, :PITEMVALUELINK_ID, :PITEM_ID, :PVALUE, :PDISPLAYORDER, :PISMISSINGVALUE, :PSG_OPTIONID, :PSG_REPORTINGVALUE, :PMAPTO_ITEMVALUE_ID, :PMAPTO_ITEMVALUE, :PDELETE_FLG, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT, :PCOMMIT);'
+      'end;'
+    )
+    RefreshOptions = [roBeforeEdit]
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 408
+    top = 336
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEMVALUE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMVALUELINK_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDISPLAYORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISMISSINGVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSG_OPTIONID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PSG_REPORTINGVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'PMAPTO_ITEMVALUE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'PMAPTO_ITEMVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDELETE_FLG'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOMMIT'
+        ParamType = ptInput
+        HasDefault = True
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEMVALUE'
+  end
+  object SP_UPSERT_ITEMVALUELABEL: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMVALUELABEL'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEMVALUELABEL(:PITEMVALUELABEL_ID, :PITEMVALUE_ID, :PLANGUAGE_ID, :PVALUELABEL, :PVALUELABELSHORT, :PVALUELABEL_METRIC, :VRETURNCODE, :VSEQUENCENUM, :VUPDATEINSERT, :PCOMMIT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 400
+    top = 400
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEMVALUELABEL_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMVALUE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLANGUAGE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVALUELABEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVALUELABELSHORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVALUELABEL_METRIC'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOMMIT'
+        ParamType = ptInput
+        HasDefault = True
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEMVALUELABEL'
+  end
+  object OraStoredProc1: TOraStoredProc
+    Session = DM_Main.OraSessionMain
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 576
+    top = 360
+  end
+  object luItemType: TOraQuery
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM LU_ITEMTYPE'
+    )
+    DetailFields = 'ITEMTYPE_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 144
+    top = 232
+    object luItemTypeITEMTYPE_ID1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ITEMTYPE_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemTypeDESCRIPTION1: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DESCRIPTION'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 50
+    end
+    object luItemTypeDISPLAYORDER1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPLAYORDER'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemTypeHASVALUELIST1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'HASVALUELIST'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemTypeDATATYPE1: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'DATATYPE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object luItemTypeISVISIBLE1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ISVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object luItemTypeCREATE_DT1: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CREATE_DT'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object luItemTypeCREATED_BY1: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'CREATED_BY'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object luItemTypeNODATAFIELD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NODATAFIELD'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+  end
+  object OraSQLGeneric: TOraSQL
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'DECLARE'
+      '  PLABEL NVARCHAR2(200);'
+      '  VRETURNCODE VARCHAR2(200);'
+      '  VSEQUENCENUM VARCHAR2(200);'
+      '  VUPDATEINSERT VARCHAR2(200);'
+      '  PCOMMIT NUMBER;'
+      'BEGIN'
+      ' '
+      '  PLABEL := ''年龄 (test slabel n88)'';'
+      ''
+      '  PR_UPSERT_ITEMLABEL('
+      '    NULL,'
+      '    250,'
+      '    1,'
+      '    N''年龄 (test slabel n97)'','
+      '    :PLABEL,'
+      '    NULL,'
+      '    NULL,'
+      '    NULL,'
+      '    NULL,'
+      '    NULL,'
+      '    :VRETURNCODE,'
+      '    :VSEQUENCENUM ,'
+      '    :VUPDATEINSERT ,'
+      '    1'
+      '  );'
+      ''
+      'END;'
+    )
+    left = 576
+    top = 40
+    ParamData = <    
+      item
+        DataType = ftWideString
+        Name = 'PLABEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQUENCENUM'
+      end    
+      item
+        DataType = ftString
+        Name = 'VUPDATEINSERT'
+      end>
+  end
+  object luTableName_Dict: TOraQuery
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'SELECT * '
+      '  FROM LU_Tablename_Dict'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 224
+    top = 272
+  end
+  object dsluTableName_Dict: TOraDataSource
+    DataSet = luTableName_Dict
+    left = 288
+    top = 296
+  end
+  object SP_UPSERT_ITEMMULTI_ITEM: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMMULTI_ITEM'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEMMULTI_ITEM(:PITEM_ID, :PITEMTYPE_ID, :PFIELDNAME, :PTABLENAME, :PORGANIZATION_ID, :PISCUSTOM, :PISSCALE, :PISCALCULATED, :PSTDCATEGORY_ID, :PCOPYFROMSTDCATEGORY, :PMINVALUE, :PMAXVALUE, :PITEMLINK_ID, :PDESCRIPTION, :PVARNAME, :PDATA_FIELDNAME, :PDATA_POSITION, :PMEASUREMENTUNIT, :PTAGS, :PNOTES, :PCORESET, :PCREATEDBY, :PDOMAIN, :PSTDORDER, :PGROUPORDER, :PSECTIONORDER, :PPAGEORDER, :PISLOCKED, :PTABLENAMELEGACY, :PDOMAINORDER, :PSG_QID, :PSG_OPTIONID, :PITEM_ORDER, :PVIEWNAME, :PITEM_VERSION, :PMAPTO_ITEM_ID, :PITEMLABEL_ID, :PLANGUAGE_ID, :PLABEL, :PLABELSHORT, :PLABELREPORT, :PLABELINSTRUCTION, :PLABELINPUT, :PLABELRIGHT, :PLABELLEFT, :PLABEL_METRIC, :PLABELINSTRUCTION_METRIC, :VRETURNCODE, :VSEQ_ITEM, :VSEQ_ITEMLABEL, :VINSERT_UPDATE_ITEM, :VINSERT_UPDATE_ITEMLABEL, :PCUSTOM, :PINSERTONLY);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 481
+    top = 445
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMTYPE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PFIELDNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PTABLENAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PORGANIZATION_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISCUSTOM'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISSCALE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISCALCULATED'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSTDCATEGORY_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOPYFROMSTDCATEGORY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMINVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMAXVALUE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMLINK_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDESCRIPTION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVARNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDATA_FIELDNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDATA_POSITION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMEASUREMENTUNIT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PTAGS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PNOTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCORESET'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PCREATEDBY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PDOMAIN'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSTDORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PGROUPORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSECTIONORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PPAGEORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PISLOCKED'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PTABLENAMELEGACY'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PDOMAINORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSG_QID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PSG_OPTIONID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PITEM_ORDER'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PVIEWNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_VERSION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PMAPTO_ITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEMLABEL_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLANGUAGE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELSHORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELREPORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINSTRUCTION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINPUT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELRIGHT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELLEFT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABEL_METRIC'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINSTRUCTION_METRIC'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQ_ITEM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VSEQ_ITEMLABEL'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VINSERT_UPDATE_ITEM'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftString
+        Name = 'VINSERT_UPDATE_ITEMLABEL'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCUSTOM'
+        ParamType = ptInput
+        HasDefault = True
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PINSERTONLY'
+        ParamType = ptInput
+        HasDefault = True
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEMMULTI_ITEM'
+  end
+  object OraScript1: TOraScript
+    Session = DM_Main.OraSessionMain
+    left = 504
+    top = 34
+  end
+  object sp_CHECKITEMFIELDNAME: TOraStoredProc
+    StoredProcName = 'PR_CHECKITEMFIELDNAME'
+    Session = DM_Main.OraSessionMain
+    SQL.Strings = (
+      'begin'
+      '  PR_CHECKITEMFIELDNAME(:PTABLENAME, :PFIELDNAME, :PCNT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 560
+    top = 152
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'PTABLENAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PFIELDNAME'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCNT'
+        ParamType = ptOutput
+      end>
+    CommandStoredProcName = 'PR_CHECKITEMFIELDNAME'
+  end
+  object dataSkipLogic: TOraQuery
+    SQL.Strings = (
+      'SELECT *'
+      ''
+      '  FROM slib_SKIPLOGIC'
+      '  ORDER BY'
+      '    GROUPORDER'
+      '    , LOGICORDER'
+    )
+    MasterSource = dsItem
+    MasterFields = 'ITEM_ID'
+    DetailFields = 'ITEM_ID_SKIP'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    AfterOpen = dataSkipLogicAfterOpen
+    left = 248
+    top = 445
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'ITEM_ID'
+        ParamType = ptInput
+      end>
+  end
+  object dsSkipLogic: TOraDataSource
+    DataSet = dataSkipLogic
+    left = 272
+    top = 496
+  end
+  object luOperator_List: TOraQuery
+    SQL.Strings = (
+      'SELECT * '
+      ''
+      '   FROM LU_OPERATOR_LIST'
+      '   ORDER BY OPERATOR_ORDER'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 328
+    top = 464
+  end
+  object dsOperator_List: TOraDataSource
+    DataSet = luOperator_List
+    left = 384
+    top = 496
+  end
+  object dsMasterField: TOraDataSource
+    DataSet = luMasterField
+    left = 616
+    top = 496
+  end
+  object luMasterField: TOraQuery
+    SQL.Strings = (
+      'SELECT FIELDNAME, SG_QID, Item_ID'
+      '  FROM SLIB_ITEM'
+      '  WHERE '
+      '     PAGEORDER <= :PAGEORDER '
+      '     AND ITEM_ORDER < :ITEMORDER'
+      '     AND TABLENAME = :TABLENAME'
+      '     '
+      '     ORDER BY PAGEORDER, ITEM_ORDER'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    AfterOpen = luMasterFieldAfterOpen
+    left = 600
+    top = 458
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'PAGEORDER'
+      end    
+      item
+        DataType = ftString
+        Name = 'ITEMORDER'
+      end    
+      item
+        DataType = ftString
+        Name = 'TABLENAME'
+      end>
+  end
+  object dataMasterValues: TOraQuery
+    SQL.Strings = (
+      'SELECT iv.VALUE,iv.DISPLAYORDER, ivL.VALUELABEL, iv.Item_Id'
+      '  FROM slib_ItemValue iv'
+      '  INNER JOIN slib_ItemValueLabel ivL'
+      '   ON iv.itemvalue_id = ivL.itemvalue_id'
+      '   AND ivL.language_id = 1'
+      '   WHERE iv.item_id = :item_id'
+      '   ORDER BY iv.DISPLAYORDER'
+      ''
+    )
+    MasterFields = 'ITEM_ID'
+    DetailFields = 'ITEM_ID'
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 681
+    top = 449
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'item_id'
+      end>
+  end
+  object dsMasterValues: TOraDataSource
+    DataSet = dataMasterValues
+    left = 700
+    top = 522
+  end
+  object OraMetaData: TOraMetaData
+    Filtered = True
+    Filter = 'table_name=''SLIB_ITEM'''
+    FilterOptions = []
+    MetaDataKind = 'Columns'
+    Session = DM_Main.OraSessionMain
+    left = 668
+    top = 240
+  end
+  object dsOraMetaData: TOraDataSource
+    DataSet = OraMetaData
+    left = 672
+    top = 304
+  end
+end

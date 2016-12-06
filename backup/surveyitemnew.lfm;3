@@ -1,0 +1,350 @@
+object frmSurveyItemNew: TfrmSurveyItemNew
+  Left = 268
+  Height = 532
+  Top = 131
+  Width = 768
+  Caption = 'Add Survey Item'
+  ClientHeight = 532
+  ClientWidth = 768
+  OnActivate = FormActivate
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object LUItemType: TDBLookupComboBox
+    Left = 262
+    Height = 23
+    Top = 88
+    Width = 176
+    Color = clInfoBk
+    KeyField = 'ITEMTYPE_ID'
+    ListField = 'DESCRIPTION'
+    ListFieldIndex = 0
+    ListSource = DM_SurveyLibrary.dsluItemType
+    LookupCache = False
+    OnCloseUp = LUItemTypeCloseUp
+    ReadOnly = True
+    ScrollListDataset = True
+    TabOrder = 0
+  end
+  object rgMeasurementType: TDBRadioGroup
+    Left = 432
+    Height = 65
+    Top = 120
+    Width = 136
+    Caption = 'Measurement Type'
+    Items.Strings = (
+      '1 US'
+      '2 Metric'
+    )
+    TabOrder = 1
+    Values.Strings = (
+      '1'
+      '2'
+    )
+  end
+  object luTableName: TDBLookupComboBox
+    Left = 112
+    Height = 23
+    Top = 32
+    Width = 176
+    Color = clInfoBk
+    KeyField = 'TABLE_NM'
+    ListField = 'TABLE_NM'
+    ListFieldIndex = 0
+    ListSource = DM_SurveyLibrary.dsluTableName_Dict
+    LookupCache = False
+    ReadOnly = True
+    TabOrder = 2
+  end
+  object Label5: TLabel
+    Left = 40
+    Height = 15
+    Top = 72
+    Width = 65
+    Caption = 'FieldName *'
+    ParentColor = False
+  end
+  object Label11: TLabel
+    Left = 248
+    Height = 15
+    Top = 72
+    Width = 85
+    Caption = 'Question Type *'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 32
+    Height = 15
+    Top = 120
+    Width = 26
+    Caption = 'Page'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 32
+    Height = 15
+    Top = 32
+    Width = 69
+    Caption = 'TableName *'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 240
+    Height = 15
+    Top = 120
+    Width = 21
+    Caption = 'Min'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 311
+    Height = 15
+    Top = 120
+    Width = 22
+    Caption = 'Max'
+    ParentColor = False
+  end
+  object Label15: TLabel
+    Left = 44
+    Height = 15
+    Top = 336
+    Width = 57
+    Caption = 'Instruction'
+    ParentColor = False
+  end
+  object Label14: TLabel
+    Left = 45
+    Height = 15
+    Top = 304
+    Width = 51
+    Caption = 'Label Left'
+    ParentColor = False
+  end
+  object Label12: TLabel
+    Left = 51
+    Height = 15
+    Top = 272
+    Width = 28
+    Caption = 'Input'
+    ParentColor = False
+  end
+  object Label13: TLabel
+    Left = 352
+    Height = 15
+    Top = 304
+    Width = 59
+    Caption = 'Label Right'
+    ParentColor = False
+  end
+  object DividerBevel1: TDividerBevel
+    Left = 40
+    Height = 15
+    Top = 200
+    Width = 456
+    Caption = 'Item Labels'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 112
+    Height = 25
+    Top = 360
+    Width = 75
+    Caption = 'Save'
+    OnClick = Button1Click
+    TabOrder = 3
+  end
+  object btnCancel: TButton
+    Left = 213
+    Height = 25
+    Top = 360
+    Width = 75
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 4
+  end
+  object edtFieldName: TEdit
+    Left = 40
+    Height = 23
+    Hint = 'FieldName'
+    Top = 88
+    Width = 184
+    Color = clInfoBk
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 5
+  end
+  object edtItemOrder: TEdit
+    Left = 120
+    Height = 23
+    Hint = 'FieldName'
+    Top = 136
+    Width = 72
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 6
+  end
+  object edtMin: TEdit
+    Left = 222
+    Height = 23
+    Hint = 'FieldName'
+    Top = 136
+    Width = 40
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 7
+  end
+  object edtMax: TEdit
+    Left = 288
+    Height = 23
+    Hint = 'FieldName'
+    Top = 136
+    Width = 66
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 8
+  end
+  object edtLabel: TEdit
+    Left = 72
+    Height = 23
+    Hint = 'FieldName'
+    Top = 224
+    Width = 672
+    Color = clInfoBk
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 9
+  end
+  object edtLabelInput: TEdit
+    Left = 112
+    Height = 23
+    Hint = 'FieldName'
+    Top = 264
+    Width = 228
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 10
+  end
+  object edtLabelRight: TEdit
+    Left = 432
+    Height = 23
+    Hint = 'FieldName'
+    Top = 296
+    Width = 188
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 11
+  end
+  object edtLabelLeft: TEdit
+    Left = 112
+    Height = 23
+    Hint = 'FieldName'
+    Top = 296
+    Width = 228
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 12
+  end
+  object edtLabelInstruction: TEdit
+    Left = 112
+    Height = 23
+    Hint = 'FieldName'
+    Top = 328
+    Width = 606
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 13
+  end
+  object memoLog: TMemo
+    Left = 176
+    Height = 104
+    Top = 416
+    Width = 520
+    ScrollBars = ssAutoBoth
+    TabOrder = 14
+  end
+  object SpinEdit1: TSpinEdit
+    Left = 384
+    Height = 23
+    Top = 144
+    Width = 50
+    TabOrder = 15
+  end
+  object Label16: TLabel
+    Left = 24
+    Height = 15
+    Top = 232
+    Width = 36
+    Caption = 'Label *'
+    ParentColor = False
+  end
+  object Label17: TLabel
+    Left = 112
+    Height = 15
+    Top = 440
+    Width = 26
+    Caption = 'LOG:'
+    ParentColor = False
+  end
+  object chkIsCalculated: TCheckBox
+    Left = 472
+    Height = 19
+    Top = 88
+    Width = 108
+    Caption = 'Calculated Value'
+    TabOrder = 16
+  end
+  object edtSG_QID: TEdit
+    Left = 448
+    Height = 23
+    Hint = 'FieldName'
+    Top = 24
+    Width = 66
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 17
+  end
+  object Label8: TLabel
+    Left = 456
+    Height = 15
+    Top = 8
+    Width = 39
+    Caption = 'SG_QID'
+    ParentColor = False
+  end
+  object Label9: TLabel
+    Left = 522
+    Height = 15
+    Top = 8
+    Width = 74
+    Caption = 'SG_OPTIONID'
+    ParentColor = False
+  end
+  object edtSG_OPTIONID: TEdit
+    Left = 530
+    Height = 23
+    Hint = 'FieldName'
+    Top = 24
+    Width = 66
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 18
+  end
+  object edtPageOrder: TEdit
+    Left = 31
+    Height = 23
+    Hint = 'FieldName'
+    Top = 136
+    Width = 48
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 19
+  end
+  object Label10: TLabel
+    Left = 128
+    Height = 15
+    Top = 120
+    Width = 57
+    Caption = 'Item Order'
+    ParentColor = False
+  end
+end

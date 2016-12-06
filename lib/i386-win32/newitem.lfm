@@ -1,0 +1,428 @@
+object frm_ItemNew: Tfrm_ItemNew
+  Left = 420
+  Height = 533
+  Top = 299
+  Width = 871
+  Caption = 'New Item'
+  ClientHeight = 0
+  ClientWidth = 0
+  OnCreate = FormCreate
+  LCLVersion = '1.2.6.0'
+  object DBCheckBox2: TDBCheckBox
+    Left = 360
+    Height = 23
+    Top = 48
+    Width = 90
+    Caption = 'is Scale'
+    DataField = 'ISSCALE'
+    DataSource = DM_SurveyLibrary.dsItem
+    TabOrder = 0
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object DBCheckBox3: TDBCheckBox
+    Left = 360
+    Height = 23
+    Top = 24
+    Width = 90
+    Caption = 'is Calculated'
+    DataField = 'ISCALCULATED'
+    DataSource = DM_SurveyLibrary.dsItem
+    TabOrder = 1
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object DBCheckBox1: TDBCheckBox
+    Left = 360
+    Height = 23
+    Top = 72
+    Width = 90
+    Caption = 'is Custom'
+    DataField = 'ISCUSTOM'
+    DataSource = DM_SurveyLibrary.dsItem
+    TabOrder = 2
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+  end
+  object DBListBox1: TDBListBox
+    Left = 144
+    Height = 57
+    Top = 120
+    Width = 184
+    DataField = 'TABLENAME'
+    DataSource = DM_SurveyLibrary.dsItem
+    ItemHeight = 15
+    Items.Strings = (
+      'SD_HRA'
+      'SD_HRACUSTOM'
+      'SD_BIOMETRIC'
+    )
+    TabOrder = 3
+  end
+  object luItemType: TDBLookupListBox
+    Left = 24
+    Height = 376
+    Top = 120
+    Width = 112
+    DataField = 'ITEMTYPE_ID'
+    DataSource = DM_SurveyLibrary.dsItem
+    KeyField = 'ITEMTYPE_ID'
+    ListField = 'DESCRIPTION'
+    ListFieldIndex = 0
+    ListSource = DM_SurveyLibrary.dsluItemType
+    LookupCache = False
+    TabOrder = 4
+  end
+  object Label4: TLabel
+    Left = 16
+    Height = 15
+    Top = 24
+    Width = 57
+    Caption = 'FieldName'
+    ParentColor = False
+  end
+  object DBEdit1: TDBEdit
+    Left = 88
+    Height = 23
+    Top = 24
+    Width = 192
+    DataField = 'FIELDNAME'
+    DataSource = DM_SurveyLibrary.dsItem
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 5
+  end
+  object Label5: TLabel
+    Left = 52
+    Height = 15
+    Top = 56
+    Width = 21
+    Caption = 'Min'
+    ParentColor = False
+  end
+  object DBEdit5: TDBEdit
+    Left = 88
+    Height = 23
+    Top = 56
+    Width = 36
+    DataField = 'MINVALUE'
+    DataSource = DM_SurveyLibrary.dsItem
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 6
+  end
+  object Label6: TLabel
+    Left = 136
+    Height = 15
+    Top = 56
+    Width = 22
+    Caption = 'Max'
+    ParentColor = False
+  end
+  object DBRadioGroup1: TDBRadioGroup
+    Left = 144
+    Height = 65
+    Top = 192
+    Width = 185
+    Caption = 'Measurement Type'
+    DataField = 'MEASUREMENTUNIT'
+    DataSource = DM_SurveyLibrary.dsItem
+    Items.Strings = (
+      '[Blank]'
+      '1 US'
+      '2 Metric'
+    )
+    TabOrder = 7
+    Values.Strings = (
+      ''
+      '1'
+      '2'
+    )
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 152
+    Height = 25
+    Top = 464
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = DM_SurveyLibrary.dsItem
+    OnClick = DBNavigator1Click
+    Options = []
+    TabOrder = 8
+    VisibleButtons = [nbEdit, nbPost, nbCancel]
+  end
+  object edt_Label: TEdit
+    Left = 365
+    Height = 23
+    Top = 152
+    Width = 451
+    TabOrder = 9
+  end
+  object Label7: TLabel
+    Left = 365
+    Height = 15
+    Top = 128
+    Width = 28
+    Caption = 'Label'
+    ParentColor = False
+  end
+  object DBEdit4: TDBEdit
+    Left = 184
+    Height = 23
+    Top = 56
+    Width = 56
+    DataField = 'MAXVALUE'
+    DataSource = DM_SurveyLibrary.dsItem
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 10
+  end
+  object DBEdit6: TDBEdit
+    Left = 376
+    Height = 23
+    Top = 232
+    Width = 56
+    DataField = 'ITEM_ID'
+    DataSource = DM_SurveyLibrary.dsItem
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 11
+  end
+  object Button1: TButton
+    Left = 10
+    Height = 25
+    Top = 10
+    Width = 75
+    Caption = 'Button1'
+    TabOrder = 12
+  end
+  object Button2: TButton
+    Left = 500
+    Height = 25
+    Top = 395
+    Width = 132
+    Caption = 'Test Stored Proc'
+    OnClick = Button2Click
+    TabOrder = 13
+  end
+  object PR_UPSERT_ITEMLABEL: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMLABEL'
+    Session = DM_Main.OraSession1
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEMLABEL(:PITEMLABEL_ID, :PITEM_ID, :PLANGUAGE_ID, :PLABEL, :PLABELSHORT, :PLABELREPORT, :PLABELINSTRUCTION, :PLABELINPUT, :PLABELRIGHT, :PLABELLEFT, :VRETURNCODE, :PCOMMIT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 395
+    top = 288
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEMLABEL_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLANGUAGE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftWideString
+        Name = 'PLABEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELSHORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELREPORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINSTRUCTION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINPUT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELRIGHT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELLEFT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOMMIT'
+        ParamType = ptInput
+        HasDefault = True
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEMLABEL'
+  end
+  object OraStoredProc1: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMLABEL'
+    Session = DM_Main.OraSession1
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 382
+    top = 391
+    CommandStoredProcName = 'PR_UPSERT_ITEMLABEL'
+  end
+  object OraStoredProc2: TOraStoredProc
+    StoredProcName = 'PR_UPSERT_ITEMLABEL'
+    Session = DM_Main.OraSession1
+    SQL.Strings = (
+      'begin'
+      '  PR_UPSERT_ITEMLABEL(:PITEMLABEL_ID, :PITEM_ID, :PLANGUAGE_ID, :PLABEL, :PLABELSHORT, :PLABELREPORT, :PLABELINSTRUCTION, :PLABELINPUT, :PLABELRIGHT, :PLABELLEFT, :VRETURNCODE, :PCOMMIT);'
+      'end;'
+    )
+    Options.AutoClose = False
+    Options.FieldsAsString = False
+    Options.DeferredLobRead = False
+    Options.CacheLobs = True
+    Options.ScrollableCursor = False
+    Options.FieldsOrigin = False
+    Options.DefaultValues = False
+    Options.RequiredFields = True
+    Options.StrictUpdate = True
+    Options.NumberRange = False
+    Options.QueryRecCount = False
+    Options.AutoPrepare = False
+    Options.ReturnParams = False
+    Options.TrimFixedChar = True
+    Options.LongStrings = True
+    Options.RemoveOnRefresh = True
+    Options.FlatBuffers = False
+    Options.DetailDelay = 0
+    FilterOptions = []
+    left = 536
+    top = 296
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'PITEMLABEL_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PITEM_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PLANGUAGE_ID'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELSHORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELREPORT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINSTRUCTION'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELINPUT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELRIGHT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PLABELLEFT'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'VRETURNCODE'
+        ParamType = ptOutput
+      end    
+      item
+        DataType = ftFloat
+        Name = 'PCOMMIT'
+        ParamType = ptInput
+        HasDefault = True
+      end>
+    CommandStoredProcName = 'PR_UPSERT_ITEMLABEL'
+  end
+end
